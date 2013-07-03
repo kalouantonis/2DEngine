@@ -60,6 +60,7 @@ int main(void)
 		stateManager.DrawItems(window);
 
 		window.display();
+		window.clear(sf::Color::Black);
 	}
 
 

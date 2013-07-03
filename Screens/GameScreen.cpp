@@ -35,8 +35,6 @@ void GameScreen::Update(float elapsedTime)
 
 void GameScreen::Draw(sf::RenderTarget& target)
 {
-	// Clearing to black... for now
-	target.clear(sf::Color(0, 0, 0));
 }
 
 GAME_STATE GameScreen::GetGameState()

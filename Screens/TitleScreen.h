@@ -10,6 +10,7 @@
 
 #include "GameScreen.h"
 #include "MenuScreen.h"
+#include "Animation/SlideAnimation.h"
 
 #include "ScreenManager.h"
 
@@ -27,6 +28,8 @@ public:
 private:
 	sf::Text text;
 	sf::Font font;
+
+	SlideAnimation slideAn;
 };
 
 #endif /* TITLESCREEN_H_ */

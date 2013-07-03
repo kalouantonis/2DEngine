@@ -13,7 +13,7 @@
 
 #include <iostream>
 
-enum GAME_STATE { SPLASH, TITLE, MENU, PLAY, PAUSE };
+#include "ScreenConfig.h"
 
 class GameScreen
 {

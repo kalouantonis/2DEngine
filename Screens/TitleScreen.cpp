@@ -26,6 +26,8 @@ void TitleScreen::LoadContent()
 	text.setString("Title Screen");
 	text.setFont(font);
 
+	slideAn.LoadContent(&text);
+
 	keys.push_back(sf::Keyboard::Return);
 	//keys.push_back(sf::Keyboard::Space);
 }
@@ -34,18 +36,21 @@ void TitleScreen::UnloadContent()
 {
 	GameScreen::UnloadContent();
 
+	slideAn.UnloadContent();
+
 }
 
 void TitleScreen::Update(float elapsedTime)
 {
-	if(input.KeyPressed(keys))
+	slideAn.Update(elapsedTime);
+
+	if(input.KeyPressed(keys) || slideAn.IsAnimationDone())
 		ScreenManager::GetInstance().AddScreen(new MenuScreen);
 }
 
 void TitleScreen::Draw(sf::RenderTarget& target)
 {
-	GameScreen::Draw(target);
-	target.draw(text);
+	slideAn.Draw(target);
 }
 
 

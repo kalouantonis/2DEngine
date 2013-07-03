@@ -9,6 +9,10 @@
 
 Animation::Animation()
 {
+	animationDone = false;
+
+	text = NULL;
+	sprite = NULL;
 }
 
 Animation::~Animation()
@@ -16,11 +20,15 @@ Animation::~Animation()
 	// TODO Auto-generated destructor stub
 }
 
-void Animation::LoadContent(sf::Drawable* drawItem)
-{
-	animationDone = false;
 
-	this->drawItem = drawItem;
+void Animation::LoadContent(sf::Sprite *sprite)
+{
+	this->sprite = sprite;
+}
+
+void Animation::LoadContent(sf::Text* text)
+{
+	this->text = text;
 }
 
 void Animation::UnloadContent()
@@ -37,8 +45,12 @@ void Animation::Update(float elaspedTime)
 {
 
 }
+
 void Animation::Draw(sf::RenderTarget& target)
 {
-	target.draw(*drawItem);
+	if(text)
+		target.draw(*text);
+	else if(sprite)
+		target.draw(*sprite);
 }
 

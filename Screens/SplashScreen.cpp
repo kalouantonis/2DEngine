@@ -22,11 +22,10 @@ void SplashScreen::LoadContent()
 	if(!font.loadFromFile("Resources/arial.ttf"))
 		std::cerr << "Could not find specified font" << std::endl;
 
-	text = new sf::Text;
-	text->setString("Splash Screen");
-	text->setFont(font);
+	text.setString("Splash Screen");
+	text.setFont(font);
 
-	fadeAn.LoadContent(text);
+	slideAn.LoadContent(&text);
 
 	//keys.push_back(sf::Keyboard::Return);
 	keys.push_back(sf::Keyboard::Space);
@@ -34,27 +33,21 @@ void SplashScreen::LoadContent()
 
 void SplashScreen::UnloadContent()
 {
+	slideAn.UnloadContent();
 	GameScreen::UnloadContent();
-
-	// Avoids errors after deletion of text below
-	fadeAn.UnloadContent();
-
-	// Check for leaks
-	delete text;
 }
 
 void SplashScreen::Update(float elapsedTime)
 {
-	fadeAn.Update(elapsedTime);
+	slideAn.Update(elapsedTime);
 
-	if(input.KeyPressed(keys) || fadeAn.IsAnimationDone())
+	if(input.KeyPressed(keys) || slideAn.IsAnimationDone())
 		ScreenManager::GetInstance().AddScreen(new TitleScreen);
 }
 
 void SplashScreen::Draw(sf::RenderTarget& target)
 {
-	target.clear(sf::Color(0, 0, 0, fadeAn.GetAlpha()));
-	fadeAn.Draw(target);
+	slideAn.Draw(target);
 }
 
 

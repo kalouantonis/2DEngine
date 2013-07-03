@@ -9,6 +9,7 @@
 #define ANIMATION_H_
 
 #include <SFML/Graphics.hpp>
+#include "../ScreenConfig.h"
 
 class Animation
 {
@@ -16,7 +17,9 @@ public:
 	Animation();
 	virtual ~Animation();
 
-	virtual void LoadContent(sf::Drawable* drawItem);
+	virtual void LoadContent(sf::Text* text);
+	virtual void LoadContent(sf::Sprite* sprite);
+
 	virtual void UnloadContent();
 	virtual void Update(float elapsedTime);
 	virtual void Draw(sf::RenderTarget& target);
@@ -25,7 +28,8 @@ public:
 protected:
 	bool animationDone;
 
-	sf::Drawable* drawItem;
+	sf::Text* text;
+	sf::Sprite* sprite;
 };
 
 #endif /* ANIMATION_H_ */
