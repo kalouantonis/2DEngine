@@ -6,10 +6,12 @@
  */
 
 #include "StateManager.h"
+#include "Screens/SplashScreen.h"
+#include "Screens/MainScreen.h"
 
 StateManager::StateManager()
 {
-	ScreenManager::GetInstance().Initialize();
+	ScreenManager::GetInstance().Initialize(new SplashScreen);
 	ScreenManager::GetInstance().LoadContent();
 }
 

@@ -11,7 +11,12 @@ SlideAnimation::SlideAnimation()
 	: Animation()
 {
 	// TODO: Tweak this to perfection
-	slideSpeed = 140;
+	slideSpeed = 700;
+
+	// In seconds
+	waitTime = 3;
+	curTime = 0;
+	waitDone = false;
 }
 
 SlideAnimation::~SlideAnimation()
@@ -23,17 +28,37 @@ void SlideAnimation::Update(float elapsedTime)
 	// TODO: Use polymorphism
 	if(text)
 	{
-		text->move(elapsedTime * slideSpeed, 0);
 
-		if(text->getPosition().x > SCREEN_WIDTH)
-			animationDone = true;
+		if(!waitDone)
+		{
+			curTime += elapsedTime;
+			if(curTime >= waitTime)
+				waitDone = true;
+		}
+		else
+		{
+			text->move(elapsedTime * slideSpeed, 0);
+
+			if(text->getPosition().x > SCREEN_WIDTH)
+				animationDone = true;
+		}
+
 	}
 	else if(sprite)
 	{
-		sprite->move(elapsedTime * slideSpeed, 0);
+		if(!waitDone)
+		{
+			curTime += elapsedTime;
+			if(curTime >= waitTime)
+				waitDone = true;
+		}
+		else
+		{
+			sprite->move(elapsedTime * slideSpeed, 0);
 
-		if(sprite->getPosition().x > SCREEN_WIDTH)
-			animationDone = true;
+			if(sprite->getPosition().x > SCREEN_WIDTH)
+				animationDone = true;
+		}
 	}
 }
 

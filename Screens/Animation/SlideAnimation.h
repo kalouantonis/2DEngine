@@ -21,6 +21,10 @@ public:
 
 private:
 	float slideSpeed;
+	float waitTime;
+	float curTime;
+
+	bool waitDone;
 };
 
 #endif /* SLIDEANIMATION_H_ */

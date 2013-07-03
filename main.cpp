@@ -13,12 +13,12 @@
 
 int main(void)
 {
-	const int FPS = 40;
+	const int FPS = 60;
 
 	sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT),
 			"Dice Roller Test Program");
 
-	window.setVerticalSyncEnabled(true);
+	//window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(FPS);
 
 	sf::Event event;

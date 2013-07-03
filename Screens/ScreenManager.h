@@ -21,7 +21,7 @@ public:
 	virtual ~ScreenManager();
 	static ScreenManager& GetInstance(void);
 
-	void Initialize();
+	void Initialize(GameScreen* screen);
 	void LoadContent();
 	void UnloadContent();
 	void Update(float elapsedTime);

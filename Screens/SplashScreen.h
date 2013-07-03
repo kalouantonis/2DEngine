@@ -13,7 +13,8 @@
 // TODO: Clean this up when done
 #include "TitleScreen.h"
 #include "ScreenManager.h"
-#include "Animation/SlideAnimation.h"
+#include "Animation/FadeAnimation.h"
+
 
 class SplashScreen: public GameScreen
 {
@@ -29,10 +30,10 @@ public:
 	GAME_STATE GetGameState();
 
 private:
-	sf::Text text;
-	sf::Font font;
+	sf::Texture splashImage;
+	sf::Sprite* splashSprite;
 
-	SlideAnimation slideAn;
+	FadeAnimation fadeOutAn;
 };
 
 #endif /* SPLASHSCREEN_H_ */

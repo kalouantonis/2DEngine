@@ -30,6 +30,8 @@ protected:
 
 	sf::Text* text;
 	sf::Sprite* sprite;
+
+	sf::Transformable transItem;
 };
 
 #endif /* ANIMATION_H_ */

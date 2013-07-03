@@ -37,7 +37,6 @@ void TitleScreen::UnloadContent()
 	GameScreen::UnloadContent();
 
 	slideAn.UnloadContent();
-
 }
 
 void TitleScreen::Update(float elapsedTime)

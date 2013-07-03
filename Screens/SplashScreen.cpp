@@ -14,18 +14,27 @@ SplashScreen::SplashScreen()
 
 SplashScreen::~SplashScreen()
 {
-	// TODO Auto-generated destructor stub
 }
 
 void SplashScreen::LoadContent()
 {
-	if(!font.loadFromFile("Resources/arial.ttf"))
-		std::cerr << "Could not find specified font" << std::endl;
+	if(!splashImage.loadFromFile("Resources/splash.png"))
+		std::cout << "Could not load splash image from file" << std::endl;
 
-	text.setString("Splash Screen");
-	text.setFont(font);
 
-	slideAn.LoadContent(&text);
+	/*
+	splashSprite.setTexture(splashImage);
+	splashSprite.setScale((float) SCREEN_WIDTH / splashImage.getSize().x,
+			 (float) SCREEN_HEIGHT / splashImage.getSize().y);
+			 */
+
+	splashSprite = new sf::Sprite;
+	splashSprite->setTexture(splashImage);
+	splashSprite->setScale((float) SCREEN_WIDTH / splashImage.getSize().x,
+			(float) SCREEN_HEIGHT / splashImage.getSize().y);
+
+
+	fadeOutAn.LoadContent(splashSprite);
 
 	//keys.push_back(sf::Keyboard::Return);
 	keys.push_back(sf::Keyboard::Space);
@@ -33,21 +42,23 @@ void SplashScreen::LoadContent()
 
 void SplashScreen::UnloadContent()
 {
-	slideAn.UnloadContent();
+	fadeOutAn.UnloadContent();
 	GameScreen::UnloadContent();
+
+	delete splashSprite;
 }
 
 void SplashScreen::Update(float elapsedTime)
 {
-	slideAn.Update(elapsedTime);
+	fadeOutAn.Update(elapsedTime);
 
-	if(input.KeyPressed(keys) || slideAn.IsAnimationDone())
+	if(input.KeyPressed(keys) || fadeOutAn.IsAnimationDone())
 		ScreenManager::GetInstance().AddScreen(new TitleScreen);
 }
 
 void SplashScreen::Draw(sf::RenderTarget& target)
 {
-	slideAn.Draw(target);
+	fadeOutAn.Draw(target);
 }
 
 

@@ -16,7 +16,8 @@ ScreenManager &ScreenManager::GetInstance()
 
 ScreenManager::ScreenManager()
 {
-
+	curScreen = NULL;
+	newScreen = NULL;
 }
 
 ScreenManager::~ScreenManager()
@@ -24,9 +25,9 @@ ScreenManager::~ScreenManager()
 	delete curScreen;
 }
 
-void ScreenManager::Initialize()
+void ScreenManager::Initialize(GameScreen* screen)
 {
-	curScreen = new SplashScreen;
+	curScreen = screen;
 }
 
 void ScreenManager::LoadContent()
