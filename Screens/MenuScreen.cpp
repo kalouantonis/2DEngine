@@ -9,7 +9,7 @@
 
 MenuScreen::MenuScreen()
 {
-	id = MENU;
+	state = MENU;
 }
 
 MenuScreen::~MenuScreen()
@@ -28,7 +28,7 @@ void MenuScreen::LoadContent()
 
 	// Allowed keys to use for switching screens
 	keys.push_back(sf::Keyboard::Return);
-	keys.push_back(sf::Keyboard::Space);
+	//keys.push_back(sf::Keyboard::Space);
 }
 
 
@@ -37,15 +37,17 @@ void MenuScreen::UnloadContent()
 	GameScreen::UnloadContent();
 }
 
-void MenuScreen::Update()
+void MenuScreen::Update(float elapsedTime)
 {
 	if(input.KeyPressed(keys))
 		ScreenManager::GetInstance().AddScreen(new MainScreen);
 }
 
-void MenuScreen::Draw(sf::RenderWindow& window)
+void MenuScreen::Draw(sf::RenderTarget& target)
 {
-	window.draw(text);
+	GameScreen::Draw(target);
+	target.draw(text);
+
 }
 
 

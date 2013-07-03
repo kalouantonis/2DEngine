@@ -13,7 +13,7 @@
 
 #include <iostream>
 
-enum SCREEN_ID { SPLASH, TITLE, MENU, MAIN };
+enum GAME_STATE { SPLASH, TITLE, MENU, PLAY, PAUSE };
 
 class GameScreen
 {
@@ -23,16 +23,16 @@ public:
 
 	virtual void LoadContent();
 	virtual void UnloadContent();
-	virtual void Update();
-	virtual void Draw(sf::RenderWindow& window);
+	virtual void Update(float elapsedTime);
+	virtual void Draw(sf::RenderTarget& target);
 
-	SCREEN_ID GetId();
+	GAME_STATE GetGameState();
 
 protected:
 	InputManager input;
 	std::vector<sf::Keyboard::Key> keys;
 
-	SCREEN_ID id;
+	GAME_STATE state;
 };
 
 #endif /* GAMESCREEN_H_ */

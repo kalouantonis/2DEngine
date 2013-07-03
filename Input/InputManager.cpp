@@ -55,14 +55,3 @@ bool InputManager::KeyReleased(std::vector<sfKey> keys)
 {
 	return !KeyPressed(keys);
 }
-
-bool InputManager::KeyDown(sfKey key)
-{
-	return KeyPressed(key);
-}
-
-bool InputManager::KeyDown(std::vector<sfKey> keys)
-{
-	return KeyPressed(keys);
-}
-

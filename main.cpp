@@ -9,16 +9,28 @@
 #include <SFML/Graphics.hpp>
 
 #include "Screens/ScreenManager.h"
+#include "StateManager.h"
 
 int main(void)
 {
+	const int FPS = 40;
+
 	sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT),
 			"Dice Roller Test Program");
 
+	window.setVerticalSyncEnabled(true);
+	window.setFramerateLimit(FPS);
+
 	sf::Event event;
 
-	ScreenManager::GetInstance().Initialize();
-	ScreenManager::GetInstance().LoadContent();
+	// Timer
+	// Tick every 1/FPS of a second and store the time passed for every timer
+	// event
+	float timerTick = 1.0f / FPS, elapsedTime;
+	sf::Clock timer;
+
+	// Game state handler
+	StateManager stateManager;
 
 	while(window.isOpen())
 	{
@@ -36,12 +48,20 @@ int main(void)
 			}
 		}
 
-		ScreenManager::GetInstance().Update();
-		ScreenManager::GetInstance().Draw(window);
+		// Handle timer events
+		if(timer.getElapsedTime().asSeconds() >= timerTick)
+		{
+			elapsedTime = timer.restart().asSeconds();
+			stateManager.Update(elapsedTime);
+
+			//std::cout << elapsedTime << std::endl;
+		}
+
+		stateManager.DrawItems(window);
 
 		window.display();
-		window.clear(sf::Color::Black);
 	}
+
 
 	return 0;
 }

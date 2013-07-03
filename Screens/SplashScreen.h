@@ -13,6 +13,7 @@
 // TODO: Clean this up when done
 #include "TitleScreen.h"
 #include "ScreenManager.h"
+#include "Animation/FadeAnimation.h"
 
 class SplashScreen: public GameScreen
 {
@@ -22,12 +23,16 @@ public:
 
 	void LoadContent();
 	void UnloadContent();
-	void Update();
-	void Draw(sf::RenderWindow& window);
+	void Update(float elapsedTime);
+	void Draw(sf::RenderTarget& target);
+
+	GAME_STATE GetGameState();
 
 private:
-	sf::Text text;
+	sf::Text *text;
 	sf::Font font;
+
+	FadeAnimation fadeAn;
 };
 
 #endif /* SPLASHSCREEN_H_ */

@@ -39,14 +39,14 @@ void ScreenManager::UnloadContent()
 	curScreen->UnloadContent();
 }
 
-void ScreenManager::Update()
+void ScreenManager::Update(float elapsedTime)
 {
-	curScreen->Update();
+	curScreen->Update(elapsedTime);
 }
 
-void ScreenManager::Draw(sf::RenderWindow& window)
+void ScreenManager::Draw(sf::RenderTarget& target)
 {
-	curScreen->Draw(window);
+	curScreen->Draw(target);
 }
 
 void ScreenManager::AddScreen(GameScreen* screen)
@@ -58,8 +58,8 @@ void ScreenManager::AddScreen(GameScreen* screen)
 	curScreen->LoadContent();
 }
 
-SCREEN_ID ScreenManager::GetScreenId()
+GAME_STATE ScreenManager::GetGameState()
 {
-	return curScreen->GetId();
+	return curScreen->GetGameState();
 }
 

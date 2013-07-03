@@ -27,11 +27,6 @@ public:
 
 	bool KeyReleased(sfKey key);
 	bool KeyReleased(std::vector<sfKey> keys);
-
-	// Kind of pointless
-	bool KeyDown(sfKey key);
-	bool KeyDown(std::vector<sfKey> keys);
-private:
 };
 
 #endif /* INPUTMANAGER_H_ */

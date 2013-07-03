@@ -24,12 +24,12 @@ public:
 	void Initialize();
 	void LoadContent();
 	void UnloadContent();
-	void Update();
-	void Draw(sf::RenderWindow& window);
+	void Update(float elapsedTime);
+	void Draw(sf::RenderTarget& target);
 
 	void AddScreen(GameScreen *screen);
 
-	SCREEN_ID GetScreenId();
+	GAME_STATE GetGameState();
 
 private:
 	ScreenManager();

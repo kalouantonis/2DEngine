@@ -28,17 +28,18 @@ void GameScreen::UnloadContent()
 	keys.clear();
 }
 
-void GameScreen::Update()
+void GameScreen::Update(float elapsedTime)
 {
 
 }
 
-void GameScreen::Draw(sf::RenderWindow& window)
+void GameScreen::Draw(sf::RenderTarget& target)
 {
-
+	// Clearing to black... for now
+	target.clear(sf::Color(0, 0, 0));
 }
 
-SCREEN_ID GameScreen::GetId()
+GAME_STATE GameScreen::GetGameState()
 {
-	return id;
+	return state;
 }

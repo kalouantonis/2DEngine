@@ -9,7 +9,7 @@
 
 MainScreen::MainScreen()
 {
-	id = MAIN;
+	state = PLAY;
 }
 
 MainScreen::~MainScreen()
@@ -36,13 +36,15 @@ void MainScreen::UnloadContent()
 	GameScreen::UnloadContent();
 }
 
-void MainScreen::Update()
+void MainScreen::Update(float elapsedTime)
 {
 }
 
-void MainScreen::Draw(sf::RenderWindow& window)
+void MainScreen::Draw(sf::RenderTarget& target)
 {
-	window.draw(text);
+	GameScreen::Draw(target);
+	target.draw(text);
+
 }
 
 

@@ -10,7 +10,7 @@
 
 TitleScreen::TitleScreen()
 {
-	id = TITLE;
+	state = TITLE;
 }
 
 TitleScreen::~TitleScreen()
@@ -27,7 +27,7 @@ void TitleScreen::LoadContent()
 	text.setFont(font);
 
 	keys.push_back(sf::Keyboard::Return);
-	keys.push_back(sf::Keyboard::Space);
+	//keys.push_back(sf::Keyboard::Space);
 }
 
 void TitleScreen::UnloadContent()
@@ -36,15 +36,16 @@ void TitleScreen::UnloadContent()
 
 }
 
-void TitleScreen::Update()
+void TitleScreen::Update(float elapsedTime)
 {
 	if(input.KeyPressed(keys))
 		ScreenManager::GetInstance().AddScreen(new MenuScreen);
 }
 
-void TitleScreen::Draw(sf::RenderWindow& window)
+void TitleScreen::Draw(sf::RenderTarget& target)
 {
-	window.draw(text);
+	GameScreen::Draw(target);
+	target.draw(text);
 }
 
 

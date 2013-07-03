@@ -18,8 +18,8 @@ public:
 
 	void LoadContent();
 	void UnloadContent();
-	void Update();
-	void Draw(sf::RenderWindow& window);
+	void Update(float elapsedTime);
+	void Draw(sf::RenderTarget& target);
 
 private:
 	sf::Text text;
