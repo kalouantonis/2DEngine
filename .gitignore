@@ -1,0 +1,10 @@
+*.o
+*.o.d
+
+*.d
+Debug/Screens
+Debug/Input
+.cproject
+.project
+
+
