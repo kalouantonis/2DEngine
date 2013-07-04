@@ -22,19 +22,13 @@ void SplashScreen::LoadContent()
 		std::cout << "Could not load splash image from file" << std::endl;
 
 
-	/*
-	splashSprite.setTexture(splashImage);
-	splashSprite.setScale((float) SCREEN_WIDTH / splashImage.getSize().x,
-			 (float) SCREEN_HEIGHT / splashImage.getSize().y);
-			 */
-
 	splashSprite = new sf::Sprite;
 	splashSprite->setTexture(splashImage);
 	splashSprite->setScale((float) SCREEN_WIDTH / splashImage.getSize().x,
 			(float) SCREEN_HEIGHT / splashImage.getSize().y);
 
 
-	fadeOutAn.LoadContent(splashSprite);
+	fadeAn.LoadContent(splashSprite);
 
 	//keys.push_back(sf::Keyboard::Return);
 	keys.push_back(sf::Keyboard::Space);
@@ -42,7 +36,7 @@ void SplashScreen::LoadContent()
 
 void SplashScreen::UnloadContent()
 {
-	fadeOutAn.UnloadContent();
+	fadeAn.UnloadContent();
 	GameScreen::UnloadContent();
 
 	delete splashSprite;
@@ -50,15 +44,15 @@ void SplashScreen::UnloadContent()
 
 void SplashScreen::Update(float elapsedTime)
 {
-	fadeOutAn.Update(elapsedTime);
+	fadeAn.Update(elapsedTime);
 
-	if(input.KeyPressed(keys) || fadeOutAn.IsAnimationDone())
+	if(input.KeyPressed(keys) || fadeAn.IsAnimationDone())
 		ScreenManager::GetInstance().AddScreen(new TitleScreen);
 }
 
 void SplashScreen::Draw(sf::RenderTarget& target)
 {
-	fadeOutAn.Draw(target);
+	fadeAn.Draw(target);
 }
 
 

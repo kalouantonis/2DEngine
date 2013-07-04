@@ -10,6 +10,7 @@
 
 #include "GameScreen.h"
 #include "SplashScreen.h"
+#include "../FileManager.h"
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
@@ -37,6 +38,10 @@ private:
 	void operator=(ScreenManager const&);
 
 	GameScreen *curScreen, *newScreen;
-};
+
+	FileManager file;
+	std::vector<std::vector<std::string> > attributes;
+	std::vector<std::vector<std::string> > contents;
+ };
 
 #endif /* SCREENMANAGER_H_ */

@@ -33,7 +33,7 @@ private:
 	sf::Texture splashImage;
 	sf::Sprite* splashSprite;
 
-	FadeAnimation fadeOutAn;
+	FadeAnimation fadeAn;
 };
 
 #endif /* SPLASHSCREEN_H_ */

@@ -11,6 +11,7 @@ ScreenManager &ScreenManager::GetInstance()
 {
 	static ScreenManager instance;
 
+
 	return instance;
 }
 
@@ -28,6 +29,7 @@ ScreenManager::~ScreenManager()
 void ScreenManager::Initialize(GameScreen* screen)
 {
 	curScreen = screen;
+	file.LoadContent("test.cme", attributes, contents);
 }
 
 void ScreenManager::LoadContent()
