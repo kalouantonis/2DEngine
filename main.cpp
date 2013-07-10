@@ -52,14 +52,12 @@ int main(void)
 		if(timer.getElapsedTime().asSeconds() >= timerTick)
 		{
 			elapsedTime = timer.restart().asSeconds();
-			//stateManager.Update(elapsedTime);
-			ScreenManager::GetInstance().Update(elapsedTime);
+			stateManager.Update(elapsedTime);
 
 			//std::cout << elapsedTime << std::endl;
 		}
 
-		//stateManager.DrawItems(window);
-		ScreenManager::GetInstance().Draw(window);
+		stateManager.DrawItems(window);
 
 		window.display();
 		window.clear(sf::Color::Black);
