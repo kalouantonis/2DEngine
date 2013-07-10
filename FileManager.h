@@ -27,6 +27,7 @@ public:
 	typedef cfgData::const_iterator const_iterator;
 
 	bool LoadContent(const char* filename);
+	bool LoadContent(const char* filename, const std::string& id);
 
 	// Will return NULL if nothing is found
 	std::string GetAttrContents(const std::string& attrName) const;
@@ -39,10 +40,15 @@ public:
 private:
 	int curState;
 
+	void ParseLoad(std::string& line);
+
 	bool idFound;
 
 	cfgData attributes;
 	cfgData contents;
+
+	std::vector<std::string> tempAttr;
+	std::vector<std::string> tempContents;
 };
 
 #endif /* FILEMANAGER_H_ */
