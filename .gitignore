@@ -4,9 +4,18 @@
 *.d
 Debug/Screens
 Debug/Input
+Debug/Utils
+Release/Screens
+Release/Input
+Release/Utils
+
 .cproject
 .project
 
 
-/Debug
-/Release
+/Debug/*.d
+/Release/*.d
+/Debug/*.o
+/Debug/Catharsis
+/Release/*.o
+/Release/Catharsis
