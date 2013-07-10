@@ -9,6 +9,7 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include Utils/subdir.mk
+-include Screens/Entities/subdir.mk
 -include Screens/Animation/subdir.mk
 -include Screens/subdir.mk
 -include Input/subdir.mk

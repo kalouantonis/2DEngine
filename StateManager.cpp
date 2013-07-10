@@ -29,9 +29,8 @@ void StateManager::Update(float elapsedTime)
 	case SPLASH:
 		// Purposely falling through, for now
 	case TITLE:
-		ScreenManager::GetInstance().Update(elapsedTime);
-		break;
 	case MENU:
+		ScreenManager::GetInstance().Update(elapsedTime);
 		break;
 	case PLAY:
 		break;

@@ -26,6 +26,7 @@ SUBDIRS := \
 . \
 Utils \
 Screens \
+Screens/Entities \
 Screens/Animation \
 Input \
 
