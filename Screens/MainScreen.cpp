@@ -8,6 +8,7 @@
 #include "MainScreen.h"
 
 MainScreen::MainScreen()
+	: GameScreen()
 {
 	state = PLAY;
 }

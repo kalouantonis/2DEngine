@@ -9,6 +9,7 @@
 
 
 TitleScreen::TitleScreen()
+	: GameScreen()
 {
 	state = TITLE;
 }

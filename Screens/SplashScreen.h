@@ -29,7 +29,7 @@ public:
 
 private:
 	sf::Texture splashImage;
-	sf::Sprite* splashSprite;
+	sf::Sprite splashSprite;
 
 	FadeAnimation fadeAn;
 };
