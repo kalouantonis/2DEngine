@@ -11,6 +11,8 @@
 
 StateManager::StateManager()
 {
+	ScreenManager::GetInstance().LoadConfig("Resources/global.cfg");
+
 	ScreenManager::GetInstance().Initialize(new SplashScreen);
 	ScreenManager::GetInstance().LoadContent();
 }

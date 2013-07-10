@@ -39,7 +39,7 @@ void SlideAnimation::Update(float elapsedTime)
 		{
 			text->move(elapsedTime * slideSpeed, 0);
 
-			if(text->getPosition().x > SCREEN_WIDTH)
+			if(text->getPosition().x > ScreenWidth)
 				animationDone = true;
 		}
 
@@ -56,7 +56,7 @@ void SlideAnimation::Update(float elapsedTime)
 		{
 			sprite->move(elapsedTime * slideSpeed, 0);
 
-			if(sprite->getPosition().x > SCREEN_WIDTH)
+			if(sprite->getPosition().x > ScreenHeight)
 				animationDone = true;
 		}
 	}

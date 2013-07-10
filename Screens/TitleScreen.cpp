@@ -34,6 +34,8 @@ void TitleScreen::LoadContent()
 
 void TitleScreen::UnloadContent()
 {
+	slideAn.UnloadContent();
+
 	GameScreen::UnloadContent();
 
 	slideAn.UnloadContent();
@@ -44,7 +46,10 @@ void TitleScreen::Update(float elapsedTime)
 	slideAn.Update(elapsedTime);
 
 	if(input.KeyPressed(keys) || slideAn.IsAnimationDone())
-		ScreenManager::GetInstance().AddScreen(new MenuScreen);
+	{
+		UnloadContent();
+		ChangeScreen(new MenuScreen);
+	}
 }
 
 void TitleScreen::Draw(sf::RenderTarget& target)

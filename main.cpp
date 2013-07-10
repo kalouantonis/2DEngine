@@ -23,14 +23,14 @@ int main(void)
 
 	sf::Event event;
 
+	// Game state handler
+	StateManager stateManager;
+
 	// Timer
 	// Tick every 1/FPS of a second and store the time passed for every timer
 	// event
 	float timerTick = 1.0f / FPS, elapsedTime;
 	sf::Clock timer;
-
-	// Game state handler
-	StateManager stateManager;
 
 	while(window.isOpen())
 	{
@@ -52,12 +52,14 @@ int main(void)
 		if(timer.getElapsedTime().asSeconds() >= timerTick)
 		{
 			elapsedTime = timer.restart().asSeconds();
-			stateManager.Update(elapsedTime);
+			//stateManager.Update(elapsedTime);
+			ScreenManager::GetInstance().Update(elapsedTime);
 
 			//std::cout << elapsedTime << std::endl;
 		}
 
-		stateManager.DrawItems(window);
+		//stateManager.DrawItems(window);
+		ScreenManager::GetInstance().Draw(window);
 
 		window.display();
 		window.clear(sf::Color::Black);

@@ -9,7 +9,6 @@
 #define ANIMATION_H_
 
 #include <SFML/Graphics.hpp>
-#include "../ScreenConfig.h"
 
 class Animation
 {
@@ -26,6 +25,8 @@ public:
 
 	bool IsAnimationDone(void);
 protected:
+	int ScreenWidth, ScreenHeight;
+
 	bool animationDone;
 
 	sf::Text* text;

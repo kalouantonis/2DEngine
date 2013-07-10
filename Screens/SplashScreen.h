@@ -12,7 +12,6 @@
 
 // TODO: Clean this up when done
 #include "TitleScreen.h"
-#include "ScreenManager.h"
 #include "Animation/FadeAnimation.h"
 
 
@@ -27,7 +26,6 @@ public:
 	void Update(float elapsedTime);
 	void Draw(sf::RenderTarget& target);
 
-	GAME_STATE GetGameState();
 
 private:
 	sf::Texture splashImage;

@@ -22,16 +22,27 @@ public:
 	FileManager();
 	virtual ~FileManager();
 
-	void LoadContent(const char* filename,
-			std::vector<std::vector<std::string> >& attributes,
-			std::vector<std::vector<std::string> >& contents);
+	typedef std::vector<std::vector<std::string> > cfgData;
+	typedef cfgData::iterator iterator;
+	typedef cfgData::const_iterator const_iterator;
+
+	bool LoadContent(const char* filename);
+
+	// Will return NULL if nothing is found
+	std::string GetAttrContents(const std::string& attrName) const;
+	const cfgData& GetAttributes(void);
+	const cfgData& GetContents(void);
+
 	void UnloadContent();
+
 
 private:
 	int curState;
 
-	std::vector<std::string> tempAttr;
-	std::vector<std::string> tempContents;
+	bool idFound;
+
+	cfgData attributes;
+	cfgData contents;
 };
 
 #endif /* FILEMANAGER_H_ */

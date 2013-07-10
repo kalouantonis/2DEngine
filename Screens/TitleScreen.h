@@ -12,7 +12,6 @@
 #include "MenuScreen.h"
 #include "Animation/SlideAnimation.h"
 
-#include "ScreenManager.h"
 
 class TitleScreen: public GameScreen
 {

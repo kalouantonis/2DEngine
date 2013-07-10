@@ -6,9 +6,13 @@
  */
 
 #include "Animation.h"
+#include "../ScreenManager.h"
 
 Animation::Animation()
 {
+	ScreenHeight = ScreenManager::GetInstance().GetScreenHeight();
+	ScreenWidth = ScreenManager::GetInstance().GetScreenWidth();
+
 	animationDone = false;
 
 	text = NULL;
@@ -17,7 +21,6 @@ Animation::Animation()
 
 Animation::~Animation()
 {
-	// TODO Auto-generated destructor stub
 }
 
 
@@ -34,6 +37,7 @@ void Animation::LoadContent(sf::Text* text)
 void Animation::UnloadContent()
 {
 	animationDone = true;
+	sprite = NULL;
 }
 
 bool Animation::IsAnimationDone()

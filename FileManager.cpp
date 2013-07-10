@@ -17,9 +17,8 @@ FileManager::~FileManager()
 {
 }
 
-void FileManager::LoadContent(const char* filename,
-		std::vector<std::vector<std::string> >& attributes,
-		std::vector<std::vector<std::string> >& contents)
+
+bool FileManager::LoadContent(const char* filename)
 {
 	std::fstream openfile(filename);
 
@@ -28,6 +27,9 @@ void FileManager::LoadContent(const char* filename,
 
 	if(openfile.is_open())
 	{
+		std::vector<std::string> tempAttr;
+		std::vector<std::string> tempContents;
+
 		while(!openfile.eof())
 		{
 			std::string line;
@@ -40,13 +42,9 @@ void FileManager::LoadContent(const char* filename,
 			{
 				curState = ATTRIBUTES;
 				line.erase(0, line.find('=') + 1);
-				tempAttr.clear();
 			}
 			else
-			{
 				curState = CONTENTS;
-				tempContents.clear();
-			}
 
 			line.erase(std::remove(line.begin(), line.end(), '['), line.end());
 
@@ -75,12 +73,38 @@ void FileManager::LoadContent(const char* filename,
 			if(tempContents.size() > 0)
 				contents.push_back(tempContents);
 			else if(tempAttr.size() > 0)
-				contents.push_back(tempAttr);
+				attributes.push_back(tempAttr);
 		}
 	}
 	else
 	{
-		std::cerr << "FileManager could not load specified file" << std::endl;
+		std::cerr << "FileManager could not load specified file: "
+				<< filename << std::endl;
+		return false;
 	}
+	return true;
 }
 
+
+
+std::string FileManager::GetAttrContents(const std::string& attrName) const
+{
+	for(unsigned int i = 0; i < attributes.size(); i++)
+	{
+		for(unsigned int j = 0; j < attributes[i].size(); j++)
+			if(attributes[i][j] == attrName)
+				return contents[i][j];
+	}
+
+	return NULL;
+}
+
+const FileManager::cfgData& FileManager::GetAttributes(void)
+{
+	return attributes;
+}
+
+const FileManager::cfgData& FileManager::GetContents()
+{
+	return contents;
+}

@@ -22,6 +22,7 @@ public:
 private:
 	float alpha;
 	float fadeSpeed;
+
 };
 
 #endif /* FADEANIMATION_H_ */

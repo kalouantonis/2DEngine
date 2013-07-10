@@ -8,6 +8,7 @@
 #include "MenuScreen.h"
 
 MenuScreen::MenuScreen()
+	: GameScreen()
 {
 	state = MENU;
 }
@@ -40,7 +41,7 @@ void MenuScreen::UnloadContent()
 void MenuScreen::Update(float elapsedTime)
 {
 	if(input.KeyPressed(keys))
-		ScreenManager::GetInstance().AddScreen(new MainScreen);
+		ChangeScreen(new MainScreen);
 }
 
 void MenuScreen::Draw(sf::RenderTarget& target)

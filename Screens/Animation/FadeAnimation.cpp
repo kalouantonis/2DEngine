@@ -17,7 +17,6 @@ FadeAnimation::FadeAnimation()
 
 FadeAnimation::~FadeAnimation()
 {
-	// TODO Auto-generated destructor stub
 }
 
 void FadeAnimation::Update(float elapsedTime)

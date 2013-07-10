@@ -9,7 +9,6 @@
 #define MENUSCREEN_H_
 
 #include "GameScreen.h"
-#include "ScreenManager.h"
 #include "MainScreen.h"
 
 class MenuScreen: public GameScreen

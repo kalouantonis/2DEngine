@@ -10,10 +10,10 @@
 
 #include <SFML/Graphics.hpp>
 #include "../Input/InputManager.h"
+#include "../FileManager.h"
+#include "../GameGlobals.h"
 
 #include <iostream>
-
-#include "ScreenConfig.h"
 
 class GameScreen
 {
@@ -25,6 +25,7 @@ public:
 	virtual void UnloadContent();
 	virtual void Update(float elapsedTime);
 	virtual void Draw(sf::RenderTarget& target);
+	void ChangeScreen(GameScreen* screen);
 
 	GAME_STATE GetGameState();
 
@@ -32,7 +33,10 @@ protected:
 	InputManager input;
 	std::vector<sf::Keyboard::Key> keys;
 
+	FileManager file;
+
 	GAME_STATE state;
+	int ScreenWidth, ScreenHeight;
 };
 
 #endif /* GAMESCREEN_H_ */

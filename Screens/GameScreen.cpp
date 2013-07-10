@@ -6,21 +6,25 @@
  */
 
 #include "GameScreen.h"
+#include "ScreenManager.h"
 
 GameScreen::GameScreen()
 {
-	// TODO Auto-generated constructor stub
-
+	ScreenHeight = ScreenManager::GetInstance().GetScreenHeight();
+	ScreenWidth = ScreenManager::GetInstance().GetScreenWidth();
 }
 
 GameScreen::~GameScreen()
 {
-	// TODO Auto-generated destructor stub
+}
+
+void GameScreen::ChangeScreen(GameScreen* screen)
+{
+	ScreenManager::GetInstance().AddScreen(screen);
 }
 
 void GameScreen::LoadContent()
 {
-
 }
 
 void GameScreen::UnloadContent()
