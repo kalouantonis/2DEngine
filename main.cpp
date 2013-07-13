@@ -47,7 +47,7 @@ int main()
                 break;
             }
         }
-
+        // TODO: Drawing and rendering both run in threads
         g_pEngine->Update();
     }
 

@@ -27,6 +27,8 @@ namespace SuperEngine
         m_versionMinor = VERSION_MINOR;
         m_revision = REVISION;
 
+        m_drawingGl = false;
+
         // set default values
         this->setAppTitle("SuperEngine");
         this->setScreenWidth(800);
@@ -74,6 +76,8 @@ namespace SuperEngine
     {
         // Initialize sf::Window
         // TODO: Implement fullscreen
+
+        // TODO: Allow anti-aliazing and other options to be enabled for OpenGL
         m_pDevice = new sf::RenderWindow(sf::VideoMode(width, height, colordepth),
                                    this->getAppTitle());
 
@@ -95,12 +99,28 @@ namespace SuperEngine
 
         // Set the default background clearing color
         this->setClearColor();
+        // Set matrix mode to projection, with the views and the aspects and
+        // all the other good stuff
+        glMatrixMode(GL_PROJECTION);
 
         #ifdef _DEBUG
         std::cout << "Engine initialized successfully" << std::endl;
         #endif // _DEBUG
 
         return 1;
+    }
+
+    void Engine::RefreshView()
+    {
+        // Reset OpenGL
+        glLoadIdentity();
+
+        // Set default OpenGL perspective
+        // TODO: Tweak this
+        gluPerspective(90, this->getScreenWidth() / this->getScreenHeight(), 1.0, 500.0);
+
+        // Reset matrix mode
+        glMatrixMode(GL_MODELVIEW);
     }
 
     void Engine::ClearScene()
@@ -126,6 +146,27 @@ namespace SuperEngine
         return 1;
     }
 
+    void Engine::StartGL(DrawTypes type)
+    {
+
+        glBegin(type);
+        m_drawingGl = true;
+
+        #ifdef _DEBUG
+        std::cout << "OpenGL Rendering started" << std::endl;
+        #endif // _DEBUG
+    }
+
+    void Engine::EndGL()
+    {
+        glEnd();
+        m_drawingGl = false;
+
+        #ifdef _DEBUG
+        std::cout << "OpenGL Rendering ended" << std::endl;
+        #endif // _DEBUG
+    }
+
     int Engine::RenderStop()
     {
         if(!this->m_pDevice)
@@ -142,6 +183,11 @@ namespace SuperEngine
         // might need to change this later
         this->m_pDevice->display();
 
+        // Automatically end GL drawing at the end of the loop,
+        // if it has not been deactivated
+        if(m_drawingGl)
+            this->EndGL();
+
         return 1;
     }
 
@@ -154,6 +200,10 @@ namespace SuperEngine
         // TODO: This is expensive, it pushes all states and i might not
         // require all of them, refactor to push only the required attributes
         this->m_pDevice->pushGLStates();
+
+        // If openGl is drawing, skip drawing 2D items with SFML
+        if(this->m_drawingGl)
+            return 0;
 
         return 1;
     }
@@ -173,21 +223,23 @@ namespace SuperEngine
 
     void Engine::Update()
     {
-        static Timer timedUpdate;
+        static sf::Clock timedUpdate;
 
         //calculate core framerate
         m_frameCount_core++;
-        if(m_coreTimer.stopwatch(999))
+        if(m_coreTimer.getElapsedTime().asMilliseconds() > 999)
         {
             m_frameRate_core = m_frameCount_core;
             m_frameCount_core = 0;
+
+            m_coreTimer.restart();
         }
 
         // fast update with no timing
-        game_update();
+        game_update(timedUpdate.getElapsedTime().asSeconds());
 
         // update with 60FPS timing, so once every 16 milis
-        if(!timedUpdate.stopwatch((long)1000 / (float)m_Fps))
+        if(timedUpdate.getElapsedTime().asMilliseconds() > (1000.0f / (float)m_Fps))
         {
             if(!this->getMaximizeProcessor())
             {
@@ -195,15 +247,19 @@ namespace SuperEngine
 
                 sf::sleep(waitTime);
             }
+
+            timedUpdate.restart();
         }
         else
         {
             // calculate real framerate
             m_frameCount_real++;
-            if(m_realTimer.stopwatch(999))
+            if(m_realTimer.getElapsedTime().asMilliseconds() > 999)
             {
                 m_frameRate_real = m_frameCount_real;
                 m_frameCount_real = 0;
+
+                m_realTimer.restart();
             }
 
             this->ClearScene();
@@ -214,13 +270,17 @@ namespace SuperEngine
             game_render_3d();
 
             // Start 2D rendering functions
-            RenderStart_2d();
-            game_render_2d();
-            RenderStop_2d();
+            if(RenderStart_2d())
+            {
+                game_render_2d();
+                RenderStop_2d();
+            }
 
             // Done rendering
             this->RenderStop();
+
         }
+
     }
 
     void Engine::Close()

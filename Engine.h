@@ -10,7 +10,6 @@
 #include <iostream>
 
 // Engine parts
-#include "Timer.h"
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
@@ -20,10 +19,18 @@ extern bool gameover;
 
 extern bool game_preload();
 extern bool game_init();
-extern void game_update();
+extern void game_update(float elapsedTime);
 extern void game_render_3d();
 extern void game_render_2d();
 extern void game_end();
+
+enum DrawTypes
+{
+    TRIANGLE = GL_TRIANGLES,
+    POLYGON = GL_POLYGON,
+    POINT = GL_POINTS,
+    QUAD = GL_QUADS
+};
 
 namespace SuperEngine
 {
@@ -46,16 +53,20 @@ namespace SuperEngine
         bool m_maximizeProcessor;
 
         // Timers
-        Timer m_coreTimer;
+        sf::Clock m_coreTimer;
         long m_frameCount_core;
         long m_frameRate_core;
-        Timer m_realTimer;
+        sf::Clock m_realTimer;
         long m_frameCount_real;
         long m_frameRate_real;
 
         sf::RenderWindow* m_pDevice;
 
         int Release();
+        // Used for window resize events
+        void RefreshView();
+
+        bool m_drawingGl;
     public:
         Engine();
         ~Engine();
@@ -74,10 +85,19 @@ namespace SuperEngine
         int RenderStart_2d();
         int RenderStop_2d();
 
+        // Used for drawing openGL types
+        void StartGL(DrawTypes type);
+        void EndGL();
+
         bool isPaused() { return m_pausemode; }
         void setPaused(bool val) { m_pausemode = val; }
 
         sf::RenderWindow* getDevice() { return m_pDevice; }
+
+        void setPerspective(double fovy, double aspect, double zNear, double zFar)
+        {
+            gluPerspective(fovy, aspect, zNear, zFar);
+        }
 
         int getVersionMajor() { return m_versionMajor; }
         int getVersionMinor() { return m_versionMinor; }
