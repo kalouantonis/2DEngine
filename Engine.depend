@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1373710040 source:/home/slacker/Desktop/Engine/main.cpp
+	"Engine.h"
+
+1373711060 /home/slacker/Desktop/Engine/Engine.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/OpenGL.hpp>
+	<iostream>
+	"Timer.h"
+
+1373647009 /home/slacker/Desktop/Engine/Timer.h
+	"Engine.h"
+	<ctime>
+
+1373709300 source:/home/slacker/Desktop/Engine/Engine.cpp
+	"Engine.h"
+	<ctime>
+	<cstdlib>
+	<sstream>
+
+1373646871 /home/slacker/Desktop/Engine/Game.h
+
+1373647440 source:/home/slacker/Desktop/Engine/Timer.cpp
+	"Engine.h"
+

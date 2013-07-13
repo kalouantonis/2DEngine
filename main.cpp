@@ -1,68 +1,58 @@
-/*
- * main.cpp
- *
- *  Created on: 3 Jul 2013
- *      Author: slacker
- */
+#include "Engine.h"
 
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
+// Read key states
+#define KEY_DOWN(vk) (sf::Keyboard::isKeyPressed(vk) ? 1 : 0)
 
-#include "Screens/ScreenManager.h"
-#include "StateManager.h"
+SuperEngine::Engine* g_pEngine;
 
-int main(void)
+bool gameover;
+
+int main()
 {
-	const int FPS = 60;
+    // Initialize the engine
+    g_pEngine = new SuperEngine::Engine();
 
-	sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT),
-			"Dice Roller Test Program");
+    // Preload any variables here, screen height and such..
+    if(!game_preload())
+    {
+        // Generate error message, i will eventually support pop-up dialogs
+        std::cerr << "Game failed to load" << std::endl;
+        return -1;
+    }
 
-	//window.setVerticalSyncEnabled(true);
-	window.setFramerateLimit(FPS);
+    // Initialize the engine
+    if(!g_pEngine->Init(g_pEngine->getScreenWidth(), g_pEngine->getScreenHeight(),
+                       g_pEngine->getColorDepth(), g_pEngine->getFullscreen()))
+    {
+        std::cerr << "Engine initialization failed" << std::endl;
+        return 0;
+    }
 
-	sf::Event event;
+    // main game loop
+    gameover = false;
 
-	// Game state handler
-	StateManager stateManager;
+    // Will not use window.isOpen() because we might still need the engine
+    // running even if the window closes
+    sf::Event event;
 
-	// Timer
-	// Tick every 1/FPS of a second and store the time passed for every timer
-	// event
-	float timerTick = 1.0f / FPS, elapsedTime;
-	sf::Clock timer;
+    while(!gameover)
+    {
+        while(g_pEngine->getDevice()->pollEvent(event))
+        {
+            switch(event.type)
+            {
+                // Capture a window close event
+            case sf::Event::Closed:
+                g_pEngine->Shutdown();
+                break;
+            }
+        }
 
-	while(window.isOpen())
-	{
-		while(window.pollEvent(event))
-		{
-			switch(event.type)
-			{
-			case sf::Event::Closed:
-				window.close();
-				break;
-			case sf::Event::KeyPressed:
-				if(event.key.code == sf::Keyboard::Escape)
-					window.close();
-				break;
-			}
-		}
+        g_pEngine->Update();
+    }
 
-		// Handle timer events
-		if(timer.getElapsedTime().asSeconds() >= timerTick)
-		{
-			elapsedTime = timer.restart().asSeconds();
-			stateManager.Update(elapsedTime);
+    g_pEngine->Close();
+    delete g_pEngine;
 
-			//std::cout << elapsedTime << std::endl;
-		}
-
-		stateManager.DrawItems(window);
-
-		window.display();
-		window.clear(sf::Color::Black);
-	}
-
-
-	return 0;
+    return EXIT_SUCCESS;
 }
