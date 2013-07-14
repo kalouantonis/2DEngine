@@ -23,6 +23,8 @@
 					<Add library="sfml-system" />
 					<Add library="sfml-window" />
 					<Add library="sfml-graphics" />
+					<Add library="GL" />
+					<Add library="GLU" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -43,8 +45,6 @@
 		</Build>
 		<Unit filename="Engine.cpp" />
 		<Unit filename="Engine.h" />
-		<Unit filename="Timer.cpp" />
-		<Unit filename="Timer.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<envvars />

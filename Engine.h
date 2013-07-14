@@ -24,14 +24,6 @@ extern void game_render_3d();
 extern void game_render_2d();
 extern void game_end();
 
-enum DrawTypes
-{
-    TRIANGLE = GL_TRIANGLES,
-    POLYGON = GL_POLYGON,
-    POINT = GL_POINTS,
-    QUAD = GL_QUADS
-};
-
 namespace SuperEngine
 {
     class Engine
@@ -86,8 +78,8 @@ namespace SuperEngine
         int RenderStop_2d();
 
         // Used for drawing openGL types
-        void StartGL(DrawTypes type);
-        void EndGL();
+        void StartDrawGL();
+        void EndDrawGL();
 
         bool isPaused() { return m_pausemode; }
         void setPaused(bool val) { m_pausemode = val; }

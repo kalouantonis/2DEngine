@@ -103,6 +103,7 @@ namespace SuperEngine
         // all the other good stuff
         glMatrixMode(GL_PROJECTION);
 
+
         #ifdef _DEBUG
         std::cout << "Engine initialized successfully" << std::endl;
         #endif // _DEBUG
@@ -112,6 +113,9 @@ namespace SuperEngine
 
     void Engine::RefreshView()
     {
+        // Reset the viewport
+        glViewPort(0, 0, this->getScreenWidth(), this->getScreenHeight());
+
         // Reset OpenGL
         glLoadIdentity();
 
@@ -125,7 +129,6 @@ namespace SuperEngine
 
     void Engine::ClearScene()
     {
-        glClear(GL_COLOR_BUFFER_BIT);
         //this->m_pDevice->clear(color);
     }
 
@@ -143,13 +146,19 @@ namespace SuperEngine
         }
         if(!this->m_pDevice->setActive()) return 0;
 
+        glLoadIdentity();
+        // Maybe implement gluLookAt
+
+        if(!m_drawingGl)
+            this->StartDrawGL();
+
         return 1;
     }
 
-    void Engine::StartGL(DrawTypes type)
+    void Engine::StartDrawGL(DrawTypes type)
     {
 
-        glBegin(type);
+        glBegin(GL_TRIANGLES);
         m_drawingGl = true;
 
         #ifdef _DEBUG
@@ -157,7 +166,7 @@ namespace SuperEngine
         #endif // _DEBUG
     }
 
-    void Engine::EndGL()
+    void Engine::EndDrawGL()
     {
         glEnd();
         m_drawingGl = false;
@@ -185,8 +194,8 @@ namespace SuperEngine
 
         // Automatically end GL drawing at the end of the loop,
         // if it has not been deactivated
-        if(m_drawingGl)
-            this->EndGL();
+        if(_drawingGl)
+            this->EndDrawGL();
 
         return 1;
     }
