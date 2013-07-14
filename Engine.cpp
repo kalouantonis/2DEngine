@@ -27,8 +27,6 @@ namespace SuperEngine
         m_versionMinor = VERSION_MINOR;
         m_revision = REVISION;
 
-        m_drawingGl = false;
-
         // set default values
         this->setAppTitle("SuperEngine");
         this->setScreenWidth(800);
@@ -67,9 +65,6 @@ namespace SuperEngine
     void Engine::setClearColor(const sf::Color& color)
     {
         this->m_clearColor = color;
-
-        // Set default OpenGL Clear color
-        glClearColor(color.r, color.g, color.b, color.a);
     }
 
     int Engine::Init(int width, int height, int colordepth, bool fullscreen)
@@ -97,11 +92,7 @@ namespace SuperEngine
         // Would be a good idea to initialize OPENGL
         if(!game_init()) return 0;
 
-        // Set the default background clearing color
-        this->setClearColor();
-        // Set matrix mode to projection, with the views and the aspects and
-        // all the other good stuff
-        glMatrixMode(GL_PROJECTION);
+        this->setClearColor(sf::Color::Black);
 
 
         #ifdef _DEBUG
@@ -111,31 +102,29 @@ namespace SuperEngine
         return 1;
     }
 
-    void Engine::RefreshView()
-    {
+    //void Engine::RefreshView()
+    //{
         // Reset the viewport
-        glViewPort(0, 0, this->getScreenWidth(), this->getScreenHeight());
+        //glViewPort(0, 0, this->getScreenWidth(), this->getScreenHeight());
 
         // Reset OpenGL
-        glLoadIdentity();
+        //glLoadIdentity();
 
         // Set default OpenGL perspective
         // TODO: Tweak this
-        gluPerspective(90, this->getScreenWidth() / this->getScreenHeight(), 1.0, 500.0);
+        //gluPerspective(90, this->getScreenWidth() / this->getScreenHeight(), 1.0, 500.0);
 
         // Reset matrix mode
-        glMatrixMode(GL_MODELVIEW);
-    }
+        //glMatrixMode(GL_MODELVIEW);
+    //}
 
     void Engine::ClearScene()
     {
-        //this->m_pDevice->clear(color);
+        this->m_pDevice->clear(this->getClearColor());
     }
 
     int Engine::RenderStart()
     {
-
-
         // Check for available device
         if(!this->m_pDevice)
         {
@@ -146,34 +135,8 @@ namespace SuperEngine
         }
         if(!this->m_pDevice->setActive()) return 0;
 
-        glLoadIdentity();
-        // Maybe implement gluLookAt
-
-        if(!m_drawingGl)
-            this->StartDrawGL();
 
         return 1;
-    }
-
-    void Engine::StartDrawGL(DrawTypes type)
-    {
-
-        glBegin(GL_TRIANGLES);
-        m_drawingGl = true;
-
-        #ifdef _DEBUG
-        std::cout << "OpenGL Rendering started" << std::endl;
-        #endif // _DEBUG
-    }
-
-    void Engine::EndDrawGL()
-    {
-        glEnd();
-        m_drawingGl = false;
-
-        #ifdef _DEBUG
-        std::cout << "OpenGL Rendering ended" << std::endl;
-        #endif // _DEBUG
     }
 
     int Engine::RenderStop()
@@ -191,36 +154,6 @@ namespace SuperEngine
         // Rendering has ended, display changes,
         // might need to change this later
         this->m_pDevice->display();
-
-        // Automatically end GL drawing at the end of the loop,
-        // if it has not been deactivated
-        if(_drawingGl)
-            this->EndDrawGL();
-
-        return 1;
-    }
-
-    int Engine::RenderStart_2d()
-    {
-        // Store all GL states for later loading.
-        // They have to be stored for SFML to be able to
-        // draw its normal 2D stuff
-
-        // TODO: This is expensive, it pushes all states and i might not
-        // require all of them, refactor to push only the required attributes
-        this->m_pDevice->pushGLStates();
-
-        // If openGl is drawing, skip drawing 2D items with SFML
-        if(this->m_drawingGl)
-            return 0;
-
-        return 1;
-    }
-
-    int Engine::RenderStop_2d()
-    {
-        // Restores previous GL states
-        this->m_pDevice->popGLStates();
 
         return 1;
     }
@@ -276,14 +209,8 @@ namespace SuperEngine
             // begin rendering
             this->RenderStart();
 
-            game_render_3d();
+            game_render_2d();
 
-            // Start 2D rendering functions
-            if(RenderStart_2d())
-            {
-                game_render_2d();
-                RenderStop_2d();
-            }
 
             // Done rendering
             this->RenderStop();

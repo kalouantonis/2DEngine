@@ -3,7 +3,6 @@
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
 
 
 // Used only for debugging for now, i dont know man, stop pressuring me!
@@ -20,7 +19,6 @@ extern bool gameover;
 extern bool game_preload();
 extern bool game_init();
 extern void game_update(float elapsedTime);
-extern void game_render_3d();
 extern void game_render_2d();
 extern void game_end();
 
@@ -55,10 +53,6 @@ namespace SuperEngine
         sf::RenderWindow* m_pDevice;
 
         int Release();
-        // Used for window resize events
-        void RefreshView();
-
-        bool m_drawingGl;
     public:
         Engine();
         ~Engine();
@@ -70,26 +64,20 @@ namespace SuperEngine
         void fatalerror(const std::string& message, const std::string& title = "Fatal Error!");
         void Shutdown();
         void ClearScene();
-        //void SetDefaultMaterial();
-        //void SetAmbient(const sf::Color& color) { m_ambientColor = color; }
+
         int RenderStart();
         int RenderStop();
-        int RenderStart_2d();
-        int RenderStop_2d();
-
-        // Used for drawing openGL types
-        void StartDrawGL();
-        void EndDrawGL();
 
         bool isPaused() { return m_pausemode; }
         void setPaused(bool val) { m_pausemode = val; }
 
         sf::RenderWindow* getDevice() { return m_pDevice; }
 
+        /*
         void setPerspective(double fovy, double aspect, double zNear, double zFar)
         {
             gluPerspective(fovy, aspect, zNear, zFar);
-        }
+        }*/
 
         int getVersionMajor() { return m_versionMajor; }
         int getVersionMinor() { return m_versionMinor; }
@@ -103,7 +91,7 @@ namespace SuperEngine
         int getFPS() { return m_Fps; }
 
         const sf::Color getClearColor() { return m_clearColor; }
-        void setClearColor(const sf::Color& val = sf::Color::Black);
+        void setClearColor(const sf::Color& val);
 
         int getScreenHeight() { return m_ScreenHeight; }
         int getScreenWidth() { return m_ScreenWidth; };
