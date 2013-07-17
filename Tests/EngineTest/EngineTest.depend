@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1373835318 source:/home/slacker/Desktop/EngineTest/main.cpp
+	<iostream>
+	"../Engine/Engine.h"
+
+1373826670 /home/slacker/Desktop/Engine/Engine.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1373720195 /home/slacker/Desktop/Engine/Timer.h
+	"Engine.h"
+	<ctime>
+

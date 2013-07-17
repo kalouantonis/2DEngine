@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1373993924 source:/home/slacker/Desktop/Game/SpriteTest/main.cpp
+	"../Engine/Engine.h"
+
+1373835975 /home/slacker/Desktop/Game/Engine/Engine.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Sprite.h"
+
+1373993799 /home/slacker/Desktop/Game/Engine/Sprite.h
+	"Engine.h"
+

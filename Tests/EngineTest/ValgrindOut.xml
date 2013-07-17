@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>memcheck</protocoltool>
+
+<preamble>
+  <line>Memcheck, a memory error detector</line>
+  <line>Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.</line>
+  <line>Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: /home/slacker/Desktop/EngineTest/bin/Debug/EngineTest </line>
+</preamble>
+
+<pid>19678</pid>
+<ppid>5209</ppid>
+<tool>memcheck</tool>
+
+<args>
+  <vargv>
+    <exe>/usr/bin/valgrind.bin</exe>
+    <arg>--suppressions=/usr/lib/valgrind/debian-libc6-dbg.supp</arg>
+    <arg>--leak-check=full</arg>
+    <arg>--track-origins=yes</arg>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=/home/slacker/Desktop/EngineTest/ValgrindOut.xml</arg>
+  </vargv>
+  <argv>
+    <exe>/home/slacker/Desktop/EngineTest/bin/Debug/EngineTest</exe>
+    <arg></arg>
+  </argv>
+</args>
+
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.134 </time>
+</status>
+
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:16.872 </time>
+</status>
+
+<error>
+  <unique>0x33</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>32 bytes in 1 blocks are definitely lost in loss record 50 of 107</text>
+    <leakedbytes>32</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x402BE94</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-x86-linux.so</obj>
+      <fn>operator new(unsigned int)</fn>
+    </frame>
+    <frame>
+      <ip>0x80497D6</ip>
+      <obj>/home/slacker/Desktop/EngineTest/bin/Debug/EngineTest</obj>
+      <fn>game_init()</fn>
+      <dir>/home/slacker/Desktop/EngineTest</dir>
+      <file>main.cpp</file>
+      <line>25</line>
+    </frame>
+    <frame>
+      <ip>0x804A0C4</ip>
+      <obj>/home/slacker/Desktop/EngineTest/bin/Debug/EngineTest</obj>
+      <fn>SuperEngine::Engine::Init(int, int, int, bool)</fn>
+      <dir>/home/slacker/Desktop/Engine</dir>
+      <file>Engine.cpp</file>
+      <line>92</line>
+    </frame>
+    <frame>
+      <ip>0x8049B0A</ip>
+      <obj>/home/slacker/Desktop/EngineTest/bin/Debug/EngineTest</obj>
+      <fn>main</fn>
+      <dir>/home/slacker/Desktop/Engine</dir>
+      <file>main.cpp</file>
+      <line>25</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x41</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>76 bytes in 1 blocks are definitely lost in loss record 64 of 107</text>
+    <leakedbytes>76</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x402C418</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-x86-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x444B9AE</ip>
+      <obj>/usr/lib/nvidia-310/libGL.so.310.44</obj>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x6b</unique>
+  <tid>1</tid>
+  <kind>Leak_PossiblyLost</kind>
+  <xwhat>
+    <text>262,132 bytes in 1 blocks are possibly lost in loss record 106 of 107</text>
+    <leakedbytes>262132</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x402C418</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-x86-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x444EFDD</ip>
+      <obj>/usr/lib/nvidia-310/libGL.so.310.44</obj>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x6c</unique>
+  <tid>1</tid>
+  <kind>Leak_DefinitelyLost</kind>
+  <xwhat>
+    <text>262,132 bytes in 1 blocks are definitely lost in loss record 107 of 107</text>
+    <leakedbytes>262132</leakedbytes>
+    <leakedblocks>1</leakedblocks>
+  </xwhat>
+  <stack>
+    <frame>
+      <ip>0x402C418</ip>
+      <obj>/usr/lib/valgrind/vgpreload_memcheck-x86-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x444EFDD</ip>
+      <obj>/usr/lib/nvidia-310/libGL.so.310.44</obj>
+    </frame>
+  </stack>
+</error>
+
+<errorcounts>
+</errorcounts>
+
+<suppcounts>
+  <pair>
+    <count>2</count>
+    <name>X on SUSE11 writev uninit padding</name>
+  </pair>
+</suppcounts>
+
+</valgrindoutput>
+
