@@ -9,6 +9,9 @@
 #include <iostream>
 
 // Engine parts
+#include "Vector2.h"
+#include "Sprite.h"
+#include "ParticleController.h"
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
@@ -72,12 +75,6 @@ namespace SuperEngine
         void setPaused(bool val) { m_pausemode = val; }
 
         sf::RenderWindow* getDevice() { return m_pDevice; }
-
-        /*
-        void setPerspective(double fovy, double aspect, double zNear, double zFar)
-        {
-            gluPerspective(fovy, aspect, zNear, zFar);
-        }*/
 
         int getVersionMajor() { return m_versionMajor; }
         int getVersionMinor() { return m_versionMinor; }

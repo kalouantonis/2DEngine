@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1374153133 source:/home/slacker/Desktop/Game/ParticleTest/main.cpp
+	"../Engine/Engine.h"
+
+1374150477 /home/slacker/Desktop/Game/Engine/Engine.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Vector2.h"
+	"Sprite.h"
+	"ParticleController.h"
+
+1374153389 /home/slacker/Desktop/Game/Engine/Vector2.h
+	<cmath>
+
+1374150900 /home/slacker/Desktop/Game/Engine/Sprite.h
+	"Engine.h"
+
+1374153612 /home/slacker/Desktop/Game/Engine/ParticleController.h
+	"Engine.h"
+	<vector>
+

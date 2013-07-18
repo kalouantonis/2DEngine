@@ -19,7 +19,7 @@ namespace SuperEngine
 
         this->m_animationCols = 1;
         this->m_animationRows = 1;
-        this->m_frameSize = sf::Vector2f(1.0f, 1.0f);
+        this->m_frameSize = Vector2f(1.0f, 1.0f);
 
         this->setFrameTimer(0);
         this->m_animstartx = 0;
@@ -129,7 +129,7 @@ namespace SuperEngine
         m_sprite.setScale(this->m_scale, this->m_scale);
         m_sprite.setRotation(this->getRotation());
         // Don't know if i'll keep this
-        m_sprite.setPosition(this->getPosition());
+        m_sprite.setPosition(this->getPosition().x, this->getPosition().y);
 
         m_sprite.setColor(this->getColor());
 

@@ -19,7 +19,7 @@ namespace SuperEngine
         sf::Clock m_lifeTimeTimer;
         //int spriteType;
 
-        sf::Vector2f m_position, m_velocity;
+        Vector2f m_position, m_velocity;
         bool m_imageLoaded;
 
         int m_state, m_direction;
@@ -39,7 +39,7 @@ namespace SuperEngine
 
         sf::Clock m_movetimer, m_frametimer;
 
-        sf::Vector2f m_frameSize;
+        Vector2f m_frameSize;
 
         int m_animationCols;
         int m_animationRows;
@@ -58,8 +58,8 @@ namespace SuperEngine
 
     public:
         //position on screen
-        sf::Vector2f getPosition() { return m_position; }
-        void setPosition(const sf::Vector2f& position) { m_position = position; }
+        Vector2f getPosition() { return m_position; }
+        void setPosition(const Vector2f& position) { m_position = position; }
         void setPosition(float x, float y) { m_position.x = x; m_position.y = y; }
 
         double getX() { return m_position.x; }
@@ -68,13 +68,13 @@ namespace SuperEngine
         void setY(float y) { m_position.y = y; }
 
         // movement & velocity
-        sf::Vector2f getVelocity() { return m_velocity; }
-        void setVelocity(const sf::Vector2f& val) { m_velocity = val; }
+        Vector2f getVelocity() { return m_velocity; }
+        void setVelocity(const Vector2f& val) { m_velocity = val; }
         void setVelocity(float x, float y) { m_velocity.x = x; m_velocity.y = y; }
 
         // Image size
-        sf::Vector2f getFrameSize() { return m_frameSize; }
-        void setFrameSize(const sf::Vector2f& val) { m_frameSize = val; }
+        Vector2f getFrameSize() { return m_frameSize; }
+        void setFrameSize(const Vector2f& val) { m_frameSize = val; }
         void setFrameSize(float x, float y) { m_frameSize.x = x; m_frameSize.y = y; }
 
         bool getVisible() { return m_visible; }
