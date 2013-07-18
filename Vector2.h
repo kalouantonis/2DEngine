@@ -5,37 +5,37 @@
 
 namespace SuperEngine
 {
-    template<typename something>
+    template<typename T>
     class Vector2
     {
     public:
         Vector2() { }
-        Vector2(something x, something y) {  }
+        Vector2(T x, T y) {  }
 
-        Vector2(const Vector2<something>& v) { *this = v; }
+        Vector2(const Vector2<T>& v) { *this = v; }
 
-        void operator+=(const Vector2<something>& v)
+        void operator+=(const Vector2<T>& v)
         {
             x += v.x; y += v.y;
         }
 
-        void operator-=(const Vector2<something>& v)
+        void operator-=(const Vector2<T>& v)
         {
             x -= v.x; y -= v.y;
         }
 
-        void operator*=(const Vector2<something>& v)
+        void operator*=(const Vector2<T>& v)
         {
              x *= v.x; y *= v.y;
         }
 
-        void operator/=(const Vector2<something>& v)
+        void operator/=(const Vector2<T>& v)
         {
             x /= v.x; y /= v.y;
         }
 
         // equality operator involves double rounding
-        bool operator==(const Vector2<something>& v) const
+        bool operator==(const Vector2<T>& v) const
         {
             double accuracy = 0.0001f;
 
@@ -45,13 +45,13 @@ namespace SuperEngine
             );
         }
 
-        bool operator!=(const Vector2<something>& v) const
+        bool operator!=(const Vector2<T>& v) const
         {
             return(!(*this == v));
         }
 
         // assignment op
-        Vector2<something>& operator=(const Vector2<something>& v)
+        Vector2<T>& operator=(const Vector2<T>& v)
         {
             this->x = v.x;
             this->y = v.y;
@@ -59,30 +59,30 @@ namespace SuperEngine
             return *this;
         }
 
-        something distance(const Vector2<something>& v)
+        T distance(const Vector2<T>& v)
         {
             // Pythagoras was here, 2k13
-            return (something)sqrt((v.x - x) * (v.x - x) + (v.y - y) * (v.y - y));
+            return (T)sqrt((v.x - x) * (v.x - x) + (v.y - y) * (v.y - y));
         }
 
         // calculate length from the origin
-        something length()
+        T length()
         {
-            return sqrt(x * x + y * y);
+            return (T)sqrt(x * x + y * y);
         }
 
 
-        Vector2<something> normal()
+        Vector2<T> normal()
         {
-            something vlength = length() == 0 ? 0 : 1 / length();
+            T vlength = length() == 0 ? 0 : 1 / length();
 
-            something nx = x * vlength;
-            something ny = y * vlength;
+            T nx = x * vlength;
+            T ny = y * vlength;
 
-            return Vector2<something>(nx, ny);
+            return Vector2<T>(nx, ny);
         }
 
-        something x, y;
+        T x, y;
     };
 
     typedef Vector2<int> Vector2i;

@@ -16,11 +16,16 @@ namespace SuperEngine
         sf::Image* m_pImage;
 
         Vector2f m_position;
-        float m_direction, m_length;
-        int m_max;
-        int m_alphaMin, m_alphaMax;
-        int m_minR, m_minG, m_minB, m_maxR, m_maxG, m_maxB;
-        int m_spread;
+        float m_direction;
+
+        // How far away from the origin a particle is allowed to move
+        float m_length;
+        unsigned int m_max;
+        unsigned int m_alphaMin, m_alphaMax;
+        unsigned int m_minR, m_minG, m_minB, m_maxR, m_maxG, m_maxB;
+
+        // Distance between each particle
+        unsigned int m_spread;
         Vector2f m_velocity;
         float m_scale;
 
@@ -35,14 +40,15 @@ namespace SuperEngine
         float getDirection(void) { return m_direction; }
 
         void setMax(int num) { m_max = num; }
-        void setAlphaRange(int minVal, int maxVal) { m_alphaMin = minVal; m_alphaMax = maxVal;}
-        void setColorRange(int rmin, int gmin, int bmin, int rmax, int gmax, int bmax)
+        void setAlphaRange(unsigned int minVal, unsigned int maxVal) { m_alphaMin = minVal; m_alphaMax = maxVal;}
+        void setColorRange(unsigned int rmin, unsigned int gmin, unsigned int bmin,
+                           unsigned int rmax, unsigned int gmax, unsigned int bmax)
         {
             m_minR = rmin; m_minG = gmin; m_minB = bmin;
             m_maxR = rmax; m_maxG = gmax; m_maxB = bmax;
         }
 
-        void setSpread(int val) { m_spread = val; }
+        void setSpread(unsigned int val) { m_spread = val; }
         void setLength(float val) { m_length = val; }
 
         void setVelocity(float x = 0.0f, float y = 0.0f) {m_velocity.x = x; m_velocity.y = y; }

@@ -125,7 +125,7 @@ namespace SuperEngine
     void ParticleController::Update()
     {
         // check if a new particle is needed, according to the max allowed
-        if((int)m_particles.size() < m_max)
+        if((unsigned int)m_particles.size() < m_max)
         {
             // pause for a second, dont want to do this too quickly
             sf::sleep(sf::milliseconds(1));
