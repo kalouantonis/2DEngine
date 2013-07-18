@@ -160,18 +160,16 @@ namespace SuperEngine
                 m_movetimer.restart();
 
                 // Move sprite by velocity amount
-                //this->setPosition(this->getPosition().x + this->getVelocity().x,
-                //                  this->getPosition().y + this->getVelocity().y);
-                this->m_sprite.move(this->getVelocity().x, this->getVelocity().y);
+                this->setPosition(this->getPosition().x + this->getVelocity().x,
+                                  this->getPosition().y + this->getVelocity().y);
 
             }
         }
         else
         {
             // no movement timer -- move at CPU speed
-            this->m_sprite.move(this->getVelocity().x, this->getVelocity().y);
-            //this->setPosition(this->getPosition().x + this->getVelocity().x,
-              //                    this->getPosition().y + this->getVelocity().y);
+            this->setPosition(this->getPosition().x + this->getVelocity().x,
+                                  this->getPosition().y + this->getVelocity().y);
         }
     }
 

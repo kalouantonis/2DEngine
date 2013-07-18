@@ -86,6 +86,7 @@ namespace SuperEngine
         // create a new particle
         Sprite* p = new Sprite();
         p->setImage(m_pImage);
+
         p->setPosition(getPosition().x, getPosition().y);
 
         // add some randomness to the spread, so it looks better

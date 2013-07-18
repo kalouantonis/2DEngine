@@ -62,7 +62,7 @@ namespace SuperEngine
         something distance(const Vector2<something>& v)
         {
             // Pythagoras was here, 2k13
-            return sqrt((v.x - x) * (v.x - x) + (v.y - y) * (v.y - y));
+            return (something)sqrt((v.x - x) * (v.x - x) + (v.y - y) * (v.y - y));
         }
 
         // calculate length from the origin

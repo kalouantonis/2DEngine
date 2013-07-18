@@ -38,8 +38,11 @@
 		</Build>
 		<Unit filename="Engine.cpp" />
 		<Unit filename="Engine.h" />
+		<Unit filename="ParticleController.cpp" />
+		<Unit filename="ParticleController.h" />
 		<Unit filename="Sprite.cpp" />
 		<Unit filename="Sprite.h" />
+		<Unit filename="Vector2.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<envvars />
