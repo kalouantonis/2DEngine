@@ -58,6 +58,16 @@ namespace SuperEngine
         return getNestedElem(elemName)->Attribute(attrName.c_str());
     }
 
+    std::string XMLoader::getTextFromElem(TiXmlElement* elem)
+    {
+        return elem->GetText();
+    }
+
+    std::string XMLoader::getTextFromElem(const std::string& elemName)
+    {
+        return getNestedElem(elemName)->GetText();
+    }
+
     TiXmlElement* XMLoader::getNestedElem(const std::string& elemName, TiXmlElement* parent)
     {
         if(!parent)
