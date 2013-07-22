@@ -36,6 +36,7 @@ namespace SuperEngine
     {
         m_writeTime = true;
         m_out.flush();
+        m_out.close();
     }
 
     Logger& operator<<(Logger& os, std::ostream& (*fun)(std::ostream&))

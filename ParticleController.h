@@ -31,6 +31,10 @@ namespace SuperEngine
 
         bool m_imageLoaded;
 
+        // The memory pool that will handle allocation and de-allocation
+        // of the particles
+        //MemoryPool m_memPool;
+
     public:
         void setPosition(float x, float y) { m_position.x = x; m_position.y = y; }
         void setPosition(const Vector2f& val) { m_position = val; }
@@ -61,6 +65,8 @@ namespace SuperEngine
 
         bool loadImage(const std::string& filename);
         bool setImage(sf::Image*);
+
+        bool Init();
         void Draw();
         void Update();
         void Add();

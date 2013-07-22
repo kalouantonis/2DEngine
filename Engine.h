@@ -9,6 +9,9 @@
 #include <iostream>
 
 // Engine parts
+#include "Logger.h"
+#include "XMLoader.h"
+
 #include "Vector2.h"
 #include "Sprite.h"
 #include "ParticleController.h"
@@ -30,6 +33,8 @@ namespace SuperEngine
     class Engine
     {
     private:
+        Logger m_log;
+
         unsigned int m_versionMajor, m_versionMinor, m_revision;
 
         unsigned int m_Fps;
@@ -59,6 +64,9 @@ namespace SuperEngine
     public:
         Engine();
         ~Engine();
+
+        bool LoadContent(const std::string& filename);
+        Logger& getLogger() { return m_log; }
 
         int Init(int width, int height, int colordepth, bool fullscreen);
         void Close();

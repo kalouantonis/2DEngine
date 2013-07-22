@@ -38,6 +38,8 @@
 		</Build>
 		<Unit filename="Engine.cpp" />
 		<Unit filename="Engine.h" />
+		<Unit filename="Logger.cpp" />
+		<Unit filename="Logger.h" />
 		<Unit filename="ParticleController.cpp" />
 		<Unit filename="ParticleController.h" />
 		<Unit filename="Sprite.cpp" />

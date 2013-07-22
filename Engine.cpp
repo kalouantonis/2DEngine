@@ -41,6 +41,11 @@ namespace SuperEngine
         Release();
     }
 
+    bool Engine::LoadContent(const std::string& filename)
+    {
+        return m_log.Init(filename);
+    }
+
     const std::string Engine::getVersionText()
     {
         std::ostringstream s;
@@ -81,41 +86,25 @@ namespace SuperEngine
         if(!m_pDevice)
         {
             #ifdef _DEBUG
-            std::cerr << "m_pDevice failed to initialize in Engine::Init" << std::endl;
+            fatalerror("m_pDevice failed to initialize in Engine::Init");
+            m_log << ERR << "m_pDevice failed to initialize in Engine::Init" << std::endl;
             #endif // _DEBUG
             return 0;
         }
 
         m_pDevice->setActive();
 
-        // Would be a good idea to initialize OPENGL
         if(!game_init()) return 0;
 
         this->setClearColor(sf::Color::Black);
 
 
         #ifdef _DEBUG
-        std::cout << "Engine initialized successfully" << std::endl;
+        m_log << INFO << "Engine initialized successfully" << std::endl;
         #endif // _DEBUG
 
         return 1;
     }
-
-    //void Engine::RefreshView()
-    //{
-        // Reset the viewport
-        //glViewPort(0, 0, this->getScreenWidth(), this->getScreenHeight());
-
-        // Reset OpenGL
-        //glLoadIdentity();
-
-        // Set default OpenGL perspective
-        // TODO: Tweak this
-        //gluPerspective(90, this->getScreenWidth() / this->getScreenHeight(), 1.0, 500.0);
-
-        // Reset matrix mode
-        //glMatrixMode(GL_MODELVIEW);
-    //}
 
     void Engine::ClearScene()
     {
@@ -129,6 +118,7 @@ namespace SuperEngine
         {
             #ifdef _DEBUG
             std::cerr << "Device does not exist in Engine::RenderStart()" << std::endl;
+            m_log << WARN << "Device does not exist in Engine::RenderStart()" << std::endl;
             #endif // _DEBUG
             return 0;
         }
@@ -144,6 +134,7 @@ namespace SuperEngine
         {
             #ifdef _DEBUG
             std::cerr << "Device is non existant in Engine::RenderStop()" << std::endl;
+            m_log << WARN << "Device is non existant in Engine::RenderStop()" << std::endl;
             #endif // _DEBUG
 
             return 0;
@@ -239,6 +230,7 @@ namespace SuperEngine
 
             #ifdef _DEBUG
             std::cout << "Engine closed, m_pDevice deleted" << std::endl;
+            m_log << INFO << "Engine closed, m_pDevice deleted" << std::endl;
             #endif // _DEBUG
         }
 

@@ -25,6 +25,15 @@ namespace SuperEngine
         m_imageLoaded = false;
     }
 
+    bool ParticleController::Init()
+    {
+        // Assign a new pool with the size of the maximum allowed particles
+        // May need to look in to this, because if we have 500000 particles,
+        // well, that might be bad :)
+        //return m_memPool.Init(sizeof(Sprite), m_max);
+        return true;
+    }
+
     bool ParticleController::loadImage(const std::string& filename)
     {
         m_pImage = new sf::Image();
@@ -39,11 +48,12 @@ namespace SuperEngine
 
         m_imageLoaded = true;
 
+
         #ifdef _DEBUG
         std::cout << "Image loaded successfully" << std::endl;
         #endif // _DEBUG
 
-        return true;
+        return this->Init();
     }
 
     bool ParticleController::setImage(sf::Image* image)
@@ -58,7 +68,7 @@ namespace SuperEngine
         std::cout << "Image successfully set" << std::endl;
         #endif // _DEBUG
 
-        return true;
+        return this->Init();
     }
 
     ParticleController::~ParticleController()
@@ -73,9 +83,16 @@ namespace SuperEngine
         for(m_particleIter i = m_particles.begin(); i != m_particles.end(); i++)
         {
             delete *i;
+            //m_memPool.Free(static_cast<void*>(*i));
         }
 
+        //m_memPool.Destroy();
         m_particles.clear();
+
+        #ifdef _DEBUG
+        std::cout << "ParticleController destroyed" << std::endl;
+        #endif // _DEBUG
+
     }
 
     void ParticleController::Add()
@@ -85,6 +102,7 @@ namespace SuperEngine
 
         // create a new particle
         Sprite* p = new Sprite();
+        //Sprite* p = static_cast<Sprite*>(m_memPool.Alloc());
         p->setImage(m_pImage);
 
         p->setPosition(getPosition().x, getPosition().y);
@@ -119,7 +137,9 @@ namespace SuperEngine
     void ParticleController::Draw()
     {
         for(m_particleIter i = m_particles.begin(); i != m_particles.end(); i++)
+        {
             (*i)->Draw();
+        }
     }
 
     void ParticleController::Update()
