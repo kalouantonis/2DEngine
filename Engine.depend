@@ -1,1 +1,91 @@
 # depslib dependency file v1.0
+1305401098 source:/home/slacker/Desktop/Game/Engine/dependencies/tinyxml/tinystr.cpp
+	"tinystr.h"
+
+1305401098 /home/slacker/Desktop/Game/Engine/dependencies/tinyxml/tinystr.h
+	<assert.h>
+	<string.h>
+
+1305401098 source:/home/slacker/Desktop/Game/Engine/dependencies/tinyxml/tinyxml.cpp
+	<ctype.h>
+	<sstream>
+	<iostream>
+	"tinyxml.h"
+
+1305401098 /home/slacker/Desktop/Game/Engine/dependencies/tinyxml/tinyxml.h
+	<ctype.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<string>
+	<iostream>
+	<sstream>
+	"tinystr.h"
+
+1305401098 source:/home/slacker/Desktop/Game/Engine/dependencies/tinyxml/tinyxmlerror.cpp
+	"tinyxml.h"
+
+1305401098 source:/home/slacker/Desktop/Game/Engine/dependencies/tinyxml/tinyxmlparser.cpp
+	<ctype.h>
+	<stddef.h>
+	"tinyxml.h"
+	<windows.h>
+
+1374341582 source:/home/slacker/Desktop/Game/Engine/Engine.cpp
+	"Engine.h"
+	<cstdlib>
+	<sstream>
+
+1374591451 /home/slacker/Desktop/Game/Engine/Engine.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Logger.h"
+	"XMLoader.h"
+	"MemoryPool.h"
+	"Vector2.h"
+	"Sprite.h"
+	"ParticleController.h"
+
+1374539978 /home/slacker/Desktop/Game/Engine/Logger.h
+	<fstream>
+	<ios>
+	<tr1/memory>
+
+1374499157 /home/slacker/Desktop/Game/Engine/XMLoader.h
+	"dependencies/tinyxml/tinyxml.h"
+	"Engine.h"
+
+1374160692 /home/slacker/Desktop/Game/Engine/Vector2.h
+	<cmath>
+
+1374150900 /home/slacker/Desktop/Game/Engine/Sprite.h
+	"Engine.h"
+
+1374234512 /home/slacker/Desktop/Game/Engine/ParticleController.h
+	"Engine.h"
+	<vector>
+
+1374539962 source:/home/slacker/Desktop/Game/Engine/Logger.cpp
+	"Logger.h"
+	<ctime>
+	<sstream>
+
+1374341433 source:/home/slacker/Desktop/Game/Engine/main.cpp
+	"Engine.h"
+
+1374234499 source:/home/slacker/Desktop/Game/Engine/ParticleController.cpp
+	"Engine.h"
+	<cmath>
+
+1374159698 source:/home/slacker/Desktop/Game/Engine/Sprite.cpp
+	"Engine.h"
+
+1374499313 source:/home/slacker/Desktop/Game/Engine/XMLoader.cpp
+	"Engine.h"
+	<cstdlib>
+
+1374591436 /home/slacker/Desktop/Game/Engine/MemoryPool.h
+	<cstddef>
+

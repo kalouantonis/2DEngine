@@ -45,6 +45,14 @@
 		<Unit filename="Sprite.cpp" />
 		<Unit filename="Sprite.h" />
 		<Unit filename="Vector2.h" />
+		<Unit filename="XMLoader.cpp" />
+		<Unit filename="XMLoader.h" />
+		<Unit filename="dependencies/tinyxml/tinystr.cpp" />
+		<Unit filename="dependencies/tinyxml/tinystr.h" />
+		<Unit filename="dependencies/tinyxml/tinyxml.cpp" />
+		<Unit filename="dependencies/tinyxml/tinyxml.h" />
+		<Unit filename="dependencies/tinyxml/tinyxmlerror.cpp" />
+		<Unit filename="dependencies/tinyxml/tinyxmlparser.cpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<envvars />

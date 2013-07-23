@@ -12,6 +12,8 @@
 #include "Logger.h"
 #include "XMLoader.h"
 
+#include "MemoryPool.h"
+
 #include "Vector2.h"
 #include "Sprite.h"
 #include "ParticleController.h"
