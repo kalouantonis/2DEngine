@@ -10,7 +10,6 @@ namespace SuperEngine
 {
     bool Logger::Init(const std::string& filename)
     {
-        // Logger won't append, i dont know, might implement this later
         m_out.open(filename.c_str(), std::ios::out);
 
         //m_writeTime = true;

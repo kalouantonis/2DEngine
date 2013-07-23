@@ -21,7 +21,7 @@ namespace SuperEngine
         bool m_writeTime;
 
     public:
-        Logger() { }
+        Logger():m_writeTime(false) { }
         ~Logger() { }
         bool Init(const std::string& filename);
 
