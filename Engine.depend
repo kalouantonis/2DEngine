@@ -89,3 +89,91 @@
 1374591436 /home/slacker/Desktop/Game/Engine/MemoryPool.h
 	<cstddef>
 
+1374690888 source:/home/slacker/Desktop/dice-roller-test-program/dependencies/tinyxml/tinystr.cpp
+	"tinystr.h"
+
+1374690888 /home/slacker/Desktop/dice-roller-test-program/dependencies/tinyxml/tinystr.h
+	<assert.h>
+	<string.h>
+
+1374690888 source:/home/slacker/Desktop/dice-roller-test-program/dependencies/tinyxml/tinyxml.cpp
+	<ctype.h>
+	<sstream>
+	<iostream>
+	"tinyxml.h"
+
+1374690888 /home/slacker/Desktop/dice-roller-test-program/dependencies/tinyxml/tinyxml.h
+	<ctype.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<string>
+	<iostream>
+	<sstream>
+	"tinystr.h"
+
+1374690888 source:/home/slacker/Desktop/dice-roller-test-program/dependencies/tinyxml/tinyxmlerror.cpp
+	"tinyxml.h"
+
+1374690888 source:/home/slacker/Desktop/dice-roller-test-program/dependencies/tinyxml/tinyxmlparser.cpp
+	<ctype.h>
+	<stddef.h>
+	"tinyxml.h"
+	<windows.h>
+
+1374690888 source:/home/slacker/Desktop/dice-roller-test-program/Engine.cpp
+	"Engine.h"
+	<cstdlib>
+	<sstream>
+
+1374690978 /home/slacker/Desktop/dice-roller-test-program/Engine.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<allegro5/allegro5.h>
+	<allegro5/allegro_image.h>
+	<iostream>
+	"Logger.h"
+	"XMLoader.h"
+	"MemoryPool.h"
+	"Vector2.h"
+	"Sprite.h"
+	"ParticleController.h"
+
+1374690888 /home/slacker/Desktop/dice-roller-test-program/Logger.h
+	<fstream>
+	<ios>
+	<tr1/memory>
+
+1374690888 /home/slacker/Desktop/dice-roller-test-program/XMLoader.h
+	"dependencies/tinyxml/tinyxml.h"
+	"Engine.h"
+
+1374690888 /home/slacker/Desktop/dice-roller-test-program/MemoryPool.h
+	<cstddef>
+
+1374701265 /home/slacker/Desktop/dice-roller-test-program/Vector2.h
+	<cmath>
+
+1374690888 /home/slacker/Desktop/dice-roller-test-program/Sprite.h
+	"Engine.h"
+
+1374690888 /home/slacker/Desktop/dice-roller-test-program/ParticleController.h
+	"Engine.h"
+	<vector>
+
+1374690888 source:/home/slacker/Desktop/dice-roller-test-program/Logger.cpp
+	"Logger.h"
+	<ctime>
+	<sstream>
+
+1374690888 source:/home/slacker/Desktop/dice-roller-test-program/main.cpp
+	"Engine.h"
+
+1374690888 source:/home/slacker/Desktop/dice-roller-test-program/ParticleController.cpp
+	"Engine.h"
+	<cmath>
+
+1374690888 source:/home/slacker/Desktop/dice-roller-test-program/Sprite.cpp
+	"Engine.h"
+

@@ -9,14 +9,34 @@ namespace SuperEngine
     class Vector2
     {
     public:
-        Vector2():x(0), y(0) { }
-        Vector2(T x, T y): x(x), y(y) {  }
+        Vector2() { }
+        Vector2(T x, T y) {  }
 
         Vector2(const Vector2<T>& v) { *this = v; }
 
         void operator+=(const Vector2<T>& v)
         {
             x += v.x; y += v.y;
+        }
+
+        Vector2<T> operator+(const Vector2<T>& v)
+        {
+            return Vector2<T>(this->x + v.x, this->y + v.y);
+        }
+
+        Vector2<T> operator-(const Vector2<T>& v)
+        {
+            return Vector2<T>(this->x - v.x, this->y - v.y);
+        }
+
+        Vector2<T> operator/(const Vector2<T>& v)
+        {
+            return Vector2<T>(this->x / v.x, this->y / v.y);
+        }
+
+        Vector2<T> operator*(const Vector2<T>& v)
+        {
+            return Vector2<T>(this->x * v.x, this->y * v.y);
         }
 
         void operator-=(const Vector2<T>& v)
