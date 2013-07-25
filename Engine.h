@@ -4,6 +4,9 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 
+#include <allegro5/allegro5.h>
+#include <allegro5/allegro_image.h>
+
 
 // Used only for debugging for now, i dont know man, stop pressuring me!
 #include <iostream>
