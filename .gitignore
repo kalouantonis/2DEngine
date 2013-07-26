@@ -20,3 +20,6 @@ Release/Utils
 /Release/*.o
 /Release/Catharsis
 /Debug
+
+*.log
+*.a

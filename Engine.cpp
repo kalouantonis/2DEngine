@@ -71,15 +71,47 @@ namespace SuperEngine
         this->m_clearColor = color;
     }
 
-    int Engine::Init(int width, int height, int colordepth, bool fullscreen)
+    bool Engine::m_initgl()
+    {
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+
+        // Set at black for now, will need to divide by 255 to get normalized color
+        glClearColor(0,0, 0, 1);
+
+        // TODO: Allow reseting
+        glViewport(0, 0, getScreenWidth(), getScreenHeight());
+
+        glOrtho(0.0f, getScreenWidth(), getScreenHeight(), 0.0f, -1.0f, 1.0f);
+
+        GLenum error = glGetError();
+        if(error != GL_NO_ERROR)
+        {
+            m_log << "OpenGL initialization error: " << gluErrorString(error) << std::endl;
+
+            return false;
+        }
+
+        return true;
+    }
+
+    bool Engine::Init(int width, int height, int colordepth, bool fullscreen)
     {
         // Initialize sf::Window
         // TODO: Implement fullscreen
 
         // TODO: Allow anti-aliazing and other options to be enabled for OpenGL
-        m_pDevice = new sf::RenderWindow(sf::VideoMode(width, height, colordepth),
-                                   this->getAppTitle());
+        sf::ContextSettings contextSettings;
+        contextSettings.depthBits = 32;
+        contextSettings.antialiasingLevel = 4;
 
+        m_pDevice = new sf::RenderWindow(sf::VideoMode(width, height, colordepth),
+                                   this->getAppTitle(), sf::Style::Default, contextSettings);
+
+        m_pDevice->setVerticalSyncEnabled(true);
         m_pDevice->setFramerateLimit(m_Fps);
 
         // Initialization failed
@@ -89,21 +121,22 @@ namespace SuperEngine
             fatalerror("m_pDevice failed to initialize in Engine::Init");
             m_log << ERR << "m_pDevice failed to initialize in Engine::Init" << std::endl;
             #endif // _DEBUG
-            return 0;
+            return false;
         }
 
         m_pDevice->setActive();
 
-        if(!game_init()) return 0;
+        if(!game_init()) return false;
 
         this->setClearColor(sf::Color::Black);
 
+        m_initgl();
 
         #ifdef _DEBUG
         m_log << INFO << "Engine initialized successfully" << std::endl;
         #endif // _DEBUG
 
-        return 1;
+        return true;
     }
 
     void Engine::ClearScene()
@@ -199,7 +232,7 @@ namespace SuperEngine
             // begin rendering
             this->RenderStart();
 
-            game_render_2d();
+            game_render();
 
 
             // Done rendering

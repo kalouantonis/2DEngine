@@ -30,8 +30,9 @@ namespace SuperEngine
         // Might need inheritance, might not
         sf::Image *m_pImage;
 
-        sf::Texture m_texture;
-        sf::Sprite m_sprite;
+        // OpenGL texture id
+        typedef GLuint Texture;
+        Texture m_texId;
 
         bool m_useMoveTimer, m_useFrameTimer;
         // Delay before moving and frame animation is performed in milli-seconds
@@ -50,7 +51,8 @@ namespace SuperEngine
         int m_curframe, m_totalframes, m_animdir;
         float m_faceangle, m_moveangle;
         int m_animstartx, m_animstarty;
-        float m_rotation, m_scale;
+        float m_rotation;
+        Vector2f m_scale;
 
         void m_Transform();
 
@@ -105,8 +107,11 @@ namespace SuperEngine
 
         float getRotation() { return m_rotation; }
         void setRotation(float rotation) { m_rotation = rotation; }
-        float getScale() { return m_scale; }
-        void setScale(float val) { m_scale = val; }
+
+        Vector2f getScale() { return m_scale; }
+        void setScale(const Vector2f& val) { m_scale = val; }
+        void setScale(float x, float y) { m_scale.x = x; m_scale.y = y; }
+        void setScale(float val) { setScale(val, val); }
 
         void setColor(const sf::Color& color) { m_color = color; }
         void setColor(float r, float g, float b, float a) { m_color = sf::Color(r, g, b, a); }
@@ -132,7 +137,7 @@ namespace SuperEngine
         int getMoveDelay() { return m_moveDelay; }
 
         // Debugging
-        sf::Sprite* const getSprite() { return &m_sprite; }
+        //sf::Sprite* const getSprite() { return &m_sprite; }
 
         // Main methods
         Sprite();

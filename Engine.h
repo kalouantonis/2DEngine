@@ -3,6 +3,7 @@
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>
 
 
 // Used only for debugging for now, i dont know man, stop pressuring me!
@@ -27,7 +28,7 @@ extern bool gameover;
 extern bool game_preload();
 extern bool game_init();
 extern void game_update(float elapsedTime);
-extern void game_render_2d();
+extern void game_render();
 extern void game_end();
 
 namespace SuperEngine
@@ -63,6 +64,8 @@ namespace SuperEngine
         sf::RenderWindow* m_pDevice;
 
         int Release();
+
+        bool m_initgl();
     public:
         Engine();
         ~Engine();
@@ -70,7 +73,7 @@ namespace SuperEngine
         bool LoadContent(const std::string& filename);
         Logger& getLogger() { return m_log; }
 
-        int Init(int width, int height, int colordepth, bool fullscreen);
+        bool Init(int width, int height, int colordepth, bool fullscreen);
         void Close();
         void Update();
         void message(const std::string& message, const std::string& title = "SuperEngine");
