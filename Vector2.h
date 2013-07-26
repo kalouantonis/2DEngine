@@ -19,26 +19,6 @@ namespace SuperEngine
             x += v.x; y += v.y;
         }
 
-        Vector2<T> operator+(const Vector2<T>& v)
-        {
-            return Vector2<T>(this->x + v.x, this->y + v.y);
-        }
-
-        Vector2<T> operator-(const Vector2<T>& v)
-        {
-            return Vector2<T>(this->x - v.x, this->y - v.y);
-        }
-
-        Vector2<T> operator/(const Vector2<T>& v)
-        {
-            return Vector2<T>(this->x / v.x, this->y / v.y);
-        }
-
-        Vector2<T> operator*(const Vector2<T>& v)
-        {
-            return Vector2<T>(this->x * v.x, this->y * v.y);
-        }
-
         void operator-=(const Vector2<T>& v)
         {
             x -= v.x; y -= v.y;
