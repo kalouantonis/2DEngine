@@ -12,12 +12,8 @@ int main()
     // Initialize the engine
     g_pEngine = new SuperEngine::Engine();
 
-    // Initialize the logger before anything else,
-    // we need it to track errors and stuffs
-    if(!g_pEngine->LoadContent("engine.log"))
-        // TODO: Write some sort of fallback
-        std::cerr << "Could not initialize logger" << std::endl;
-
+    // Initialize logger
+    SuperEngine::Logger::getInstance().Init("engine.log");
 
     // Preload any variables here, screen height and such..
     if(!game_preload())

@@ -41,11 +41,6 @@ namespace SuperEngine
         Release();
     }
 
-    bool Engine::LoadContent(const std::string& filename)
-    {
-        return m_log.Init(filename);
-    }
-
     const std::string Engine::getVersionText()
     {
         std::ostringstream s;
@@ -71,72 +66,40 @@ namespace SuperEngine
         this->m_clearColor = color;
     }
 
-    bool Engine::m_initgl()
-    {
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-
-        // Set at black for now, will need to divide by 255 to get normalized color
-        glClearColor(0,0, 0, 1);
-
-        // TODO: Allow reseting
-        glViewport(0, 0, getScreenWidth(), getScreenHeight());
-
-        glOrtho(0.0f, getScreenWidth(), getScreenHeight(), 0.0f, -1.0f, 1.0f);
-
-        GLenum error = glGetError();
-        if(error != GL_NO_ERROR)
-        {
-            m_log << "OpenGL initialization error: " << gluErrorString(error) << std::endl;
-
-            return false;
-        }
-
-        return true;
-    }
-
-    bool Engine::Init(int width, int height, int colordepth, bool fullscreen)
+    int Engine::Init(int width, int height, int colordepth, bool fullscreen)
     {
         // Initialize sf::Window
         // TODO: Implement fullscreen
 
         // TODO: Allow anti-aliazing and other options to be enabled for OpenGL
-        sf::ContextSettings contextSettings;
-        contextSettings.depthBits = 32;
-        contextSettings.antialiasingLevel = 4;
-
         m_pDevice = new sf::RenderWindow(sf::VideoMode(width, height, colordepth),
-                                   this->getAppTitle(), sf::Style::Default, contextSettings);
+                                   this->getAppTitle());
 
-        m_pDevice->setVerticalSyncEnabled(true);
-        m_pDevice->setFramerateLimit(m_Fps);
+        //m_pDevice->setVerticalSyncEnabled(true);
+        //m_pDevice->setFramerateLimit(getFPS());
 
         // Initialization failed
         if(!m_pDevice)
         {
             #ifdef _DEBUG
             fatalerror("m_pDevice failed to initialize in Engine::Init");
-            m_log << ERR << "m_pDevice failed to initialize in Engine::Init" << std::endl;
+            Logger::getInstance() << ERR << "m_pDevice failed to initialize in Engine::Init" << std::endl;
             #endif // _DEBUG
-            return false;
+            return 0;
         }
 
         m_pDevice->setActive();
 
-        if(!game_init()) return false;
+        if(!game_init()) return 0;
 
         this->setClearColor(sf::Color::Black);
 
-        m_initgl();
 
         #ifdef _DEBUG
-        m_log << INFO << "Engine initialized successfully" << std::endl;
+        Logger::getInstance() << INFO << "Engine initialized successfully" << std::endl;
         #endif // _DEBUG
 
-        return true;
+        return 1;
     }
 
     void Engine::ClearScene()
@@ -151,7 +114,7 @@ namespace SuperEngine
         {
             #ifdef _DEBUG
             std::cerr << "Device does not exist in Engine::RenderStart()" << std::endl;
-            m_log << WARN << "Device does not exist in Engine::RenderStart()" << std::endl;
+            Logger::getInstance() << WARN << "Device does not exist in Engine::RenderStart()" << std::endl;
             #endif // _DEBUG
             return 0;
         }
@@ -167,7 +130,7 @@ namespace SuperEngine
         {
             #ifdef _DEBUG
             std::cerr << "Device is non existant in Engine::RenderStop()" << std::endl;
-            m_log << WARN << "Device is non existant in Engine::RenderStop()" << std::endl;
+            Logger::getInstance() << WARN << "Device is non existant in Engine::RenderStop()" << std::endl;
             #endif // _DEBUG
 
             return 0;
@@ -190,15 +153,15 @@ namespace SuperEngine
     {
         static sf::Clock timedUpdate;
 
-        //calculate core framerate
-        m_frameCount_core++;
-        if(m_coreTimer.getElapsedTime().asMilliseconds() > 999)
-        {
-            m_frameRate_core = m_frameCount_core;
-            m_frameCount_core = 0;
-
-            m_coreTimer.restart();
-        }
+//        //calculate core framerate
+//        m_frameCount_core++;
+//        if(m_coreTimer.getElapsedTime().asMilliseconds() > 999)
+//        {
+//            m_frameRate_core = m_frameCount_core;
+//            m_frameCount_core = 0;
+//
+//            m_coreTimer.restart();
+//        }
 
         // fast update with no timing
         game_update(timedUpdate.getElapsedTime().asSeconds());
@@ -218,14 +181,14 @@ namespace SuperEngine
         else
         {
             // calculate real framerate
-            m_frameCount_real++;
-            if(m_realTimer.getElapsedTime().asMilliseconds() > 999)
-            {
-                m_frameRate_real = m_frameCount_real;
-                m_frameCount_real = 0;
-
-                m_realTimer.restart();
-            }
+//            m_frameCount_real++;
+//            if(m_realTimer.getElapsedTime().asMilliseconds() > 999)
+//            {
+//                m_frameRate_real = m_frameCount_real;
+//                m_frameCount_real = 0;
+//
+//                m_realTimer.restart();
+//            }
 
             this->ClearScene();
 
@@ -263,7 +226,7 @@ namespace SuperEngine
 
             #ifdef _DEBUG
             std::cout << "Engine closed, m_pDevice deleted" << std::endl;
-            m_log << INFO << "Engine closed, m_pDevice deleted" << std::endl;
+            Logger::getInstance() << INFO << "Engine closed, m_pDevice deleted" << std::endl;
             #endif // _DEBUG
         }
 

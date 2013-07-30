@@ -28,17 +28,17 @@ namespace SuperEngine
 
     protected:
         // Might need inheritance, might not
-        sf::Image *m_pImage;
+        sf::Texture m_texture;
+        sf::Sprite m_sprite;
 
-        // OpenGL texture id
-        typedef GLuint Texture;
-        Texture m_texId;
-
-        bool m_useMoveTimer, m_useFrameTimer;
+        bool m_useMoveTimer;
+        bool m_useFrameTimer;
         // Delay before moving and frame animation is performed in milli-seconds
-        int m_moveDelay, m_frameDelay;
+        int m_moveDelay,;
+        int m_frameDelay;
 
-        sf::Clock m_movetimer, m_frametimer;
+        sf::Clock m_movetimer;
+        sf::Clock m_frametimer;
 
         Vector2f m_frameSize;
 
@@ -51,12 +51,11 @@ namespace SuperEngine
         int m_curframe, m_totalframes, m_animdir;
         float m_faceangle, m_moveangle;
         int m_animstartx, m_animstarty;
-        float m_rotation;
-        Vector2f m_scale;
+        float m_rotation, m_scale;
 
         void m_Transform();
 
-        bool genSprite();
+        bool genSprite(unsigned int animationCols, unsigned int animationRows);
 
     public:
         //position on screen
@@ -107,11 +106,8 @@ namespace SuperEngine
 
         float getRotation() { return m_rotation; }
         void setRotation(float rotation) { m_rotation = rotation; }
-
-        Vector2f getScale() { return m_scale; }
-        void setScale(const Vector2f& val) { m_scale = val; }
-        void setScale(float x, float y) { m_scale.x = x; m_scale.y = y; }
-        void setScale(float val) { setScale(val, val); }
+        float getScale() { return m_scale; }
+        void setScale(float val) { m_scale = val; }
 
         void setColor(const sf::Color& color) { m_color = color; }
         void setColor(float r, float g, float b, float a) { m_color = sf::Color(r, g, b, a); }
@@ -137,15 +133,15 @@ namespace SuperEngine
         int getMoveDelay() { return m_moveDelay; }
 
         // Debugging
-        //sf::Sprite* const getSprite() { return &m_sprite; }
+        sf::Sprite* const getSprite() { return &m_sprite; }
 
         // Main methods
         Sprite();
         virtual ~Sprite();
-        bool loadImage(const std::string& filename, int animationCols = 1, int animationRows = 1,
+        bool loadImage(const std::string& filename, unsigned int animationCols = 1, unsigned int animationRows = 1,
                        const sf::Color& transcolor = sf::Color(255, 0, 255));
-        bool setImage(sf::Image*, int animationCols = 1, int animationRows = 1);
-        void Move();
+        bool setImage(const sf::Texture&, unsigned int animationCols = 1, unsigned int animationRows = 1);
+        void Move(float elapsedTime);
         void Animate();
         void Draw();
     };

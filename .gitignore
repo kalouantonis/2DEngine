@@ -23,3 +23,8 @@ Release/Utils
 
 *.log
 *.a
+*.so
+*/bin
+Tests/ParticleTest/bin/
+Tests/SpriteTest/bin/
+

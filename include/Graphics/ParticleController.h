@@ -13,7 +13,7 @@ namespace SuperEngine
         typedef std::vector<Sprite*>::iterator m_particleIter;
         std::vector<Sprite*> m_particles;
 
-        sf::Image* m_pImage;
+        sf::Texture m_texture;
 
         Vector2f m_position;
         float m_direction;
@@ -33,7 +33,7 @@ namespace SuperEngine
 
         // The memory pool that will handle allocation and de-allocation
         // of the particles
-        //MemoryPool m_memPool;
+        MemoryPool m_memPool;
 
     public:
         void setPosition(float x, float y) { m_position.x = x; m_position.y = y; }
@@ -64,11 +64,11 @@ namespace SuperEngine
         virtual ~ParticleController();
 
         bool loadImage(const std::string& filename);
-        bool setImage(sf::Image*);
+        bool setImage(const sf::Texture&);
 
         bool Init();
         void Draw();
-        void Update();
+        void Update(float elapsedTime);
         void Add();
     };
 };

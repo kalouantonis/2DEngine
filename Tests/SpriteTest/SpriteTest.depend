@@ -11,13 +11,12 @@
 1373993799 /home/slacker/Desktop/Game/Engine/Sprite.h
 	"Engine.h"
 
-1374859889 source:/home/slacker/Desktop/dice-roller-test-program/Tests/SpriteTest/main.cpp
+1374880342 source:/home/slacker/dice-roller-test-program/Tests/SpriteTest/main.cpp
 	"../../Engine.h"
 
-1374858904 /home/slacker/Desktop/dice-roller-test-program/Engine.h
+1374879811 /home/slacker/dice-roller-test-program/Engine.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
-	<SFML/OpenGL.hpp>
 	<iostream>
 	"Logger.h"
 	"XMLoader.h"
@@ -26,16 +25,16 @@
 	"Sprite.h"
 	"ParticleController.h"
 
-1374690888 /home/slacker/Desktop/dice-roller-test-program/Logger.h
+1374870928 /home/slacker/dice-roller-test-program/Logger.h
 	<fstream>
 	<ios>
 	<tr1/memory>
 
-1374690888 /home/slacker/Desktop/dice-roller-test-program/XMLoader.h
+1374870928 /home/slacker/dice-roller-test-program/XMLoader.h
 	"dependencies/tinyxml/tinyxml.h"
 	"Engine.h"
 
-1374690888 /home/slacker/Desktop/dice-roller-test-program/dependencies/tinyxml/tinyxml.h
+1374870928 /home/slacker/dice-roller-test-program/dependencies/tinyxml/tinyxml.h
 	<ctype.h>
 	<stdio.h>
 	<stdlib.h>
@@ -46,20 +45,71 @@
 	<sstream>
 	"tinystr.h"
 
-1374690888 /home/slacker/Desktop/dice-roller-test-program/dependencies/tinyxml/tinystr.h
+1374870928 /home/slacker/dice-roller-test-program/dependencies/tinyxml/tinystr.h
 	<assert.h>
 	<string.h>
 
-1374690888 /home/slacker/Desktop/dice-roller-test-program/MemoryPool.h
+1374870928 /home/slacker/dice-roller-test-program/MemoryPool.h
 	<cstddef>
 
-1374704371 /home/slacker/Desktop/dice-roller-test-program/Vector2.h
+1374870928 /home/slacker/dice-roller-test-program/Vector2.h
 	<cmath>
 
-1374858473 /home/slacker/Desktop/dice-roller-test-program/Sprite.h
+1374880536 /home/slacker/dice-roller-test-program/Sprite.h
 	"Engine.h"
 
-1374690888 /home/slacker/Desktop/dice-roller-test-program/ParticleController.h
+1374870928 /home/slacker/dice-roller-test-program/ParticleController.h
+	"Engine.h"
+	<vector>
+
+1375131530 source:/home/slacker/Desktop/dice-roller-test-program/Tests/SpriteTest/main.cpp
+	"../../Engine.h"
+
+1374926202 /home/slacker/Desktop/dice-roller-test-program/Engine.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Logger.h"
+	"XMLoader.h"
+	"MemoryPool.h"
+	"Vector2.h"
+	"Sprite.h"
+	"ParticleController.h"
+
+1374934201 /home/slacker/Desktop/dice-roller-test-program/Logger.h
+	<fstream>
+	<ios>
+	<tr1/memory>
+
+1374870928 /home/slacker/Desktop/dice-roller-test-program/XMLoader.h
+	"dependencies/tinyxml/tinyxml.h"
+	"Engine.h"
+
+1374870928 /home/slacker/Desktop/dice-roller-test-program/dependencies/tinyxml/tinyxml.h
+	<ctype.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<string>
+	<iostream>
+	<sstream>
+	"tinystr.h"
+
+1374870928 /home/slacker/Desktop/dice-roller-test-program/dependencies/tinyxml/tinystr.h
+	<assert.h>
+	<string.h>
+
+1374870928 /home/slacker/Desktop/dice-roller-test-program/MemoryPool.h
+	<cstddef>
+
+1374870928 /home/slacker/Desktop/dice-roller-test-program/Vector2.h
+	<cmath>
+
+1374937573 /home/slacker/Desktop/dice-roller-test-program/Sprite.h
+	"Engine.h"
+
+1374935826 /home/slacker/Desktop/dice-roller-test-program/ParticleController.h
 	"Engine.h"
 	<vector>
 

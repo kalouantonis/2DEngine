@@ -1,4 +1,4 @@
-#include "Logger.h"
+#include <Utils/Logger.h>
 
 // For time logging
 #include <ctime>
@@ -8,11 +8,18 @@
 
 namespace SuperEngine
 {
+    Logger& Logger::getInstance()
+    {
+        static Logger instance;
+
+        return instance;
+    }
+
     bool Logger::Init(const std::string& filename)
     {
         m_out.open(filename.c_str(), std::ios::out);
 
-        //m_writeTime = true;
+        m_writeTime = true;
 
         return m_out.is_open();
     }

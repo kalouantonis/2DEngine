@@ -16,10 +16,10 @@
 				</Compiler>
 				<Linker>
 					<Add library="Engine" />
-					<Add library="sfml-system" />
-					<Add library="sfml-window" />
-					<Add library="sfml-graphics" />
-					<Add directory="../Engine" />
+					<Add library="sfml-system-d" />
+					<Add library="sfml-window-d" />
+					<Add library="sfml-graphics-d" />
+					<Add directory="../.." />
 				</Linker>
 			</Target>
 			<Target title="Release">

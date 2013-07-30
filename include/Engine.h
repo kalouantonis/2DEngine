@@ -3,21 +3,20 @@
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
 
 
 // Used only for debugging for now, i dont know man, stop pressuring me!
 #include <iostream>
 
 // Engine parts
-#include "Logger.h"
-#include "XMLoader.h"
+#include <Utils/Logger.h>
+#include <Resources/XMLoader.h>
 
-#include "MemoryPool.h"
+#include <Memory/MemoryPool.h>
 
-#include "Vector2.h"
-#include "Sprite.h"
-#include "ParticleController.h"
+#include <Utils/Vector2.h>
+#include <Graphics/Sprite.h>
+#include <Graphics/ParticleController.h>
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
@@ -36,7 +35,6 @@ namespace SuperEngine
     class Engine
     {
     private:
-        Logger m_log;
 
         unsigned int m_versionMajor, m_versionMinor, m_revision;
 
@@ -64,16 +62,11 @@ namespace SuperEngine
         sf::RenderWindow* m_pDevice;
 
         int Release();
-
-        bool m_initgl();
     public:
         Engine();
         ~Engine();
 
-        bool LoadContent(const std::string& filename);
-        Logger& getLogger() { return m_log; }
-
-        bool Init(int width, int height, int colordepth, bool fullscreen);
+        int Init(int width, int height, int colordepth, bool fullscreen);
         void Close();
         void Update();
         void message(const std::string& message, const std::string& title = "SuperEngine");

@@ -1,7 +1,7 @@
 #ifndef XMLRESOURCE_H
 #define XMLRESOURCE_H
 
-#include "dependencies/tinyxml/tinyxml.h"
+#include <tinyxml/tinyxml.h>
 #include "Engine.h"
 
 namespace SuperEngine

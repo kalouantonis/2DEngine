@@ -30,7 +30,7 @@ bool game_init()
     pa->setMax(500);
     pa->setAlphaRange(100, 255);
     pa->setSpread(30);
-    pa->setVelocity(2.0);
+    pa->setVelocity(2000000.0);
     pa->setLength(250);
 
     pb = new ParticleController();
@@ -54,7 +54,7 @@ bool game_init()
     pc->setAlphaRange(100, 150);
     pc->setSpread(5);
     pc->setColorRange(0, 0, 200, 10, 10, 255);
-    pc->setVelocity(0.2);
+    pc->setVelocity(2000);
     pc->setLength(180);
 
     return true;
@@ -62,13 +62,13 @@ bool game_init()
 
 void game_update(float elapsedTime)
 {
-    pa->Update();
-    pb->Update();
+    pa->Update(elapsedTime);
+    pb->Update(elapsedTime);
 
     // update circular controller
     float dir = pc->getDirection() + 0.2f;
     pc->setDirection(dir);
-    pc->Update();
+    pc->Update(elapsedTime);
 }
 
 void game_end()
@@ -78,7 +78,7 @@ void game_end()
     delete pc;
 }
 
-void game_render_2d()
+void game_render()
 {
     pa->Draw();
     pb->Draw();

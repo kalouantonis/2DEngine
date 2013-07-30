@@ -7,7 +7,7 @@ namespace SuperEngine
     ParticleController::ParticleController()
     {
         // set to default
-        m_pImage = NULL;
+//        m_pImage = NULL;
         m_max = 100;
         m_length = 100;
         m_direction = 0;
@@ -36,36 +36,36 @@ namespace SuperEngine
 
     bool ParticleController::loadImage(const std::string& filename)
     {
-        m_pImage = new sf::Image();
+        m_imageLoaded = true;
 
-        if(!m_pImage->loadFromFile(filename))
+        m_texture = sf::Texture();
+
+        if(!m_texture.loadFromFile(filename))
         {
-            #ifdef _DEBUG
-            std::cerr << "Image " << filename << " failed to load" << std::endl;
-            #endif // _DEBUG
+            Logger::getInstance() << ERR << "ParticleController -> image " << filename
+                        << " failed to load" << std::endl;
             return false;
         }
 
-        m_imageLoaded = true;
-
 
         #ifdef _DEBUG
-        std::cout << "Image loaded successfully" << std::endl;
+        Logger::getInstance() << DEBUG << "ParticleController -> image loaded successfully" << std::endl;
         #endif // _DEBUG
 
         return this->Init();
     }
 
-    bool ParticleController::setImage(sf::Image* image)
+    bool ParticleController::setImage(const sf::Texture& image)
     {
         // I didnt define the image, so its not my problem... deal with it
         m_imageLoaded = false;
 
-        m_pImage = image;
+        m_texture = image;
 
 
         #ifdef _DEBUG
         std::cout << "Image successfully set" << std::endl;
+        Logger::getInstance() << DEBUG << "ParticleController -> image successfully set" << std::endl;
         #endif // _DEBUG
 
         return this->Init();
@@ -73,12 +73,6 @@ namespace SuperEngine
 
     ParticleController::~ParticleController()
     {
-        if(m_imageLoaded)
-            delete m_pImage;
-
-        // destroy particles. Remeber we want to de-allocate in reverse order
-        // correct me if im wrong
-
         // Consider using a reverse iter for de-allocating backwards
         for(m_particleIter i = m_particles.begin(); i != m_particles.end(); i++)
         {
@@ -90,7 +84,7 @@ namespace SuperEngine
         m_particles.clear();
 
         #ifdef _DEBUG
-        std::cout << "ParticleController destroyed" << std::endl;
+        Logger::getInstance() << INFO << "ParticleController destroyed" << std::endl;
         #endif // _DEBUG
 
     }
@@ -102,8 +96,10 @@ namespace SuperEngine
 
         // create a new particle
         Sprite* p = new Sprite();
-        //Sprite* p = static_cast<Sprite*>(m_memPool.Alloc());
-        p->setImage(m_pImage);
+        //Sprite* p = static_cast<Sprite*>(m_memPool.Alloc(sizeof(Sprite)));
+        p->setImage(m_texture);
+
+        p->setMoveTimer(true);
 
         p->setPosition(getPosition().x, getPosition().y);
 
@@ -142,12 +138,12 @@ namespace SuperEngine
         }
     }
 
-    void ParticleController::Update()
+    void ParticleController::Update(float elapsedTime)
     {
         // check if a new particle is needed, according to the max allowed
         if((unsigned int)m_particles.size() < m_max)
         {
-            // pause for a second, dont want to do this too quickly
+            // pause for a second, lets take thigs slow until we get to know eachother better
             sf::sleep(sf::milliseconds(1));
             Add();
         }
@@ -155,7 +151,7 @@ namespace SuperEngine
         for(m_particleIter i = m_particles.begin(); i != m_particles.end(); i++)
         {
             // update particles position
-            (*i)->Move();
+            (*i)->Move(elapsedTime);
 
             // Check if the particle has passed the alowed distance from origin
             if((*i)->getPosition().distance(this->m_position) > m_length)

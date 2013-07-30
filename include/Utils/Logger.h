@@ -7,6 +7,8 @@
 #define ERR "[!!] "
 #define WARN "[W] "
 #define INFO "[#] "
+#define DEBUG "[D] "
+
 
 #include <tr1/memory>
 
@@ -20,9 +22,13 @@ namespace SuperEngine
 
         bool m_writeTime;
 
+        Logger() { } // remove constructor
+        Logger(Logger const&); // copy constructor
+        void operator=(Logger const&); // assignment op
     public:
-        Logger():m_writeTime(false) { }
+        static Logger& getInstance();
         ~Logger() { }
+
         bool Init(const std::string& filename);
 
         std::ostream& stream() { return m_out; }

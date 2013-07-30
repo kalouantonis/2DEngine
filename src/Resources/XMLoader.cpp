@@ -24,7 +24,7 @@ namespace SuperEngine
         {
             #ifdef _DEBUG
             std::cerr << "XMLoader failed to load file: " << filename << std::endl;
-            g_pEngine->getLogger() << ERR << "XMLoader failed to load file: " << filename
+            Logger::getInstance() << ERR << "XMLoader failed to load file: " << filename
                         << "\n\tDebug out: " << m_doc.ErrorDesc() <<std::endl;
             #endif // _DEBUG
 
@@ -32,7 +32,7 @@ namespace SuperEngine
         }
 
         #ifdef _DEBUG
-        g_pEngine->getLogger() << INFO << "XMLoader loaded " << filename << " successfully" << std::endl;
+        Logger::getInstance() << INFO << "XMLoader loaded " << filename << " successfully" << std::endl;
         #endif // _DEBUG
 
         m_docHandle = new TiXmlHandle(&m_doc);
