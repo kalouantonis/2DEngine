@@ -1,4 +1,4 @@
-#include "../../Engine.h"
+#include <Engine.h>
 
 using namespace SuperEngine;
 
@@ -8,7 +8,7 @@ bool game_preload()
     g_pEngine->setColorDepth(32);
     g_pEngine->setScreenHeight(600);
     g_pEngine->setScreenWidth(800);
-    g_pEngine->setFPS(10);
+    g_pEngine->setFPS(30);
 
     return true;
 }
@@ -22,19 +22,19 @@ bool game_init()
 
     sprite->setFrameTimer(true);
     sprite->setMoveTimer(false);
-    //sprite->setFrameDelay(100);
+    sprite->setFrameDelay(16);
     sprite->setPosition(100, 100);
-    sprite->setVelocity(10.0f, 0.0f);
+    sprite->setVelocity(5.0f, 0.0f);
     sprite->loadImage("asteroid_sheet.png", 21, 7);
     sprite->setTotalFrames(143);
 
     explosion = new Sprite();
 
     explosion->setFrameTimer(true);
+    explosion->setFrameDelay(16);
     explosion->setMoveTimer(false);
-    explosion->setMoveDelay(1);
     explosion->setPosition(400, 400);
-    explosion->setVelocity(10.0f, 0.0f);
+    explosion->setVelocity(5.0f, 0.0f);
     explosion->loadImage("explosions.png", 8, 6);
     //explosion->setTotalFrames(46);
     explosion->setScale(2.0f);

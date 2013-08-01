@@ -11,10 +11,10 @@ namespace SuperEngine
         std::srand(std::time(0));
         m_maximizeProcessor = false;
 
-        m_frameCount_core = 0;
-        m_frameRate_core = 0;
-        m_frameCount_real = 0;
-        m_frameRate_real = 0;
+//        m_frameCount_core = 0;
+//        m_frameRate_core = 0;
+//        m_frameCount_real = 0;
+//        m_frameRate_real = 0;
 
         m_Fps = 60;
 
@@ -152,6 +152,7 @@ namespace SuperEngine
     void Engine::Update()
     {
         static sf::Clock timedUpdate;
+        static sf::Clock timedMove;
 
 //        //calculate core framerate
 //        m_frameCount_core++;
@@ -164,7 +165,7 @@ namespace SuperEngine
 //        }
 
         // fast update with no timing
-        game_update(timedUpdate.getElapsedTime().asSeconds());
+        game_update(timedMove.restart().asSeconds());
 
         // update with 60FPS timing, so once every 16 milis
         if(timedUpdate.getElapsedTime().asMilliseconds() > (1000.0f / (float)m_Fps))
@@ -196,7 +197,6 @@ namespace SuperEngine
             this->RenderStart();
 
             game_render();
-
 
             // Done rendering
             this->RenderStop();

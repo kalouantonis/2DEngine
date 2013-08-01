@@ -31,13 +31,10 @@ namespace SuperEngine
         sf::Texture m_texture;
         sf::Sprite m_sprite;
 
-        bool m_useMoveTimer;
         bool m_useFrameTimer;
         // Delay before moving and frame animation is performed in milli-seconds
-        int m_moveDelay,;
         int m_frameDelay;
 
-        sf::Clock m_movetimer;
         sf::Clock m_frametimer;
 
         Vector2f m_frameSize;
@@ -123,14 +120,10 @@ namespace SuperEngine
         // Timers
         bool isFrameTimer() { return m_useFrameTimer; }
         void setFrameTimer(bool val) { m_useFrameTimer = true; }
-        bool isMoveTimer() { return m_useMoveTimer; }
-        void setMoveTimer(bool val) { m_useMoveTimer = val; }
 
         // Timer Delay
         void setFrameDelay(int val) { m_frameDelay = val; }
         int getFrameDelay() { return m_frameDelay; }
-        void setMoveDelay(int val) { m_moveDelay = val; }
-        int getMoveDelay() { return m_moveDelay; }
 
         // Debugging
         sf::Sprite* const getSprite() { return &m_sprite; }

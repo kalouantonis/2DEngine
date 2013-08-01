@@ -4,6 +4,7 @@
 #include "Engine.h"
 
 #include <vector>
+#include <boost/pool/object_pool.hpp>
 
 namespace SuperEngine
 {
@@ -33,7 +34,10 @@ namespace SuperEngine
 
         // The memory pool that will handle allocation and de-allocation
         // of the particles
-        MemoryPool m_memPool;
+        //boost::object_pool<Sprite> m_spritePool;
+
+        void Add();
+
 
     public:
         void setPosition(float x, float y) { m_position.x = x; m_position.y = y; }
@@ -69,7 +73,6 @@ namespace SuperEngine
         bool Init();
         void Draw();
         void Update(float elapsedTime);
-        void Add();
     };
 };
 

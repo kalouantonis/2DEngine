@@ -1,4 +1,4 @@
-#include "../../Engine.h"
+#include <Engine.h>
 
 using namespace SuperEngine;
 
@@ -27,10 +27,10 @@ bool game_init()
     pa->loadImage("particle16.tga");
     pa->setPosition(100, 300);
     pa->setDirection(0);
-    pa->setMax(500);
+    pa->setMax(5000);
     pa->setAlphaRange(100, 255);
     pa->setSpread(30);
-    pa->setVelocity(2000000.0);
+    pa->setVelocity(50.0f, 50.0f);
     pa->setLength(250);
 
     pb = new ParticleController();
@@ -38,11 +38,11 @@ bool game_init()
     pb->setPosition(300, 100);
     pb->setDirection(180);
     pb->setScale(0.6);
-    pb->setMax(500);
+    pb->setMax(5000);
     pb->setAlphaRange(0, 100);
     pb->setSpread(40);
     pb->setColorRange(200, 0, 0, 255, 10, 10);
-    pb->setVelocity(2.0);
+    pb->setVelocity(50.f, 50.0f);
     pb->setLength(200);
 
     pc = new ParticleController();
@@ -54,7 +54,7 @@ bool game_init()
     pc->setAlphaRange(100, 150);
     pc->setSpread(5);
     pc->setColorRange(0, 0, 200, 10, 10, 255);
-    pc->setVelocity(2000);
+    pc->setVelocity(50.f, 50.0f);
     pc->setLength(180);
 
     return true;

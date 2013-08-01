@@ -7,7 +7,7 @@ namespace SuperEngine
     ParticleController::ParticleController()
     {
         // set to default
-//        m_pImage = NULL;
+//       m_pImage = NULL;
         m_max = 100;
         m_length = 100;
         m_direction = 0;
@@ -38,8 +38,6 @@ namespace SuperEngine
     {
         m_imageLoaded = true;
 
-        m_texture = sf::Texture();
-
         if(!m_texture.loadFromFile(filename))
         {
             Logger::getInstance() << ERR << "ParticleController -> image " << filename
@@ -53,6 +51,7 @@ namespace SuperEngine
         #endif // _DEBUG
 
         return this->Init();
+
     }
 
     bool ParticleController::setImage(const sf::Texture& image)
@@ -61,7 +60,6 @@ namespace SuperEngine
         m_imageLoaded = false;
 
         m_texture = image;
-
 
         #ifdef _DEBUG
         std::cout << "Image successfully set" << std::endl;
@@ -99,8 +97,6 @@ namespace SuperEngine
         //Sprite* p = static_cast<Sprite*>(m_memPool.Alloc(sizeof(Sprite)));
         p->setImage(m_texture);
 
-        p->setMoveTimer(true);
-
         p->setPosition(getPosition().x, getPosition().y);
 
         // add some randomness to the spread, so it looks better
@@ -112,7 +108,7 @@ namespace SuperEngine
         double dir = m_direction - 90.0f;
         vx = cos(dir * RAD) + variation;
         vy = sin(dir * RAD) + variation;
-        p->setVelocity(vx, vy);
+        p->setVelocity(m_velocity.x * vx, m_velocity.y * vy);
 
         // set random color based on ranges, unfortunetally,
         // it would take too many resources to randomize this using
@@ -143,8 +139,12 @@ namespace SuperEngine
         // check if a new particle is needed, according to the max allowed
         if((unsigned int)m_particles.size() < m_max)
         {
+            // Thread this?
+
             // pause for a second, lets take thigs slow until we get to know eachother better
-            sf::sleep(sf::milliseconds(1));
+            if(!g_pEngine->getMaximizeProcessor())
+                sf::sleep(sf::milliseconds(1));
+
             Add();
         }
 

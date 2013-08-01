@@ -3,6 +3,7 @@
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>
 
 
 // Used only for debugging for now, i dont know man, stop pressuring me!
@@ -52,17 +53,19 @@ namespace SuperEngine
         bool m_maximizeProcessor;
 
         // Timers
-        sf::Clock m_coreTimer;
-        long m_frameCount_core;
-        long m_frameRate_core;
-        sf::Clock m_realTimer;
-        long m_frameCount_real;
-        long m_frameRate_real;
+//        sf::Clock m_coreTimer;
+//        long m_frameCount_core;
+//        long m_frameRate_core;
+//        sf::Clock m_realTimer;
+//        long m_frameCount_real;
+//        long m_frameRate_real;
 
         sf::RenderWindow* m_pDevice;
 
         int Release();
     public:
+        std::vector<Sprite> spritePool;
+
         Engine();
         ~Engine();
 
@@ -87,8 +90,8 @@ namespace SuperEngine
         int getRevision() { return m_revision; }
         const std::string getVersionText();
 
-        long getFrameRate_core() { return m_frameRate_core; }
-        long getFrameRate_real() { return m_frameRate_real; }
+//        long getFrameRate_core() { return m_frameRate_core; }
+//        long getFrameRate_real() { return m_frameRate_real; }
 
         void setFPS(int FPS) { m_Fps = FPS; }
         int getFPS() { return m_Fps; }

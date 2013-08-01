@@ -30,12 +30,6 @@ namespace SuperEngine
         this->m_useFrameTimer = true;
         this->setFrameDelay(1000.0f / g_pEngine->getFPS());
 
-        this->m_useMoveTimer = false;
-        this->setMoveDelay(1000.0f / g_pEngine->getFPS());
-
-        // Should probably grab from game engine FPS, but i cant be sure
-        // its initialized in the constructor
-        //this->setMoveTimer(16);
         this->setCollidable(true);
         this->setCollisionMethod(COLLISION_RECT);
 
@@ -81,7 +75,7 @@ namespace SuperEngine
 
         if(!image.loadFromFile(filename))
         {
-            Logger::getInstance() << ERR << filename << " could not be loaded by image loader" << std::endl;
+            Logger::getInstance() << ERR << filename << " could not be loaded by image loader. Line: " << __LINE__ << std::endl;
             return false;
         }
 
@@ -130,7 +124,6 @@ namespace SuperEngine
         m_sprite.setPosition(this->getPosition().x, this->getPosition().y);
 
         m_sprite.setColor(this->getColor());
-
     }
 
     void Sprite::Draw()
@@ -151,25 +144,9 @@ namespace SuperEngine
 
     void Sprite::Move(float elapsedTime)
     {
-        if(m_useMoveTimer)
-        {
-            if(m_movetimer.getElapsedTime().asMilliseconds() > m_moveDelay)
-            {
-                m_movetimer.restart();
-
-                // Move sprite by velocity amount
-                this->setPosition(this->getPosition().x + this->getVelocity().x,
-                                  this->getPosition().y + this->getVelocity().y);
-
-
-            }
-        }
-        else
-        {
-            // no movement timer -- move at CPU speed
-            this->setPosition(this->getPosition().x + (this->getVelocity().x * elapsedTime),
-                                  this->getPosition().y + (this->getVelocity().y * elapsedTime));
-        }
+        // no movement timer -- move at CPU speed
+        this->setPosition(this->getPosition().x + (this->getVelocity().x * elapsedTime),
+                              this->getPosition().y + (this->getVelocity().y * elapsedTime));
     }
 
     void Sprite::Animate()
