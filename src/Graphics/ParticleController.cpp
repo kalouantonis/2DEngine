@@ -74,8 +74,9 @@ namespace SuperEngine
         // Consider using a reverse iter for de-allocating backwards
         for(m_particleIter i = m_particles.begin(); i != m_particles.end(); i++)
         {
-            delete *i;
+            //delete *i;
             //m_memPool.Free(static_cast<void*>(*i));
+            m_spritePool.free(*i);
         }
 
         //m_memPool.Destroy();
@@ -93,7 +94,8 @@ namespace SuperEngine
         double vx, vy;
 
         // create a new particle
-        Sprite* p = new Sprite();
+        Sprite* p = m_spritePool.malloc();
+        p->Init();
         //Sprite* p = static_cast<Sprite*>(m_memPool.Alloc(sizeof(Sprite)));
         p->setImage(m_texture);
 

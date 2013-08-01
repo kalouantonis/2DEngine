@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include <tr1/memory>
 
 namespace SuperEngine
 {
@@ -12,6 +13,7 @@ namespace SuperEngine
     class Sprite
     {
     private:
+
         bool m_visible;
         bool m_alive;
 
@@ -130,6 +132,8 @@ namespace SuperEngine
 
         // Main methods
         Sprite();
+        bool Init();
+
         virtual ~Sprite();
         bool loadImage(const std::string& filename, unsigned int animationCols = 1, unsigned int animationRows = 1,
                        const sf::Color& transcolor = sf::Color(255, 0, 255));

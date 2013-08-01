@@ -4,7 +4,12 @@ namespace SuperEngine
 {
     Sprite::Sprite()
     {
-        //this->m_pImage = NULL;
+        Init();
+    }
+
+    bool Sprite::Init()
+    {
+//this->m_pImage = NULL;
         this->m_imageLoaded = false;
         this->setPosition(0.0f, 0.0f);
         this->setVelocity(0.0f, 0.0f);
@@ -36,6 +41,8 @@ namespace SuperEngine
         this->setColor(sf::Color::Black);
 
         this->setVisible(true);
+
+        return true;
     }
 
     Sprite::~Sprite()
@@ -55,7 +62,8 @@ namespace SuperEngine
             this->setRows(animationRows);
         }
 
-        m_sprite.setTexture(m_texture);
+        m_sprite = sf::Sprite(m_texture);
+//        m_sprite.setTexture(m_texture);
 
         this->m_frameSize.x = (float) m_texture.getSize().x / (float) this->m_animationCols;
         this->m_frameSize.y = (float) m_texture.getSize().y / (float) this->m_animationRows;
@@ -83,7 +91,8 @@ namespace SuperEngine
         image.createMaskFromColor(transcolor);
 
         // create texture to hold image
-        m_texture = sf::Texture();
+        //m_texture = sf::Texture();
+        //m_texture = sf::Texture();
         m_texture.loadFromImage(image);
 
         if(!this->genSprite(animationCols, animationRows))

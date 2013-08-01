@@ -19,6 +19,8 @@
 #include <Graphics/Sprite.h>
 #include <Graphics/ParticleController.h>
 
+#include <boost/pool/object_pool.hpp>
+
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
 #define REVISION 0
@@ -63,9 +65,8 @@ namespace SuperEngine
         sf::RenderWindow* m_pDevice;
 
         int Release();
-    public:
-        std::vector<Sprite> spritePool;
 
+    public:
         Engine();
         ~Engine();
 

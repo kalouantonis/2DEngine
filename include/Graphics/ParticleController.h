@@ -34,7 +34,7 @@ namespace SuperEngine
 
         // The memory pool that will handle allocation and de-allocation
         // of the particles
-        //boost::object_pool<Sprite> m_spritePool;
+        boost::object_pool<Sprite> m_spritePool;
 
         void Add();
 
