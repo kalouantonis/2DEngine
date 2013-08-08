@@ -7,11 +7,12 @@
 // Used only for debugging for now, i dont know man, stop pressuring me!
 #include <iostream>
 // Shared and weak pointers
-#include <tr1/memory>
+#include <memory>
 
 // Engine parts
 #include <Utils/Logger.h>
 #include <Resources/XMLoader.h>
+#include <Resources/TextureLoader.h>
 
 #include <Memory/MemoryPool.h>
 
@@ -19,9 +20,6 @@
 
 #include <Graphics/Sprite.h>
 #include <Graphics/ParticleController.h>
-
-// Tmx map loader
-#include <TmxMapLoader/MapLoader.h>
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
@@ -53,6 +51,8 @@ namespace SuperEngine
         unsigned int m_versionMajor, m_versionMinor, m_revision;
 
         unsigned int m_Fps;
+
+        float m_timePerFrame;
 
         unsigned int m_ScreenWidth, m_ScreenHeight, m_ColorDepth;
         bool m_Fullscreen;
@@ -107,7 +107,7 @@ namespace SuperEngine
 //        long getFrameRate_core() { return m_frameRate_core; }
 //        long getFrameRate_real() { return m_frameRate_real; }
 
-        void setFPS(int FPS) { m_Fps = FPS; }
+        void setFPS(int FPS) { m_Fps = FPS; m_timePerFrame = 1.f / (float)FPS; }
         int getFPS() { return m_Fps; }
 
         const sf::Color getClearColor() { return m_clearColor; }
@@ -121,8 +121,10 @@ namespace SuperEngine
         void setColorDepth(int val) { this->m_ColorDepth = val; }
         bool getFullscreen() { return m_Fullscreen; }
         void setFullscreen(bool val) { m_Fullscreen = val; }
+
         const char* getAppTitle() { return m_AppTitle; }
         void setAppTitle(const char* val) { m_AppTitle = val; }
+
         void setMaximizeProcessor(bool val) { m_maximizeProcessor = val; }
         bool getMaximizeProcessor() { return m_maximizeProcessor; }
     };

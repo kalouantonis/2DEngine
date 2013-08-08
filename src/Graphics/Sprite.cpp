@@ -48,11 +48,7 @@ namespace SuperEngine
 
     Sprite::~Sprite()
     {
-        // If we loaded the image, if not, well
-        // its not my problem.
-        //I'm not going to lose sleep over it.
-//        if(m_imageLoaded)
-//            delete m_pImage;
+
     }
 
     bool Sprite::genSprite(unsigned int animationCols, unsigned int animationRows)

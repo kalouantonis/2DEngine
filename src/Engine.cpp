@@ -12,7 +12,7 @@ namespace SuperEngine
 
         m_maximizeProcessor = false;
 
-        m_Fps = 60;
+        this->setFPS(60);
 
         m_ambientColor = sf::Color(255, 255, 255, 0);
         m_clearColor = sf::Color(0, 0, 0, 255);
@@ -147,20 +147,21 @@ namespace SuperEngine
     {
         static sf::Clock timedMove;
         static float timeSinceLastUpdate = 0.f;
-        static float TimePerFrame = 1.f / (float)m_Fps;
 
         // process events here
 
         timeSinceLastUpdate += timedMove.restart().asSeconds();
-        while(timeSinceLastUpdate > TimePerFrame)
+        while(timeSinceLastUpdate > m_timePerFrame)
         {
             // Reduce time since last update, if the PC is slow, the time since last update
-            // will loop in the while, reduces lag and visual glitches
-            timeSinceLastUpdate -= TimePerFrame;
+            // will loop in the while, reduces lag and visual glitches.
+            // If rendering is slow, it may happen that the logic update is called
+            // much more frequently than the render function
+            timeSinceLastUpdate -= m_timePerFrame;
             // process events here
 
             // Update time with supposed FPS time
-            game_update(TimePerFrame);
+            game_update(m_timePerFrame);
         }
 
 

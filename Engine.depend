@@ -32,23 +32,23 @@
 	"tinyxml.h"
 	<windows.h>
 
-1375968096 source:/home/slacker/Desktop/dice-roller-test-program/src/Engine.cpp
+1375980854 source:/home/slacker/Desktop/dice-roller-test-program/src/Engine.cpp
 	<Engine.h>
 	<cstdlib>
 	<sstream>
 
-1375968274 /home/slacker/Desktop/dice-roller-test-program/include/Engine.h
+1375988626 /home/slacker/Desktop/dice-roller-test-program/include/Engine.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<iostream>
-	<tr1/memory>
+	<memory>
 	<Utils/Logger.h>
 	<Resources/XMLoader.h>
+	<Resources/TextureLoader.h>
 	<Memory/MemoryPool.h>
 	<Utils/Vector2.h>
 	<Graphics/Sprite.h>
 	<Graphics/ParticleController.h>
-	<TmxMapLoader/MapLoader.h>
 
 1375443224 /home/slacker/Desktop/dice-roller-test-program/include/Utils/Logger.h
 	<fstream>
@@ -110,9 +110,6 @@
 1375966867 source:/home/slacker/Desktop/dice-roller-test-program/src/Graphics/ParticleController.cpp
 	"Engine.h"
 
-1375882254 source:/home/slacker/Desktop/dice-roller-test-program/src/Graphics/Sprite.cpp
-	"Engine.h"
-
 1375962897 source:/home/slacker/Desktop/dice-roller-test-program/src/main.cpp
 	<Engine.h>
 
@@ -129,4 +126,12 @@
 	<Utils/Logger.h>
 	<ctime>
 	<sstream>
+
+1375989570 /home/slacker/Desktop/dice-roller-test-program/include/Resources/TextureLoader.h
+	<Engine.h>
+	<map>
+	<stdexcept>
+
+1375980969 source:/home/slacker/Desktop/dice-roller-test-program/src/Graphics/Sprite.cpp
+	"Engine.h"
 

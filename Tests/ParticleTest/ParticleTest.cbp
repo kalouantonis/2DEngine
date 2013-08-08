@@ -12,7 +12,10 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-g" />
+					<Add option="-Wno-switch" />
+					<Add option="-pthread" />
 					<Add directory="../../include" />
 					<Add directory="../../dependencies" />
 				</Compiler>
