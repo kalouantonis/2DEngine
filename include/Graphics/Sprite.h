@@ -23,7 +23,7 @@ namespace SuperEngine
         sf::Clock m_lifeTimeTimer;
         //int spriteType;
 
-        Vector2f m_position, m_velocity;
+        sf::Vector2f m_position, m_velocity;
         bool m_imageLoaded;
 
         int m_state, m_direction;
@@ -41,7 +41,7 @@ namespace SuperEngine
 
         sf::Clock m_frametimer;
 
-        Vector2f m_frameSize;
+        sf::Vector2f m_frameSize;
 
         int m_animationCols;
         int m_animationRows;
@@ -52,7 +52,8 @@ namespace SuperEngine
         int m_curframe, m_totalframes, m_animdir;
         float m_faceangle, m_moveangle;
         int m_animstartx, m_animstarty;
-        float m_rotation, m_scale;
+        float m_rotation;
+        sf::Vector2f m_scale;
         // Frame at which animation will start from
         unsigned int m_startframe;
 
@@ -62,8 +63,8 @@ namespace SuperEngine
 
     public:
         //position on screen
-        Vector2f getPosition() { return m_position; }
-        void setPosition(const Vector2f& position) { m_position = position; }
+        sf::Vector2f getPosition() { return m_position; }
+        void setPosition(const sf::Vector2f& position) { m_position = position; }
         void setPosition(float x, float y) { m_position.x = x; m_position.y = y; }
 
         double getX() { return m_position.x; }
@@ -72,13 +73,13 @@ namespace SuperEngine
         void setY(float y) { m_position.y = y; }
 
         // movement & velocity
-        Vector2f getVelocity() { return m_velocity; }
-        void setVelocity(const Vector2f& val) { m_velocity = val; }
+        sf::Vector2f getVelocity() { return m_velocity; }
+        void setVelocity(const sf::Vector2f& val) { m_velocity = val; }
         void setVelocity(float x, float y) { m_velocity.x = x; m_velocity.y = y; }
 
         // Image size
-        Vector2f getFrameSize() { return m_frameSize; }
-        void setFrameSize(const Vector2f& val) { m_frameSize = val; }
+        sf::Vector2f getFrameSize() { return m_frameSize; }
+        void setFrameSize(const sf::Vector2f& val) { m_frameSize = val; }
         void setFrameSize(float x, float y) { m_frameSize.x = x; m_frameSize.y = y; }
 
         bool getVisible() { return m_visible; }
@@ -112,8 +113,11 @@ namespace SuperEngine
 
         float getRotation() { return m_rotation; }
         void setRotation(float rotation) { m_rotation = rotation; }
-        float getScale() { return m_scale; }
-        void setScale(float val) { m_scale = val; }
+
+        sf::Vector2f getScale() { return m_scale; }
+        void setScale(float x, float y) { m_scale = sf::Vector2f(x, y); }
+        void setScale(float val) { setScale(val, val); }
+        void setScale(sf::Vector2f val) { m_scale = val; }
 
         void setColor(const sf::Color& color) { m_color = color; }
         void setColor(float r, float g, float b, float a) { m_color = sf::Color(r, g, b, a); }

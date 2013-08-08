@@ -1,15 +1,15 @@
-#ifndef _TEXTURELOADER_H_
-#define _TEXTURELOADER_H_
+#ifndef _IMAGELOADER_H_
+#define _IMAGELOADER_H_
 
 #include <Engine.h>
 
 namespace SuperEngine
 {
-    class TextureLoader: public IResourceLoader<sf::Texture>
+    class ImageLoader: public IResourceLoader<sf::Image>
     {
     public:
         bool load(const std::string& id, const std::string& filename);
     };
 };
 
-#endif // _TEXTURELOADER_H_
+#endif // _IMAGELOADER_H_

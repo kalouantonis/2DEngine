@@ -11,8 +11,12 @@
 
 // Engine parts
 #include <Utils/Logger.h>
+
+// Resources
 #include <Resources/XMLoader.h>
+#include <Resources/IResourceLoader.h>
 #include <Resources/TextureLoader.h>
+#include <Resources/ImageLoader.h>
 
 #include <Memory/MemoryPool.h>
 
@@ -73,6 +77,10 @@ namespace SuperEngine
 //        long m_frameCount_real;
 //        long m_frameRate_real;
 
+        // Used by sprite class for optimization, will only load image once
+        // TODO: consider adding this as a singleton texturemanager
+        ImageLoader m_imageManager;
+
         sf::RenderWindow* m_pDevice;
 
         int Release();
@@ -127,6 +135,8 @@ namespace SuperEngine
 
         void setMaximizeProcessor(bool val) { m_maximizeProcessor = val; }
         bool getMaximizeProcessor() { return m_maximizeProcessor; }
+
+        ImageLoader& getImageManager() { return m_imageManager; }
     };
 };
 

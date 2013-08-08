@@ -34,7 +34,7 @@ namespace SuperEngine
     {
         // create a new particle
         Particle p;
-        p.position = Vector2f(this->getPosition());
+        p.position = sf::Vector2f(this->getPosition());
 
         // add some randomness to the spread, so it looks better
         // this should be opt in though
@@ -47,7 +47,7 @@ namespace SuperEngine
         // set velocity, don't worry, i didnt think of this,
         // this is copy pasta
 
-        p.velocity = Vector2f(vx * m_velocity.x, vy * m_velocity.y);
+        p.velocity = sf::Vector2f(vx * m_velocity.x, vy * m_velocity.y);
 
         // set random color based on ranges, unfortunetally,
         // it would take too many resources to randomize this using
@@ -70,7 +70,7 @@ namespace SuperEngine
         for(m_particleIter i = m_particles.begin(); i != m_particles.end(); ++i)
         {
             // (*i)->Draw();
-            i->primitive.setPosition(i->position.x, i->position.y);
+            i->primitive.setPosition(i->position);
 
             g_pEngine->getDevice()->draw(i->primitive);
         }
@@ -98,7 +98,7 @@ namespace SuperEngine
             i->position.y += i->velocity.y * elapsedTime;
 
             // Check if the particle has passed the alowed distance from origin
-            if(i->position.distance(this->m_position) > m_length)
+            if(getVecDistance(i->position, m_position) > m_length)
             {
                 //+ reset particle to origin
                 i->position = m_position;

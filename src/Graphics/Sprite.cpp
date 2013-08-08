@@ -22,7 +22,7 @@ namespace SuperEngine
 
         this->m_animationCols = 1;
         this->m_animationRows = 1;
-        this->m_frameSize = Vector2f(1.0f, 1.0f);
+        this->m_frameSize = sf::Vector2f(1.0f, 1.0f);
 
         this->m_animstartx = 0;
         m_startframe = 0;
@@ -76,13 +76,11 @@ namespace SuperEngine
 
     bool Sprite::loadImage(const std::string& filename, unsigned int animationCols, unsigned int animationRows, const sf::Color& transcolor)
     {
-        sf::Image image;
+        // using filenames as id's, for now anyway
+        if(!g_pEngine->getImageManager().exists(filename))
+            g_pEngine->getImageManager().load(filename, filename);
 
-        if(!image.loadFromFile(filename))
-        {
-            Logger::getInstance() << ERR << filename << " could not be loaded by image loader. Line: " << __LINE__ << std::endl;
-            return false;
-        }
+        sf::Image& image = g_pEngine->getImageManager().get(filename);
 
         // Set the mask color
         image.createMaskFromColor(transcolor);
@@ -124,10 +122,10 @@ namespace SuperEngine
         m_sprite.setOrigin(m_frameSize.x / 2, m_frameSize.y / 2);
 
         // Perform simple image transformations
-        m_sprite.setScale(this->m_scale, this->m_scale);
+        m_sprite.setScale(this->m_scale);
         m_sprite.setRotation(this->getRotation());
         // Don't know if i'll keep this
-        m_sprite.setPosition(this->getPosition().x, this->getPosition().y);
+        m_sprite.setPosition(this->getPosition());
 
         m_sprite.setColor(this->getColor());
     }
@@ -151,8 +149,9 @@ namespace SuperEngine
     void Sprite::Move(float elapsedTime)
     {
         // no movement timer -- move at CPU speed
-        this->setPosition(this->getPosition().x + (this->getVelocity().x * elapsedTime),
-                              this->getPosition().y + (this->getVelocity().y * elapsedTime));
+//        this->setPosition(this->getPosition().x + (this->getVelocity().x * elapsedTime),
+//                              this->getPosition().y + (this->getVelocity().y * elapsedTime));
+        this->setPosition(this->getPosition() + (this->getVelocity() * elapsedTime));
     }
 
     void Sprite::Animate()

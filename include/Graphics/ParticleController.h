@@ -15,15 +15,16 @@ namespace SuperEngine
     private:
         struct Particle
         {
-            Vector2f velocity;
-            Vector2f position;
+            sf::Vector2f velocity;
+            sf::Vector2f position;
+
             sf::CircleShape primitive;
         };
 
         typedef std::vector<Particle>::iterator m_particleIter;
         std::vector<Particle> m_particles;
 
-        Vector2f m_position;
+        sf::Vector2f m_position;
         float m_direction;
 
         // How far away from the origin a particle is allowed to move
@@ -34,7 +35,7 @@ namespace SuperEngine
 
         // Distance between each particle
         unsigned int m_spread;
-        Vector2f m_velocity;
+        sf::Vector2f m_velocity;
 
         // Size of circle primitive
         float m_partSize;
@@ -43,8 +44,8 @@ namespace SuperEngine
 
     public:
         void setPosition(float x, float y) { m_position.x = x; m_position.y = y; }
-        void setPosition(const Vector2f& val) { m_position = val; }
-        Vector2f getPosition(void) { return m_position; }
+        void setPosition(const sf::Vector2f& val) { m_position = val; }
+        sf::Vector2f getPosition(void) { return m_position; }
 
         void setDirection(float angle) { m_direction = angle; }
         float getDirection(void) { return m_direction; }
@@ -65,7 +66,7 @@ namespace SuperEngine
         void setLength(float val) { m_length = val; }
 
         void setVelocity(float x = 0.0f, float y = 0.0f) {m_velocity.x = x; m_velocity.y = y; }
-        void setVelocity(const Vector2f& vel) { m_velocity = vel; }
+        void setVelocity(const sf::Vector2f& vel) { m_velocity = vel; }
 
         ParticleController();
         virtual ~ParticleController();

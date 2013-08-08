@@ -6,6 +6,7 @@
 namespace SuperEngine
 {
     Engine::Engine()
+        : m_imageManager()
     {
         // Seed random number generator
         std::srand(std::time(0));
