@@ -28,6 +28,7 @@ bool game_init()
     pa->setPosition(100, 300);
     pa->setDirection(0);
     pa->setMax(5000);
+    pa->setParticleSize(1.5);
     pa->setAlphaRange(100, 255);
     pa->setSpread(30);
     pa->setVelocity(50.f, 50.f);

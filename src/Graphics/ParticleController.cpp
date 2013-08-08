@@ -32,7 +32,6 @@ namespace SuperEngine
 
     void ParticleController::Add()
     {
-
         // create a new particle
         Particle p;
         p.position = Vector2f(this->getPosition());

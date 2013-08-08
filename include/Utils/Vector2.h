@@ -1,6 +1,8 @@
 #ifndef _VECTOR2_H_
 #define _VECTOR2_H_
 
+#include <Engine.h>
+
 #include <cmath>
 
 namespace SuperEngine

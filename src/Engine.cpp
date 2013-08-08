@@ -67,12 +67,9 @@ namespace SuperEngine
         // Initialize sf::Window
         // TODO: Implement fullscreen
 
-        // TODO: Allow anti-aliazing and other options to be enabled for OpenGL
         m_pDevice = new sf::RenderWindow(sf::VideoMode(width, height, colordepth),
                                    this->getAppTitle());
 
-        //m_pDevice->setVerticalSyncEnabled(true);
-        //m_pDevice->setFramerateLimit(getFPS());
 
         // Initialization failed
         if(!m_pDevice)
@@ -149,8 +146,6 @@ namespace SuperEngine
     void Engine::Update()
     {
         static sf::Clock timedMove;
-        static sf::Clock timedUpdate;
-
 //        //calculate core framerate
 //        m_frameCount_core++;
 //        if(m_coreTimer.getElapsedTime().asMilliseconds() > 999)
@@ -165,52 +160,15 @@ namespace SuperEngine
         game_update(timedMove.restart().asSeconds());
 
 
-//        this->ClearScene();
-//
-//        // begin rendering
-//        this->RenderStart();
-//
-//        game_render();
-//
-//        // Done rendering
-//        this->RenderStop();
+        this->ClearScene();
 
-        // update with 60FPS timing, so once every 16 milis
-        if(timedUpdate.getElapsedTime().asMilliseconds() > (1000.0f / (float)m_Fps))
-        {
-            if(!this->getMaximizeProcessor())
-            {
-                sf::Time waitTime = sf::milliseconds(1);
+        // begin rendering
+        this->RenderStart();
 
-                sf::sleep(waitTime);
-            }
+        game_render();
 
-            timedUpdate.restart();
-        }
-        else
-        {
-            // calculate real framerate
-//            m_frameCount_real++;
-//            if(m_realTimer.getElapsedTime().asMilliseconds() > 999)
-//            {
-//                m_frameRate_real = m_frameCount_real;
-//                m_frameCount_real = 0;
-//
-//                m_realTimer.restart();
-//            }
-
-            this->ClearScene();
-
-            // begin rendering
-            this->RenderStart();
-
-            game_render();
-
-            // Done rendering
-            this->RenderStop();
-
-        }
-
+        // Done rendering
+        this->RenderStop();
     }
 
     void Engine::Close()
