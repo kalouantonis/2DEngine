@@ -20,6 +20,9 @@
 #include <Graphics/Sprite.h>
 #include <Graphics/ParticleController.h>
 
+// Tmx map loader
+#include <TmxMapLoader/MapLoader.h>
+
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
 #define REVISION 0

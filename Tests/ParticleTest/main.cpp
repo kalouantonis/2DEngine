@@ -51,7 +51,7 @@ bool game_init()
     pc->setPosition(250, 525);
     pc->setDirection(0);
     pc->setParticleSize(1.5);
-    pc->setMax(2000);
+    pc->setMax(5000);
     pc->setAlphaRange(100, 150);
     pc->setSpread(5);
     pc->setColorRange(0, 0, 200, 10, 10, 255);

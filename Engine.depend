@@ -1,1 +1,132 @@
 # depslib dependency file v1.0
+1375363476 source:/home/slacker/Desktop/dice-roller-test-program/dependencies/tinyxml/tinystr.cpp
+	"tinystr.h"
+
+1375363476 /home/slacker/Desktop/dice-roller-test-program/dependencies/tinyxml/tinystr.h
+	<assert.h>
+	<string.h>
+
+1375363476 source:/home/slacker/Desktop/dice-roller-test-program/dependencies/tinyxml/tinyxml.cpp
+	<ctype.h>
+	<sstream>
+	<iostream>
+	"tinyxml.h"
+
+1375363476 /home/slacker/Desktop/dice-roller-test-program/dependencies/tinyxml/tinyxml.h
+	<ctype.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<string>
+	<iostream>
+	<sstream>
+	"tinystr.h"
+
+1375363476 source:/home/slacker/Desktop/dice-roller-test-program/dependencies/tinyxml/tinyxmlerror.cpp
+	"tinyxml.h"
+
+1375363476 source:/home/slacker/Desktop/dice-roller-test-program/dependencies/tinyxml/tinyxmlparser.cpp
+	<ctype.h>
+	<stddef.h>
+	"tinyxml.h"
+	<windows.h>
+
+1375968096 source:/home/slacker/Desktop/dice-roller-test-program/src/Engine.cpp
+	<Engine.h>
+	<cstdlib>
+	<sstream>
+
+1375968274 /home/slacker/Desktop/dice-roller-test-program/include/Engine.h
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	<iostream>
+	<tr1/memory>
+	<Utils/Logger.h>
+	<Resources/XMLoader.h>
+	<Memory/MemoryPool.h>
+	<Utils/Vector2.h>
+	<Graphics/Sprite.h>
+	<Graphics/ParticleController.h>
+	<TmxMapLoader/MapLoader.h>
+
+1375443224 /home/slacker/Desktop/dice-roller-test-program/include/Utils/Logger.h
+	<fstream>
+	<ios>
+	<tr1/memory>
+
+1375363496 /home/slacker/Desktop/dice-roller-test-program/include/Resources/XMLoader.h
+	<tinyxml/tinyxml.h>
+	"Engine.h"
+
+1375308006 /home/slacker/Desktop/dice-roller-test-program/include/Memory/MemoryPool.h
+	<cstddef>
+
+1375963804 /home/slacker/Desktop/dice-roller-test-program/include/Utils/Vector2.h
+	<Engine.h>
+	<cmath>
+
+1375882226 /home/slacker/Desktop/dice-roller-test-program/include/Graphics/Sprite.h
+	"Engine.h"
+	<tr1/memory>
+
+1375959830 /home/slacker/Desktop/dice-roller-test-program/include/Graphics/ParticleController.h
+	"Engine.h"
+	<vector>
+	<cmath>
+
+1375967691 /home/slacker/Desktop/dice-roller-test-program/dependencies/TmxMapLoader/MapLoader.h
+	"QuadTreeNode.h"
+	<iostream>
+	<pugixml/pugixml.hpp>
+
+1375967244 /home/slacker/Desktop/dice-roller-test-program/dependencies/TmxMapLoader/QuadTreeNode.h
+	"MapObject.h"
+	<memory>
+
+1375967255 /home/slacker/Desktop/dice-roller-test-program/dependencies/TmxMapLoader/MapObject.h
+	<string>
+	<vector>
+	<map>
+	<iostream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"Helpers.h"
+
+1375967637 /home/slacker/Desktop/dice-roller-test-program/dependencies/TmxMapLoader/Helpers.h
+	<math.h>
+	<SFML/Graphics/Rect.hpp>
+
+1335935950 /home/slacker/Desktop/dice-roller-test-program/dependencies/pugixml/pugixml.hpp
+	"pugiconfig.hpp"
+	<stddef.h>
+	<exception>
+	<iterator>
+	<iosfwd>
+	<string>
+
+1335720148 /home/slacker/Desktop/dice-roller-test-program/dependencies/pugixml/pugiconfig.hpp
+
+1375966867 source:/home/slacker/Desktop/dice-roller-test-program/src/Graphics/ParticleController.cpp
+	"Engine.h"
+
+1375882254 source:/home/slacker/Desktop/dice-roller-test-program/src/Graphics/Sprite.cpp
+	"Engine.h"
+
+1375962897 source:/home/slacker/Desktop/dice-roller-test-program/src/main.cpp
+	<Engine.h>
+
+1375454143 source:/home/slacker/Desktop/dice-roller-test-program/src/Memory/MemoryPool.cpp
+	<Engine.h>
+	<cstdlib>
+	<iostream>
+
+1375363496 source:/home/slacker/Desktop/dice-roller-test-program/src/Resources/XMLoader.cpp
+	"Engine.h"
+	<cstdlib>
+
+1375363496 source:/home/slacker/Desktop/dice-roller-test-program/src/Utils/Logger.cpp
+	<Utils/Logger.h>
+	<ctime>
+	<sstream>
+

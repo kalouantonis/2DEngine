@@ -146,18 +146,22 @@ namespace SuperEngine
     void Engine::Update()
     {
         static sf::Clock timedMove;
-//        //calculate core framerate
-//        m_frameCount_core++;
-//        if(m_coreTimer.getElapsedTime().asMilliseconds() > 999)
-//        {
-//            m_frameRate_core = m_frameCount_core;
-//            m_frameCount_core = 0;
-//
-//            m_coreTimer.restart();
-//        }
+        static float timeSinceLastUpdate = 0.f;
+        static float TimePerFrame = 1.f / (float)m_Fps;
 
-        // fast update with no timing
-        game_update(timedMove.restart().asSeconds());
+        // process events here
+
+        timeSinceLastUpdate += timedMove.restart().asSeconds();
+        while(timeSinceLastUpdate > TimePerFrame)
+        {
+            // Reduce time since last update, if the PC is slow, the time since last update
+            // will loop in the while, reduces lag and visual glitches
+            timeSinceLastUpdate -= TimePerFrame;
+            // process events here
+
+            // Update time with supposed FPS time
+            game_update(TimePerFrame);
+        }
 
 
         this->ClearScene();
