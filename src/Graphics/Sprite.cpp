@@ -25,6 +25,7 @@ namespace SuperEngine
         this->m_frameSize = Vector2f(1.0f, 1.0f);
 
         this->m_animstartx = 0;
+        m_startframe = 0;
         this->m_animstarty = 0;
         this->m_faceangle = 0;
         this->m_moveangle = 0;
@@ -170,10 +171,10 @@ namespace SuperEngine
                 m_curframe += m_animdir;
 
                 // Keep frame withing bounds
-                if(m_curframe < 0)
+                if(m_curframe < (int)m_startframe)
                     m_curframe = m_totalframes - 1;
                 else if(m_curframe > m_totalframes - 1)
-                    m_curframe = 0;
+                    m_curframe = m_startframe;
 
             }
         }

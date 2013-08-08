@@ -23,8 +23,8 @@ namespace SuperEngine
         bool m_writeTime;
 
         Logger() { } // remove constructor
-        Logger(Logger const&); // copy constructor
-        void operator=(Logger const&); // assignment op
+        Logger(Logger const&) {} // copy constructor
+        void operator=(Logger const&) {} // assignment op
     public:
         static Logger& getInstance();
         ~Logger() { }

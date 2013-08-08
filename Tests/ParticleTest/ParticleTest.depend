@@ -92,7 +92,7 @@
 	"Engine.h"
 	<vector>
 
-1375363496 source:/home/slacker/Desktop/dice-roller-test-program/Tests/ParticleTest/main.cpp
+1375959583 source:/home/slacker/Desktop/dice-roller-test-program/Tests/ParticleTest/main.cpp
 	<Engine.h>
 
 1374926202 /home/slacker/Desktop/dice-roller-test-program/Engine.h
@@ -143,20 +143,19 @@
 	"Engine.h"
 	<vector>
 
-1375367644 /home/slacker/Desktop/dice-roller-test-program/include/Engine.h
+1375882288 /home/slacker/Desktop/dice-roller-test-program/include/Engine.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
-	<SFML/OpenGL.hpp>
 	<iostream>
+	<tr1/memory>
 	<Utils/Logger.h>
 	<Resources/XMLoader.h>
 	<Memory/MemoryPool.h>
 	<Utils/Vector2.h>
 	<Graphics/Sprite.h>
 	<Graphics/ParticleController.h>
-	<boost/pool/object_pool.hpp>
 
-1375363496 /home/slacker/Desktop/dice-roller-test-program/include/Utils/Logger.h
+1375443224 /home/slacker/Desktop/dice-roller-test-program/include/Utils/Logger.h
 	<fstream>
 	<ios>
 	<tr1/memory>
@@ -165,18 +164,24 @@
 	<tinyxml/tinyxml.h>
 	"Engine.h"
 
-1375363496 /home/slacker/Desktop/dice-roller-test-program/include/Memory/MemoryPool.h
+1375308006 /home/slacker/Desktop/dice-roller-test-program/include/Memory/MemoryPool.h
 	<cstddef>
 
-1375363496 /home/slacker/Desktop/dice-roller-test-program/include/Utils/Vector2.h
+1375952845 /home/slacker/Desktop/dice-roller-test-program/include/Utils/Vector2.h
 	<cmath>
 
-1375370072 /home/slacker/Desktop/dice-roller-test-program/include/Graphics/Sprite.h
+1375882226 /home/slacker/Desktop/dice-roller-test-program/include/Graphics/Sprite.h
 	"Engine.h"
 	<tr1/memory>
 
-1375369746 /home/slacker/Desktop/dice-roller-test-program/include/Graphics/ParticleController.h
+1375957279 /home/slacker/Desktop/dice-roller-test-program/include/Graphics/ParticleController.h
 	"Engine.h"
 	<vector>
-	<boost/pool/object_pool.hpp>
+	<cmath>
+
+1375461306 /home/slacker/Desktop/dice-roller-test-program/include/Graphics/Camera.h
+	<Engine.h>
+
+1375461091 /home/slacker/Desktop/dice-roller-test-program/include/Graphics/CameraManager.h
+	<Engine.h>
 

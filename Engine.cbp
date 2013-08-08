@@ -14,9 +14,11 @@
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Compiler>
+					<Add option="-O" />
 					<Add option="-Wall" />
 					<Add option="-g" />
 					<Add option="-Wno-switch" />
+					<Add option="-pthread" />
 					<Add option="-D_DEBUG" />
 					<Add directory="include" />
 					<Add directory="dependencies" />
@@ -35,6 +37,29 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="Profile">
+				<Option output="Engine" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/Release/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-march=i486" />
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-pg" />
+					<Add option="-Wno-switch" />
+					<Add option="-D_DEBUG" />
+					<Add directory="dependencies" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg" />
+					<Add directory="include" />
+					<Add directory="dependencies" />
 				</Linker>
 			</Target>
 		</Build>

@@ -1,4 +1,4 @@
-#include "Engine.h"
+#include <Engine.h>
 
 #include <cstdlib>
 #include <sstream>
@@ -9,12 +9,8 @@ namespace SuperEngine
     {
         // Seed random number generator
         std::srand(std::time(0));
-        m_maximizeProcessor = false;
 
-//        m_frameCount_core = 0;
-//        m_frameRate_core = 0;
-//        m_frameCount_real = 0;
-//        m_frameRate_real = 0;
+        m_maximizeProcessor = false;
 
         m_Fps = 60;
 
@@ -90,12 +86,14 @@ namespace SuperEngine
 
         m_pDevice->setActive();
 
+
         if(!game_init()) return 0;
 
         this->setClearColor(sf::Color::Black);
 
 
         #ifdef _DEBUG
+        Logger::getInstance() << INFO << getVersionText() << "\n";
         Logger::getInstance() << INFO << "Engine initialized successfully" << std::endl;
         #endif // _DEBUG
 
@@ -119,7 +117,6 @@ namespace SuperEngine
             return 0;
         }
         if(!this->m_pDevice->setActive()) return 0;
-
 
         return 1;
     }
@@ -151,8 +148,8 @@ namespace SuperEngine
 
     void Engine::Update()
     {
-        static sf::Clock timedUpdate;
         static sf::Clock timedMove;
+        static sf::Clock timedUpdate;
 
 //        //calculate core framerate
 //        m_frameCount_core++;
@@ -166,6 +163,17 @@ namespace SuperEngine
 
         // fast update with no timing
         game_update(timedMove.restart().asSeconds());
+
+
+//        this->ClearScene();
+//
+//        // begin rendering
+//        this->RenderStart();
+//
+//        game_render();
+//
+//        // Done rendering
+//        this->RenderStop();
 
         // update with 60FPS timing, so once every 16 milis
         if(timedUpdate.getElapsedTime().asMilliseconds() > (1000.0f / (float)m_Fps))

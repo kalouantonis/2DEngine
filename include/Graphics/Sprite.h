@@ -1,6 +1,8 @@
 #include "Engine.h"
 #include <tr1/memory>
 
+#define GET_ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
+
 namespace SuperEngine
 {
     enum CollisionType
@@ -51,6 +53,8 @@ namespace SuperEngine
         float m_faceangle, m_moveangle;
         int m_animstartx, m_animstarty;
         float m_rotation, m_scale;
+        // Frame at which animation will start from
+        unsigned int m_startframe;
 
         void m_Transform();
 
@@ -96,6 +100,9 @@ namespace SuperEngine
 
         int getCurrentFrame() { return m_curframe; }
         void setCurrentFrame(int val) { m_curframe = val; }
+
+        int getFrameStart() { return m_startframe; }
+        void setFrameStart(unsigned int val) { m_startframe = val; }
 
         int getTotalFrames() { return m_totalframes; }
         void setTotalFrames(int val) { m_totalframes = val; }

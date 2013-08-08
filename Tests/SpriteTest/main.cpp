@@ -21,10 +21,10 @@ bool game_init()
     sprite = new Sprite();
 
     sprite->setFrameTimer(true);
-    sprite->setMoveTimer(false);
+//    sprite->setMoveTimer(false);
     sprite->setFrameDelay(16);
     sprite->setPosition(100, 100);
-    sprite->setVelocity(5.0f, 0.0f);
+    sprite->setVelocity(10.0f, 0.0f);
     sprite->loadImage("asteroid_sheet.png", 21, 7);
     sprite->setTotalFrames(143);
 
@@ -32,9 +32,9 @@ bool game_init()
 
     explosion->setFrameTimer(true);
     explosion->setFrameDelay(16);
-    explosion->setMoveTimer(false);
+//    explosion->setMoveTimer(false);
     explosion->setPosition(400, 400);
-    explosion->setVelocity(5.0f, 0.0f);
+    explosion->setVelocity(100.0f, 0.0f);
     explosion->loadImage("explosions.png", 8, 6);
     //explosion->setTotalFrames(46);
     explosion->setScale(2.0f);

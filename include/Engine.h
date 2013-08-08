@@ -3,11 +3,11 @@
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
-
 
 // Used only for debugging for now, i dont know man, stop pressuring me!
 #include <iostream>
+// Shared and weak pointers
+#include <tr1/memory>
 
 // Engine parts
 #include <Utils/Logger.h>
@@ -16,10 +16,9 @@
 #include <Memory/MemoryPool.h>
 
 #include <Utils/Vector2.h>
+
 #include <Graphics/Sprite.h>
 #include <Graphics/ParticleController.h>
-
-#include <boost/pool/object_pool.hpp>
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
@@ -35,6 +34,13 @@ extern void game_end();
 
 namespace SuperEngine
 {
+    // Just to make things look better :P
+    // i decided that there's no point making a camera system,
+    // SFML has that covered... damn you SFML!!
+    typedef sf::View Camera;
+    // Yea thats right, i'm stealing your stuff and pretending that it's mine
+    typedef sf::FloatRect FloatRect;
+
     class Engine
     {
     private:
@@ -66,6 +72,9 @@ namespace SuperEngine
 
         int Release();
 
+        int RenderStart();
+        int RenderStop();
+
     public:
         Engine();
         ~Engine();
@@ -78,8 +87,7 @@ namespace SuperEngine
         void Shutdown();
         void ClearScene();
 
-        int RenderStart();
-        int RenderStop();
+
 
         bool isPaused() { return m_pausemode; }
         void setPaused(bool val) { m_pausemode = val; }

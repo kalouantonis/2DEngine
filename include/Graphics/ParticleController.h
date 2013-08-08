@@ -4,17 +4,24 @@
 #include "Engine.h"
 
 #include <vector>
-#include <boost/pool/object_pool.hpp>
+#include <cmath>
+
+const double RAD = M_PI / 180.f;
 
 namespace SuperEngine
 {
     class ParticleController
     {
     private:
-        typedef std::vector<Sprite*>::iterator m_particleIter;
-        std::vector<Sprite*> m_particles;
+        struct Particle
+        {
+            Vector2f velocity;
+            Vector2f position;
+            sf::CircleShape primitive;
+        };
 
-        sf::Texture m_texture;
+        typedef std::vector<Particle>::iterator m_particleIter;
+        std::vector<Particle> m_particles;
 
         Vector2f m_position;
         float m_direction;
@@ -28,16 +35,11 @@ namespace SuperEngine
         // Distance between each particle
         unsigned int m_spread;
         Vector2f m_velocity;
-        float m_scale;
 
-        bool m_imageLoaded;
-
-        // The memory pool that will handle allocation and de-allocation
-        // of the particles
-        boost::object_pool<Sprite> m_spritePool;
+        // Size of circle primitive
+        float m_partSize;
 
         void Add();
-
 
     public:
         void setPosition(float x, float y) { m_position.x = x; m_position.y = y; }
@@ -46,6 +48,9 @@ namespace SuperEngine
 
         void setDirection(float angle) { m_direction = angle; }
         float getDirection(void) { return m_direction; }
+
+        void setParticleSize(float val) { m_partSize = val; }
+        float getParticleSize() { return m_partSize; }
 
         void setMax(int num) { m_max = num; }
         void setAlphaRange(unsigned int minVal, unsigned int maxVal) { m_alphaMin = minVal; m_alphaMax = maxVal;}
@@ -62,15 +67,9 @@ namespace SuperEngine
         void setVelocity(float x = 0.0f, float y = 0.0f) {m_velocity.x = x; m_velocity.y = y; }
         void setVelocity(const Vector2f& vel) { m_velocity = vel; }
 
-        void setScale(float val = 1.0f) { m_scale = val; }
-
         ParticleController();
         virtual ~ParticleController();
 
-        bool loadImage(const std::string& filename);
-        bool setImage(const sf::Texture&);
-
-        bool Init();
         void Draw();
         void Update(float elapsedTime);
     };
