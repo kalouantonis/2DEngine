@@ -24,15 +24,12 @@ namespace SuperEngine
         //int spriteType;
 
         sf::Vector2f m_position, m_velocity;
-        bool m_imageLoaded;
 
         int m_state, m_direction;
 
         sf::Color m_color;
 
     protected:
-        // Might need inheritance, might not
-        sf::Texture m_texture;
         sf::Sprite m_sprite;
 
         bool m_useFrameTimer;
@@ -52,6 +49,7 @@ namespace SuperEngine
         int m_curframe, m_totalframes, m_animdir;
         float m_faceangle, m_moveangle;
         int m_animstartx, m_animstarty;
+
         float m_rotation;
         sf::Vector2f m_scale;
         // Frame at which animation will start from
@@ -59,7 +57,7 @@ namespace SuperEngine
 
         void m_Transform();
 
-        bool genSprite(unsigned int animationCols, unsigned int animationRows);
+        bool genSprite(const sf::Texture& texture, unsigned int animationCols, unsigned int animationRows);
 
     public:
         //position on screen
@@ -143,12 +141,14 @@ namespace SuperEngine
 
         // Main methods
         Sprite();
+        virtual ~Sprite();
+
         bool Init();
 
-        virtual ~Sprite();
         bool loadImage(const std::string& filename, unsigned int animationCols = 1, unsigned int animationRows = 1,
                        const sf::Color& transcolor = sf::Color(255, 0, 255));
         bool setImage(const sf::Texture&, unsigned int animationCols = 1, unsigned int animationRows = 1);
+
         void Move(float elapsedTime);
         void Animate();
         void Draw();

@@ -6,7 +6,7 @@
 namespace SuperEngine
 {
     Engine::Engine()
-        : m_imageManager()
+        : m_textureManager()
     {
         // Seed random number generator
         std::srand(std::time(0));
@@ -202,7 +202,7 @@ namespace SuperEngine
             #endif // _DEBUG
         }
 
-        m_imageManager.removeAll();
+        m_textureManager.removeAll();
 
         return 1;
     }
