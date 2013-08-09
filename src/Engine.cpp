@@ -38,7 +38,7 @@ namespace SuperEngine
         Release();
     }
 
-    const std::string Engine::getVersionText()
+    const std::string Engine::getVersionText() const
     {
         std::ostringstream s;
         s << "SuperEngine v" << m_versionMajor << "." << m_versionMinor

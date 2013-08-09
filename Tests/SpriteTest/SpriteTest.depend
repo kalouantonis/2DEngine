@@ -113,7 +113,7 @@
 	"Engine.h"
 	<vector>
 
-1376054273 /home/slacker/Desktop/dice-roller-test-program/include/Engine.h
+1376057028 /home/slacker/Desktop/dice-roller-test-program/include/Engine.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -144,11 +144,11 @@
 	<Engine.h>
 	<cmath>
 
-1376055029 /home/slacker/Desktop/dice-roller-test-program/include/Graphics/Sprite.h
+1376056897 /home/slacker/Desktop/dice-roller-test-program/include/Graphics/Sprite.h
 	"Engine.h"
 	<tr1/memory>
 
-1375990592 /home/slacker/Desktop/dice-roller-test-program/include/Graphics/ParticleController.h
+1376056937 /home/slacker/Desktop/dice-roller-test-program/include/Graphics/ParticleController.h
 	"Engine.h"
 	<vector>
 	<cmath>

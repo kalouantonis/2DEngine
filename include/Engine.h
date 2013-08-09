@@ -103,39 +103,39 @@ namespace SuperEngine
 
 
 
-        bool isPaused() { return m_pausemode; }
+        bool isPaused() const { return m_pausemode; }
         void setPaused(bool val) { m_pausemode = val; }
 
         sf::RenderWindow* getDevice() { return m_pDevice; }
 
-        int getVersionMajor() { return m_versionMajor; }
-        int getVersionMinor() { return m_versionMinor; }
-        int getRevision() { return m_revision; }
-        const std::string getVersionText();
+        int getVersionMajor() const { return m_versionMajor; }
+        int getVersionMinor() const { return m_versionMinor; }
+        int getRevision() const { return m_revision; }
+        const std::string getVersionText() const;
 
 //        long getFrameRate_core() { return m_frameRate_core; }
 //        long getFrameRate_real() { return m_frameRate_real; }
 
         void setFPS(int FPS) { m_Fps = FPS; m_timePerFrame = 1.f / (float)FPS; }
-        int getFPS() { return m_Fps; }
+        int getFPS() const { return m_Fps; }
 
-        const sf::Color getClearColor() { return m_clearColor; }
+        const sf::Color getClearColor() const { return m_clearColor; }
         void setClearColor(const sf::Color& val);
 
-        int getScreenHeight() { return m_ScreenHeight; }
-        int getScreenWidth() { return m_ScreenWidth; };
+        int getScreenHeight() const { return m_ScreenHeight; }
+        int getScreenWidth() const { return m_ScreenWidth; };
         void setScreenWidth(int val) { this->m_ScreenWidth = val; }
         void setScreenHeight(int val) { this->m_ScreenHeight = val; }
-        int getColorDepth() { return m_ColorDepth; }
+        int getColorDepth() const { return m_ColorDepth; }
         void setColorDepth(int val) { this->m_ColorDepth = val; }
-        bool getFullscreen() { return m_Fullscreen; }
+        bool getFullscreen() const { return m_Fullscreen; }
         void setFullscreen(bool val) { m_Fullscreen = val; }
 
-        const char* getAppTitle() { return m_AppTitle; }
+        const char* getAppTitle() const { return m_AppTitle; }
         void setAppTitle(const char* val) { m_AppTitle = val; }
 
         void setMaximizeProcessor(bool val) { m_maximizeProcessor = val; }
-        bool getMaximizeProcessor() { return m_maximizeProcessor; }
+        bool getMaximizeProcessor() const { return m_maximizeProcessor; }
 
         TextureLoader& getTextureManager() { return m_textureManager; }
     };

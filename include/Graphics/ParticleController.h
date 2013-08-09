@@ -45,13 +45,13 @@ namespace SuperEngine
     public:
         void setPosition(float x, float y) { m_position.x = x; m_position.y = y; }
         void setPosition(const sf::Vector2f& val) { m_position = val; }
-        sf::Vector2f getPosition(void) { return m_position; }
+        sf::Vector2f getPosition(void) const { return m_position; }
 
         void setDirection(float angle) { m_direction = angle; }
-        float getDirection(void) { return m_direction; }
+        float getDirection(void) const { return m_direction; }
 
         void setParticleSize(float val) { m_partSize = val; }
-        float getParticleSize() { return m_partSize; }
+        float getParticleSize() const { return m_partSize; }
 
         void setMax(int num) { m_max = num; }
         void setAlphaRange(unsigned int minVal, unsigned int maxVal) { m_alphaMin = minVal; m_alphaMax = maxVal;}
