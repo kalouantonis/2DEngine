@@ -40,6 +40,32 @@ namespace SuperEngine
 
         }
 
+        // Useful for loading another parameter along with just the file.
+        // Can be used for shaders, or textures. E.g load("id", "texturef", sf::IntRect(0, 0, 32, 32))
+        template<typename P>
+        bool load(const std::string& id, const std::string& filename, P secondParam)
+        {
+            if(!exists(id))
+            {
+                std::unique_ptr<T> resource(new T());
+
+                if(!resource->loadFromFile(filename, secondParam))
+                {
+                    Logger::getInstance() << WARN << "ResourceLoader failed to load " << filename << std::endl;
+                    return false;
+                }
+
+                // Make the resource map retain ownership of the pointer now
+                m_resourceMap.insert(std::make_pair(id, std::move(resource)));
+
+                #ifdef _DEBUG
+                Logger::getInstance() << DEBUG << "Resource " << filename << " sucessfully loaded" << std::endl;
+                #endif // _DEBUG
+            }
+
+            return true;
+        }
+
         // Find item with ID and remove it, returns false if not found
         // or can't be removed
         bool remove(const std::string& id)
