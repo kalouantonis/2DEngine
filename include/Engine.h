@@ -3,25 +3,32 @@
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
-
+#include <SFML/Audio.hpp>
 
 // Used only for debugging for now, i dont know man, stop pressuring me!
 #include <iostream>
+// Shared and weak pointers
+#include <memory>
 
 // Engine parts
 #include <Utils/Logger.h>
+
+// Resources
 #include <Resources/XMLoader.h>
+#include <Resources/IResourceLoader.h>
 
 #include <Memory/MemoryPool.h>
 
 #include <Utils/Vector2.h>
+
 #include <Graphics/Sprite.h>
 #include <Graphics/ParticleController.h>
 
 #define VERSION_MAJOR 0
-#define VERSION_MINOR 1
-#define REVISION 0
+#define VERSION_MINOR 2
+#define REVISION 1
+
+#define KEY_DOWN(vk) (sf::Keyboard::isKeyPressed(vk) ? 1 : 0)
 
 extern bool gameover;
 
@@ -33,6 +40,13 @@ extern void game_end();
 
 namespace SuperEngine
 {
+    // Just to make things look better :P
+    // i decided that there's no point making a camera system,
+    // SFML has that covered... damn you SFML!!
+    typedef sf::View Camera;
+    // Yea thats right, i'm stealing your stuff and pretending that it's mine
+    typedef sf::FloatRect FloatRect;
+
     class Engine
     {
     private:
@@ -40,6 +54,8 @@ namespace SuperEngine
         unsigned int m_versionMajor, m_versionMinor, m_revision;
 
         unsigned int m_Fps;
+
+        float m_timePerFrame;
 
         unsigned int m_ScreenWidth, m_ScreenHeight, m_ColorDepth;
         bool m_Fullscreen;
@@ -60,12 +76,18 @@ namespace SuperEngine
 //        long m_frameCount_real;
 //        long m_frameRate_real;
 
+        // Used by sprite class for optimization, will only load image once
+        // TODO: consider adding this as a singleton texturemanager
+        ImageLoader m_imageManager;
+
         sf::RenderWindow* m_pDevice;
 
         int Release();
-    public:
-        std::vector<Sprite> spritePool;
 
+        int RenderStart();
+        int RenderStop();
+
+    public:
         Engine();
         ~Engine();
 
@@ -77,8 +99,7 @@ namespace SuperEngine
         void Shutdown();
         void ClearScene();
 
-        int RenderStart();
-        int RenderStop();
+
 
         bool isPaused() { return m_pausemode; }
         void setPaused(bool val) { m_pausemode = val; }
@@ -93,7 +114,7 @@ namespace SuperEngine
 //        long getFrameRate_core() { return m_frameRate_core; }
 //        long getFrameRate_real() { return m_frameRate_real; }
 
-        void setFPS(int FPS) { m_Fps = FPS; }
+        void setFPS(int FPS) { m_Fps = FPS; m_timePerFrame = 1.f / (float)FPS; }
         int getFPS() { return m_Fps; }
 
         const sf::Color getClearColor() { return m_clearColor; }
@@ -107,10 +128,14 @@ namespace SuperEngine
         void setColorDepth(int val) { this->m_ColorDepth = val; }
         bool getFullscreen() { return m_Fullscreen; }
         void setFullscreen(bool val) { m_Fullscreen = val; }
+
         const char* getAppTitle() { return m_AppTitle; }
         void setAppTitle(const char* val) { m_AppTitle = val; }
+
         void setMaximizeProcessor(bool val) { m_maximizeProcessor = val; }
         bool getMaximizeProcessor() { return m_maximizeProcessor; }
+
+        ImageLoader& getImageManager() { return m_imageManager; }
     };
 };
 

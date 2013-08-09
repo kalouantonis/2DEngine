@@ -12,7 +12,9 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-g" />
+					<Add option="-pthread" />
 					<Add directory="../../include" />
 					<Add directory="../../dependencies" />
 				</Compiler>
@@ -21,6 +23,8 @@
 					<Add library="sfml-system-d" />
 					<Add library="sfml-window-d" />
 					<Add library="sfml-graphics-d" />
+					<Add library="GL" />
+					<Add library="GLU" />
 					<Add directory="../.." />
 				</Linker>
 			</Target>

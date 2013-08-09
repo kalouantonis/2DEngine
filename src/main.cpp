@@ -1,7 +1,7 @@
-#include "Engine.h"
+#include <Engine.h>
 
 // Read key states
-#define KEY_DOWN(vk) (sf::Keyboard::isKeyPressed(vk) ? 1 : 0)
+
 
 SuperEngine::Engine* g_pEngine;
 

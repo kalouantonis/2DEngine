@@ -1,4 +1,4 @@
-#include "Engine.h"
+#include <Engine.h>
 
 #include <cstdlib>
 #include <sstream>
@@ -6,17 +6,14 @@
 namespace SuperEngine
 {
     Engine::Engine()
+        : m_imageManager()
     {
         // Seed random number generator
         std::srand(std::time(0));
+
         m_maximizeProcessor = false;
 
-//        m_frameCount_core = 0;
-//        m_frameRate_core = 0;
-//        m_frameCount_real = 0;
-//        m_frameRate_real = 0;
-
-        m_Fps = 60;
+        this->setFPS(60);
 
         m_ambientColor = sf::Color(255, 255, 255, 0);
         m_clearColor = sf::Color(0, 0, 0, 255);
@@ -71,12 +68,9 @@ namespace SuperEngine
         // Initialize sf::Window
         // TODO: Implement fullscreen
 
-        // TODO: Allow anti-aliazing and other options to be enabled for OpenGL
         m_pDevice = new sf::RenderWindow(sf::VideoMode(width, height, colordepth),
                                    this->getAppTitle());
 
-        //m_pDevice->setVerticalSyncEnabled(true);
-        //m_pDevice->setFramerateLimit(getFPS());
 
         // Initialization failed
         if(!m_pDevice)
@@ -90,12 +84,14 @@ namespace SuperEngine
 
         m_pDevice->setActive();
 
+
         if(!game_init()) return 0;
 
         this->setClearColor(sf::Color::Black);
 
 
         #ifdef _DEBUG
+        Logger::getInstance() << getVersionText() << std::endl;
         Logger::getInstance() << INFO << "Engine initialized successfully" << std::endl;
         #endif // _DEBUG
 
@@ -119,7 +115,6 @@ namespace SuperEngine
             return 0;
         }
         if(!this->m_pDevice->setActive()) return 0;
-
 
         return 1;
     }
@@ -151,58 +146,35 @@ namespace SuperEngine
 
     void Engine::Update()
     {
-        static sf::Clock timedUpdate;
         static sf::Clock timedMove;
+        static float timeSinceLastUpdate = 0.f;
 
-//        //calculate core framerate
-//        m_frameCount_core++;
-//        if(m_coreTimer.getElapsedTime().asMilliseconds() > 999)
-//        {
-//            m_frameRate_core = m_frameCount_core;
-//            m_frameCount_core = 0;
-//
-//            m_coreTimer.restart();
-//        }
+        // process events here
 
-        // fast update with no timing
-        game_update(timedMove.restart().asSeconds());
-
-        // update with 60FPS timing, so once every 16 milis
-        if(timedUpdate.getElapsedTime().asMilliseconds() > (1000.0f / (float)m_Fps))
+        timeSinceLastUpdate += timedMove.restart().asSeconds();
+        while(timeSinceLastUpdate > m_timePerFrame)
         {
-            if(!this->getMaximizeProcessor())
-            {
-                sf::Time waitTime = sf::milliseconds(1);
+            // Reduce time since last update, if the PC is slow, the time since last update
+            // will loop in the while, reduces lag and visual glitches.
+            // If rendering is slow, it may happen that the logic update is called
+            // much more frequently than the render function
+            timeSinceLastUpdate -= m_timePerFrame;
+            // process events here
 
-                sf::sleep(waitTime);
-            }
-
-            timedUpdate.restart();
-        }
-        else
-        {
-            // calculate real framerate
-//            m_frameCount_real++;
-//            if(m_realTimer.getElapsedTime().asMilliseconds() > 999)
-//            {
-//                m_frameRate_real = m_frameCount_real;
-//                m_frameCount_real = 0;
-//
-//                m_realTimer.restart();
-//            }
-
-            this->ClearScene();
-
-            // begin rendering
-            this->RenderStart();
-
-            game_render();
-
-            // Done rendering
-            this->RenderStop();
-
+            // Update time with supposed FPS time
+            game_update(m_timePerFrame);
         }
 
+
+        this->ClearScene();
+
+        // begin rendering
+        this->RenderStart();
+
+        game_render();
+
+        // Done rendering
+        this->RenderStop();
     }
 
     void Engine::Close()
@@ -229,6 +201,8 @@ namespace SuperEngine
             Logger::getInstance() << INFO << "Engine closed, m_pDevice deleted" << std::endl;
             #endif // _DEBUG
         }
+
+        m_imageManager.removeAll();
 
         return 1;
     }

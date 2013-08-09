@@ -4,19 +4,27 @@
 #include "Engine.h"
 
 #include <vector>
-#include <boost/pool/object_pool.hpp>
+#include <cmath>
+
+const double RAD = M_PI / 180.f;
 
 namespace SuperEngine
 {
     class ParticleController
     {
     private:
-        typedef std::vector<Sprite*>::iterator m_particleIter;
-        std::vector<Sprite*> m_particles;
+        struct Particle
+        {
+            sf::Vector2f velocity;
+            sf::Vector2f position;
 
-        sf::Texture m_texture;
+            sf::CircleShape primitive;
+        };
 
-        Vector2f m_position;
+        typedef std::vector<Particle>::iterator m_particleIter;
+        std::vector<Particle> m_particles;
+
+        sf::Vector2f m_position;
         float m_direction;
 
         // How far away from the origin a particle is allowed to move
@@ -27,25 +35,23 @@ namespace SuperEngine
 
         // Distance between each particle
         unsigned int m_spread;
-        Vector2f m_velocity;
-        float m_scale;
+        sf::Vector2f m_velocity;
 
-        bool m_imageLoaded;
-
-        // The memory pool that will handle allocation and de-allocation
-        // of the particles
-        //boost::object_pool<Sprite> m_spritePool;
+        // Size of circle primitive
+        float m_partSize;
 
         void Add();
 
-
     public:
         void setPosition(float x, float y) { m_position.x = x; m_position.y = y; }
-        void setPosition(const Vector2f& val) { m_position = val; }
-        Vector2f getPosition(void) { return m_position; }
+        void setPosition(const sf::Vector2f& val) { m_position = val; }
+        sf::Vector2f getPosition(void) { return m_position; }
 
         void setDirection(float angle) { m_direction = angle; }
         float getDirection(void) { return m_direction; }
+
+        void setParticleSize(float val) { m_partSize = val; }
+        float getParticleSize() { return m_partSize; }
 
         void setMax(int num) { m_max = num; }
         void setAlphaRange(unsigned int minVal, unsigned int maxVal) { m_alphaMin = minVal; m_alphaMax = maxVal;}
@@ -60,17 +66,11 @@ namespace SuperEngine
         void setLength(float val) { m_length = val; }
 
         void setVelocity(float x = 0.0f, float y = 0.0f) {m_velocity.x = x; m_velocity.y = y; }
-        void setVelocity(const Vector2f& vel) { m_velocity = vel; }
-
-        void setScale(float val = 1.0f) { m_scale = val; }
+        void setVelocity(const sf::Vector2f& vel) { m_velocity = vel; }
 
         ParticleController();
         virtual ~ParticleController();
 
-        bool loadImage(const std::string& filename);
-        bool setImage(const sf::Texture&);
-
-        bool Init();
         void Draw();
         void Update(float elapsedTime);
     };

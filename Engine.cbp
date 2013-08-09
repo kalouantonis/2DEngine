@@ -14,9 +14,12 @@
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-Wall" />
 					<Add option="-g" />
 					<Add option="-Wno-switch" />
+					<Add option="-Wno-reorder" />
+					<Add option="-pthread" />
 					<Add option="-D_DEBUG" />
 					<Add directory="include" />
 					<Add directory="dependencies" />
@@ -30,11 +33,37 @@
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Compiler>
-					<Add option="-Wall" />
 					<Add option="-O2" />
+					<Add option="-std=c++11" />
+					<Add option="-Wall" />
+					<Add option="-Wno-switch" />
+					<Add option="-pthread" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="Profile">
+				<Option output="Engine" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/Release/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-march=i486" />
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-pg" />
+					<Add option="-Wno-switch" />
+					<Add option="-D_DEBUG" />
+					<Add directory="dependencies" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg" />
+					<Add directory="include" />
+					<Add directory="dependencies" />
 				</Linker>
 			</Target>
 		</Build>
@@ -47,7 +76,11 @@
 		<Unit filename="include/Engine.h" />
 		<Unit filename="include/Graphics/ParticleController.h" />
 		<Unit filename="include/Graphics/Sprite.h" />
+		<Unit filename="include/Graphics/TileMap.h" />
 		<Unit filename="include/Memory/MemoryPool.h" />
+		<Unit filename="include/Resources/IResourceLoader.h" />
+		<Unit filename="include/Resources/ImageLoader.h" />
+		<Unit filename="include/Resources/TextureLoader.h" />
 		<Unit filename="include/Resources/XMLoader.h" />
 		<Unit filename="include/Utils/Logger.h" />
 		<Unit filename="include/Utils/Vector2.h" />
@@ -56,6 +89,8 @@
 		<Unit filename="src/Graphics/ParticleController.cpp" />
 		<Unit filename="src/Graphics/Sprite.cpp" />
 		<Unit filename="src/Memory/MemoryPool.cpp" />
+		<Unit filename="src/Resources/ImageLoader.cpp" />
+		<Unit filename="src/Resources/TextureLoader.cpp" />
 		<Unit filename="src/Resources/XMLoader.cpp" />
 		<Unit filename="src/Utils/Logger.cpp" />
 		<Unit filename="src/main.cpp" />

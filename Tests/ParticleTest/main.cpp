@@ -24,20 +24,21 @@ bool game_init()
     g_pEngine->setMaximizeProcessor(true);
 
     pa = new ParticleController();
-    pa->loadImage("particle16.tga");
+    //pa->loadImage("particle16.tga");
     pa->setPosition(100, 300);
     pa->setDirection(0);
     pa->setMax(5000);
+    pa->setParticleSize(1.5);
     pa->setAlphaRange(100, 255);
     pa->setSpread(30);
-    pa->setVelocity(50.0f, 50.0f);
+    pa->setVelocity(50.f, 50.f);
     pa->setLength(250);
 
     pb = new ParticleController();
-    pb->loadImage("particle16.tga");
+    //pb->loadImage("particle16.tga");
     pb->setPosition(300, 100);
     pb->setDirection(180);
-    pb->setScale(0.6);
+    pb->setParticleSize(2);
     pb->setMax(5000);
     pb->setAlphaRange(0, 100);
     pb->setSpread(40);
@@ -46,15 +47,15 @@ bool game_init()
     pb->setLength(200);
 
     pc = new ParticleController();
-    pc->loadImage("particle16.tga");
+    //pc->loadImage("particle16.tga");
     pc->setPosition(250, 525);
     pc->setDirection(0);
-    pc->setScale(0.5);
-    pc->setMax(2000);
+    pc->setParticleSize(1.5);
+    pc->setMax(5000);
     pc->setAlphaRange(100, 150);
     pc->setSpread(5);
     pc->setColorRange(0, 0, 200, 10, 10, 255);
-    pc->setVelocity(50.f, 50.0f);
+    pc->setVelocity(50.f, 50.f);
     pc->setLength(180);
 
     return true;

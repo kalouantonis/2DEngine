@@ -15,26 +15,37 @@ bool game_preload()
 
 Sprite* sprite;
 Sprite* explosion;
+Sprite* sprite2;
 
 bool game_init()
 {
     sprite = new Sprite();
 
     sprite->setFrameTimer(true);
-    sprite->setMoveTimer(false);
+//    sprite->setMoveTimer(false);
     sprite->setFrameDelay(16);
     sprite->setPosition(100, 100);
-    sprite->setVelocity(5.0f, 0.0f);
+    sprite->setVelocity(100.0f, 0.0f);
     sprite->loadImage("asteroid_sheet.png", 21, 7);
     sprite->setTotalFrames(143);
+
+    sprite2 = new Sprite();
+    sprite2->setFrameTimer(true);
+//    sprite->setMoveTimer(false);
+    sprite2->setFrameDelay(16);
+    sprite2->setPosition(100, 250);
+    sprite2->setVelocity(150.0f, 0.0f);
+    sprite2->loadImage("asteroid_sheet.png", 21, 7);
+    sprite2->setTotalFrames(143);
+
 
     explosion = new Sprite();
 
     explosion->setFrameTimer(true);
     explosion->setFrameDelay(16);
-    explosion->setMoveTimer(false);
+//    explosion->setMoveTimer(false);
     explosion->setPosition(400, 400);
-    explosion->setVelocity(5.0f, 0.0f);
+    explosion->setVelocity(100.0f, 0.0f);
     explosion->loadImage("explosions.png", 8, 6);
     //explosion->setTotalFrames(46);
     explosion->setScale(2.0f);
@@ -60,7 +71,6 @@ void game_update(float elapsedTime)
 
     //sprite->setScale(2);
     sprite->setRotation(rotation);
-    rotation += 0.1;
 
     if(sprite->getPosition().x > g_pEngine->getScreenWidth())
     {
@@ -72,7 +82,21 @@ void game_update(float elapsedTime)
         explosion->setPosition(0 - explosion->getFrameSize().x, explosion->getPosition().y);
     }
 
+    sprite2->setRotation(rotation);
+    rotation += 0.1;
+
+    if(sprite2->getPosition().x > g_pEngine->getScreenWidth())
+    {
+        sprite2->setPosition(0 - sprite2->getFrameSize().x, sprite2->getPosition().y);
+    }
+
+    if(explosion->getPosition().x > g_pEngine->getScreenWidth())
+    {
+        explosion->setPosition(0 - explosion->getFrameSize().x, explosion->getPosition().y);
+    }
+
     sprite->Move(elapsedTime);
+    sprite2->Move(elapsedTime);
     explosion->Move(elapsedTime);
 }
 
@@ -82,12 +106,16 @@ void game_render()
     //g_pEngine->getDevice()->draw(*sprite->getSprite());
     sprite->Draw();
 
+    sprite2->Animate();
+    sprite2->Draw();
+
     explosion->Animate();
     explosion->Draw();
 }
 
 void game_end()
 {
+    delete sprite2;
     delete sprite;
     delete explosion;
 }
