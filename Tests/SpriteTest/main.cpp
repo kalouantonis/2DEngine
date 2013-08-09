@@ -34,7 +34,7 @@ bool game_init()
 //    sprite->setMoveTimer(false);
     sprite2->setFrameDelay(16);
     sprite2->setPosition(100, 250);
-    sprite2->setVelocity(100.0f, 0.0f);
+    sprite2->setVelocity(150.0f, 0.0f);
     sprite2->loadImage("asteroid_sheet.png", 21, 7);
     sprite2->setTotalFrames(143);
 
@@ -115,6 +115,7 @@ void game_render()
 
 void game_end()
 {
+    delete sprite2;
     delete sprite;
     delete explosion;
 }

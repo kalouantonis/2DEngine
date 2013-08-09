@@ -77,8 +77,8 @@ namespace SuperEngine
     bool Sprite::loadImage(const std::string& filename, unsigned int animationCols, unsigned int animationRows, const sf::Color& transcolor)
     {
         // using filenames as id's, for now anyway
-        if(!g_pEngine->getImageManager().exists(filename))
-            g_pEngine->getImageManager().load(filename, filename);
+        if(!g_pEngine->getImageManager().load(filename, filename))
+            return false;
 
         sf::Image& image = g_pEngine->getImageManager().get(filename);
 
@@ -95,9 +95,6 @@ namespace SuperEngine
 
         m_imageLoaded = true;
 
-        #ifdef _DEBUG
-        Logger::getInstance() << INFO << "Image " << filename << "sucessfully loaded" << std::endl;
-        #endif // _DEBUG
 
         return true;
     }

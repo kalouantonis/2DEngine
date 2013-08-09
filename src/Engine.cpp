@@ -91,7 +91,7 @@ namespace SuperEngine
 
 
         #ifdef _DEBUG
-        Logger::getInstance() << INFO << getVersionText() << "\n";
+        Logger::getInstance() << getVersionText() << std::endl;
         Logger::getInstance() << INFO << "Engine initialized successfully" << std::endl;
         #endif // _DEBUG
 
@@ -201,6 +201,8 @@ namespace SuperEngine
             Logger::getInstance() << INFO << "Engine closed, m_pDevice deleted" << std::endl;
             #endif // _DEBUG
         }
+
+        m_imageManager.removeAll();
 
         return 1;
     }

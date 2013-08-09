@@ -3,6 +3,7 @@
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 // Used only for debugging for now, i dont know man, stop pressuring me!
 #include <iostream>
@@ -15,8 +16,6 @@
 // Resources
 #include <Resources/XMLoader.h>
 #include <Resources/IResourceLoader.h>
-#include <Resources/TextureLoader.h>
-#include <Resources/ImageLoader.h>
 
 #include <Memory/MemoryPool.h>
 
@@ -27,7 +26,7 @@
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define REVISION 0
+#define REVISION 1
 
 #define KEY_DOWN(vk) (sf::Keyboard::isKeyPressed(vk) ? 1 : 0)
 

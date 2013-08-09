@@ -143,14 +143,16 @@
 	"Engine.h"
 	<vector>
 
-1375988626 /home/slacker/Desktop/dice-roller-test-program/include/Engine.h
+1375994278 /home/slacker/Desktop/dice-roller-test-program/include/Engine.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<iostream>
 	<memory>
 	<Utils/Logger.h>
 	<Resources/XMLoader.h>
+	<Resources/IResourceLoader.h>
 	<Resources/TextureLoader.h>
+	<Resources/ImageLoader.h>
 	<Memory/MemoryPool.h>
 	<Utils/Vector2.h>
 	<Graphics/Sprite.h>
@@ -219,8 +221,14 @@
 
 1335720148 /home/slacker/Desktop/dice-roller-test-program/dependencies/pugixml/pugiconfig.hpp
 
-1375989570 /home/slacker/Desktop/dice-roller-test-program/include/Resources/TextureLoader.h
+1375993515 /home/slacker/Desktop/dice-roller-test-program/include/Resources/TextureLoader.h
+	<Engine.h>
+
+1375999490 /home/slacker/Desktop/dice-roller-test-program/include/Resources/IResourceLoader.h
 	<Engine.h>
 	<map>
 	<stdexcept>
+
+1375994013 /home/slacker/Desktop/dice-roller-test-program/include/Resources/ImageLoader.h
+	<Engine.h>
 
