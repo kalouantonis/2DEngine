@@ -82,9 +82,7 @@ namespace SuperEngine
 
             if(!tempImage.loadFromFile(filename))
             {
-                #ifdef _DEBUG
-
-                #endif // _DEBUG
+                Logger::getInstance() << WARN << "Sprite::loadImage - Failed to load image " << filename << std::endl;
 
                 return false;
             }

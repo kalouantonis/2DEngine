@@ -26,9 +26,8 @@ namespace SuperEngine
 
         if(!tempImage.loadFromFile(filename))
         {
-            #ifdef _DEBUG
-
-            #endif // _DEBUG
+            // Warning because running wont fail
+            Logger::getInstance() << WARN << "TextureEmitter::loadImage - Failed to load image " << filename << std::endl;
 
             return false;
         }
