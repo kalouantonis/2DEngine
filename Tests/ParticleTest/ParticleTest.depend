@@ -92,7 +92,7 @@
 	"Engine.h"
 	<vector>
 
-1375970915 source:/home/slacker/Desktop/dice-roller-test-program/Tests/ParticleTest/main.cpp
+1376309899 source:/home/slacker/Desktop/dice-roller-test-program/Tests/ParticleTest/main.cpp
 	<Engine.h>
 
 1374926202 /home/slacker/Desktop/dice-roller-test-program/Engine.h
@@ -143,7 +143,7 @@
 	"Engine.h"
 	<vector>
 
-1376057028 /home/slacker/Desktop/dice-roller-test-program/include/Engine.h
+1376309331 /home/slacker/Desktop/dice-roller-test-program/include/Engine.h
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -156,7 +156,8 @@
 	<Memory/MemoryPool.h>
 	<Utils/Vector2.h>
 	<Graphics/Sprite.h>
-	<Graphics/ParticleController.h>
+	<Graphics/IParticleEmitter.h>
+	<Graphics/CircleEmitter.h>
 
 1375443224 /home/slacker/Desktop/dice-roller-test-program/include/Utils/Logger.h
 	<fstream>
@@ -174,7 +175,7 @@
 	<Engine.h>
 	<cmath>
 
-1376056897 /home/slacker/Desktop/dice-roller-test-program/include/Graphics/Sprite.h
+1376065671 /home/slacker/Desktop/dice-roller-test-program/include/Graphics/Sprite.h
 	"Engine.h"
 	<tr1/memory>
 
@@ -231,4 +232,11 @@
 
 1375994013 /home/slacker/Desktop/dice-roller-test-program/include/Resources/ImageLoader.h
 	<Engine.h>
+
+1376309915 /home/slacker/Desktop/dice-roller-test-program/include/Graphics/IParticleEmitter.h
+
+1376309743 /home/slacker/Desktop/dice-roller-test-program/include/Graphics/CircleEmitter.h
+	<Engine.h>
+	<vector>
+	<cmath>
 

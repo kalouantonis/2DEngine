@@ -2,11 +2,9 @@
 
 using namespace SuperEngine;
 
-ParticleController* pa;
-ParticleController* pb;
-ParticleController* pc;
-ParticleController* pd;
-ParticleController* pe;
+TextureEmitter* pa;
+CircleEmitter* pb;
+CircleEmitter* pc;
 
 bool game_preload()
 {
@@ -23,18 +21,19 @@ bool game_init()
 {
     g_pEngine->setMaximizeProcessor(true);
 
-    pa = new ParticleController();
-    //pa->loadImage("particle16.tga");
+    pa = new TextureEmitter();
+    pa->loadImage("particle16.tga");
     pa->setPosition(100, 300);
     pa->setDirection(0);
     pa->setMax(5000);
-    pa->setParticleSize(1.5);
+    //pa->setParticleSize(1.5);
+    pa->setScale(0.2f);
     pa->setAlphaRange(100, 255);
     pa->setSpread(30);
     pa->setVelocity(50.f, 50.f);
     pa->setLength(250);
 
-    pb = new ParticleController();
+    pb = new CircleEmitter();
     //pb->loadImage("particle16.tga");
     pb->setPosition(300, 100);
     pb->setDirection(180);
@@ -46,7 +45,7 @@ bool game_init()
     pb->setVelocity(50.f, 50.0f);
     pb->setLength(200);
 
-    pc = new ParticleController();
+    pc = new CircleEmitter();
     //pc->loadImage("particle16.tga");
     pc->setPosition(250, 525);
     pc->setDirection(0);

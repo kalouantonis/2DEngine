@@ -48,7 +48,7 @@ bool game_init()
     explosion->setVelocity(100.0f, 0.0f);
     explosion->loadImage("explosions.png", 8, 6);
     //explosion->setTotalFrames(46);
-    explosion->setScale(2.0f);
+    explosion->setScale(2.0f, 2.0f);
 
     return true;
 }

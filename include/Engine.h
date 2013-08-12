@@ -23,7 +23,9 @@
 #include <Utils/Vector2.h>
 
 #include <Graphics/Sprite.h>
-#include <Graphics/ParticleController.h>
+#include <Graphics/IParticleEmitter.h>
+#include <Graphics/CircleEmitter.h>
+#include <Graphics/TextureEmitter.h>
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
@@ -100,8 +102,6 @@ namespace SuperEngine
         void fatalerror(const std::string& message, const std::string& title = "Fatal Error!");
         void Shutdown();
         void ClearScene();
-
-
 
         bool isPaused() const { return m_pausemode; }
         void setPaused(bool val) { m_pausemode = val; }
