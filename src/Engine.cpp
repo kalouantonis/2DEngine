@@ -6,7 +6,7 @@
 namespace SuperEngine
 {
     Engine::Engine()
-        : m_imageManager()
+        : m_textureManager()
     {
         // Seed random number generator
         std::srand(std::time(0));
@@ -38,7 +38,7 @@ namespace SuperEngine
         Release();
     }
 
-    const std::string Engine::getVersionText()
+    const std::string Engine::getVersionText() const
     {
         std::ostringstream s;
         s << "SuperEngine v" << m_versionMajor << "." << m_versionMinor
@@ -202,7 +202,7 @@ namespace SuperEngine
             #endif // _DEBUG
         }
 
-        m_imageManager.removeAll();
+        m_textureManager.removeAll();
 
         return 1;
     }

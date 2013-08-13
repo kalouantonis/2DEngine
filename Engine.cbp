@@ -79,7 +79,6 @@
 		<Unit filename="include/Graphics/TileMap.h" />
 		<Unit filename="include/Memory/MemoryPool.h" />
 		<Unit filename="include/Resources/IResourceLoader.h" />
-		<Unit filename="include/Resources/ImageLoader.h" />
 		<Unit filename="include/Resources/TextureLoader.h" />
 		<Unit filename="include/Resources/XMLoader.h" />
 		<Unit filename="include/Utils/Logger.h" />
@@ -89,8 +88,6 @@
 		<Unit filename="src/Graphics/ParticleController.cpp" />
 		<Unit filename="src/Graphics/Sprite.cpp" />
 		<Unit filename="src/Memory/MemoryPool.cpp" />
-		<Unit filename="src/Resources/ImageLoader.cpp" />
-		<Unit filename="src/Resources/TextureLoader.cpp" />
 		<Unit filename="src/Resources/XMLoader.cpp" />
 		<Unit filename="src/Utils/Logger.cpp" />
 		<Unit filename="src/main.cpp" />

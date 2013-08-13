@@ -9,8 +9,6 @@ namespace SuperEngine
 
     bool Sprite::Init()
     {
-//this->m_pImage = NULL;
-        this->m_imageLoaded = false;
         this->setPosition(0.0f, 0.0f);
         this->setVelocity(0.0f, 0.0f);
         this->setState(1);
@@ -51,7 +49,7 @@ namespace SuperEngine
 
     }
 
-    bool Sprite::genSprite(unsigned int animationCols, unsigned int animationRows)
+    bool Sprite::genSprite(const sf::Texture& texture, unsigned int animationCols, unsigned int animationRows)
     {
         if(m_animationCols <= 1 && m_animationRows <= 1)
         {
@@ -59,11 +57,10 @@ namespace SuperEngine
             this->setRows(animationRows);
         }
 
-        m_sprite = sf::Sprite(m_texture);
-//        m_sprite.setTexture(m_texture);
+        m_sprite = sf::Sprite(texture);
 
-        this->m_frameSize.x = (float) m_texture.getSize().x / (float) this->m_animationCols;
-        this->m_frameSize.y = (float) m_texture.getSize().y / (float) this->m_animationRows;
+        this->m_frameSize.x = (float) texture.getSize().x / (float) this->m_animationCols;
+        this->m_frameSize.y = (float) texture.getSize().y / (float) this->m_animationRows;
 
         if(m_totalframes == 1)
             m_totalframes = m_animationCols * m_animationRows;
@@ -77,41 +74,41 @@ namespace SuperEngine
     bool Sprite::loadImage(const std::string& filename, unsigned int animationCols, unsigned int animationRows, const sf::Color& transcolor)
     {
         // using filenames as id's, for now anyway
-        if(!g_pEngine->getImageManager().load(filename, filename))
+
+        // Create a temp image with colormask
+        if(!g_pEngine->getTextureManager().exists(filename))
+        {
+            sf::Image tempImage;
+
+            if(!tempImage.loadFromFile(filename))
+            {
+                Logger::getInstance() << WARN << "Sprite::loadImage - Failed to load image " << filename << std::endl;
+
+                return false;
+            }
+
+            g_pEngine->getTextureManager().load(filename, tempImage);
+        }
+
+        // Get the texture from storage
+        sf::Texture& texture = g_pEngine->getTextureManager().get(filename);
+
+        if(!this->genSprite(texture, animationCols, animationRows))
             return false;
-
-        sf::Image& image = g_pEngine->getImageManager().get(filename);
-
-        // Set the mask color
-        image.createMaskFromColor(transcolor);
-
-        // create texture to hold image
-        //m_texture = sf::Texture();
-        //m_texture = sf::Texture();
-        m_texture.loadFromImage(image);
-
-        if(!this->genSprite(animationCols, animationRows))
-            return false;
-
-        m_imageLoaded = true;
-
 
         return true;
     }
 
-     bool Sprite::setImage(const sf::Texture& image, unsigned int animationCols, unsigned int animationRows)
+    bool Sprite::setImage(const sf::Texture& image, unsigned int animationCols, unsigned int animationRows)
     {
-        m_texture = image;
         // We did not load the image, so we are not responsible for
         // handling its allocation and deletion
-
-        if(!this->genSprite(animationCols, animationRows))
+        if(!this->genSprite(image, animationCols, animationRows))
             return false;
-
-        this->m_imageLoaded = false;
 
         return true;
     }
+
 
     void Sprite::m_Transform()
     {
