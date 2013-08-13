@@ -3,6 +3,7 @@
 namespace SuperEngine
 {
     Sprite::Sprite()
+        : Drawable()
     {
         Init();
     }

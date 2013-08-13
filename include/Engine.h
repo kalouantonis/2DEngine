@@ -22,6 +22,7 @@
 
 #include <Utils/Vector2.h>
 
+#include <Graphics/Drawable.h>
 #include <Graphics/Sprite.h>
 #include <Graphics/IParticleEmitter.h>
 #include <Graphics/CircleEmitter.h>

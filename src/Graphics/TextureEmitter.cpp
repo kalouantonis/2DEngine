@@ -3,6 +3,7 @@
 namespace SuperEngine
 {
     TextureEmitter::TextureEmitter()
+        : IParticleEmitter()
     {
         // Set to normal scale, so no scale
         setScale(1.f);
