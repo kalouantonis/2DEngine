@@ -51,11 +51,11 @@ OBJDIR_PROFILE = obj/Release
 DEP_PROFILE = 
 OUT_PROFILE = /libEngine.a
 
-OBJ_DEBUG = $(OBJDIR_DEBUG)/src/main.o $(OBJDIR_DEBUG)/src/Utils/Logger.o $(OBJDIR_DEBUG)/src/Resources/XMLoader.o $(OBJDIR_DEBUG)/src/Memory/MemoryPool.o $(OBJDIR_DEBUG)/src/Graphics/Sprite.o $(OBJDIR_DEBUG)/src/Graphics/ParticleController.o $(OBJDIR_DEBUG)/src/Engine.o $(OBJDIR_DEBUG)/dependencies/tinyxml/tinystr.o $(OBJDIR_DEBUG)/dependencies/tinyxml/tinyxmlparser.o $(OBJDIR_DEBUG)/dependencies/tinyxml/tinyxmlerror.o $(OBJDIR_DEBUG)/dependencies/tinyxml/tinyxml.o
+OBJ_DEBUG = $(OBJDIR_DEBUG)/src/main.o $(OBJDIR_DEBUG)/src/Utils/Logger.o $(OBJDIR_DEBUG)/src/Resources/XMLoader.o $(OBJDIR_DEBUG)/src/Memory/MemoryPool.o $(OBJDIR_DEBUG)/src/Graphics/TextureEmitter.o $(OBJDIR_DEBUG)/src/Graphics/Sprite.o $(OBJDIR_DEBUG)/src/Graphics/IParticleEmitter.o $(OBJDIR_DEBUG)/src/Graphics/CircleEmitter.o $(OBJDIR_DEBUG)/src/Engine.o $(OBJDIR_DEBUG)/dependencies/tinyxml/tinyxmlparser.o $(OBJDIR_DEBUG)/dependencies/tinyxml/tinyxmlerror.o $(OBJDIR_DEBUG)/dependencies/tinyxml/tinyxml.o $(OBJDIR_DEBUG)/dependencies/tinyxml/tinystr.o
 
-OBJ_RELEASE = $(OBJDIR_RELEASE)/src/main.o $(OBJDIR_RELEASE)/src/Utils/Logger.o $(OBJDIR_RELEASE)/src/Resources/XMLoader.o $(OBJDIR_RELEASE)/src/Memory/MemoryPool.o $(OBJDIR_RELEASE)/src/Graphics/Sprite.o $(OBJDIR_RELEASE)/src/Graphics/ParticleController.o $(OBJDIR_RELEASE)/src/Engine.o $(OBJDIR_RELEASE)/dependencies/tinyxml/tinystr.o $(OBJDIR_RELEASE)/dependencies/tinyxml/tinyxmlparser.o $(OBJDIR_RELEASE)/dependencies/tinyxml/tinyxmlerror.o $(OBJDIR_RELEASE)/dependencies/tinyxml/tinyxml.o
+OBJ_RELEASE = $(OBJDIR_RELEASE)/src/main.o $(OBJDIR_RELEASE)/src/Utils/Logger.o $(OBJDIR_RELEASE)/src/Resources/XMLoader.o $(OBJDIR_RELEASE)/src/Memory/MemoryPool.o $(OBJDIR_RELEASE)/src/Graphics/TextureEmitter.o $(OBJDIR_RELEASE)/src/Graphics/Sprite.o $(OBJDIR_RELEASE)/src/Graphics/IParticleEmitter.o $(OBJDIR_RELEASE)/src/Graphics/CircleEmitter.o $(OBJDIR_RELEASE)/src/Engine.o $(OBJDIR_RELEASE)/dependencies/tinyxml/tinyxmlparser.o $(OBJDIR_RELEASE)/dependencies/tinyxml/tinyxmlerror.o $(OBJDIR_RELEASE)/dependencies/tinyxml/tinyxml.o $(OBJDIR_RELEASE)/dependencies/tinyxml/tinystr.o
 
-OBJ_PROFILE = $(OBJDIR_PROFILE)/src/main.o $(OBJDIR_PROFILE)/src/Utils/Logger.o $(OBJDIR_PROFILE)/src/Resources/XMLoader.o $(OBJDIR_PROFILE)/src/Memory/MemoryPool.o $(OBJDIR_PROFILE)/src/Graphics/Sprite.o $(OBJDIR_PROFILE)/src/Graphics/ParticleController.o $(OBJDIR_PROFILE)/src/Engine.o $(OBJDIR_PROFILE)/dependencies/tinyxml/tinystr.o $(OBJDIR_PROFILE)/dependencies/tinyxml/tinyxmlparser.o $(OBJDIR_PROFILE)/dependencies/tinyxml/tinyxmlerror.o $(OBJDIR_PROFILE)/dependencies/tinyxml/tinyxml.o
+OBJ_PROFILE = $(OBJDIR_PROFILE)/src/main.o $(OBJDIR_PROFILE)/src/Utils/Logger.o $(OBJDIR_PROFILE)/src/Resources/XMLoader.o $(OBJDIR_PROFILE)/src/Memory/MemoryPool.o $(OBJDIR_PROFILE)/src/Graphics/TextureEmitter.o $(OBJDIR_PROFILE)/src/Graphics/Sprite.o $(OBJDIR_PROFILE)/src/Graphics/IParticleEmitter.o $(OBJDIR_PROFILE)/src/Graphics/CircleEmitter.o $(OBJDIR_PROFILE)/src/Engine.o $(OBJDIR_PROFILE)/dependencies/tinyxml/tinyxmlparser.o $(OBJDIR_PROFILE)/dependencies/tinyxml/tinyxmlerror.o $(OBJDIR_PROFILE)/dependencies/tinyxml/tinyxml.o $(OBJDIR_PROFILE)/dependencies/tinyxml/tinystr.o
 
 all: debug release profile
 
@@ -88,17 +88,20 @@ $(OBJDIR_DEBUG)/src/Resources/XMLoader.o: src/Resources/XMLoader.cpp
 $(OBJDIR_DEBUG)/src/Memory/MemoryPool.o: src/Memory/MemoryPool.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/Memory/MemoryPool.cpp -o $(OBJDIR_DEBUG)/src/Memory/MemoryPool.o
 
+$(OBJDIR_DEBUG)/src/Graphics/TextureEmitter.o: src/Graphics/TextureEmitter.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/Graphics/TextureEmitter.cpp -o $(OBJDIR_DEBUG)/src/Graphics/TextureEmitter.o
+
 $(OBJDIR_DEBUG)/src/Graphics/Sprite.o: src/Graphics/Sprite.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/Graphics/Sprite.cpp -o $(OBJDIR_DEBUG)/src/Graphics/Sprite.o
 
-$(OBJDIR_DEBUG)/src/Graphics/ParticleController.o: src/Graphics/ParticleController.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/Graphics/ParticleController.cpp -o $(OBJDIR_DEBUG)/src/Graphics/ParticleController.o
+$(OBJDIR_DEBUG)/src/Graphics/IParticleEmitter.o: src/Graphics/IParticleEmitter.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/Graphics/IParticleEmitter.cpp -o $(OBJDIR_DEBUG)/src/Graphics/IParticleEmitter.o
+
+$(OBJDIR_DEBUG)/src/Graphics/CircleEmitter.o: src/Graphics/CircleEmitter.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/Graphics/CircleEmitter.cpp -o $(OBJDIR_DEBUG)/src/Graphics/CircleEmitter.o
 
 $(OBJDIR_DEBUG)/src/Engine.o: src/Engine.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/Engine.cpp -o $(OBJDIR_DEBUG)/src/Engine.o
-
-$(OBJDIR_DEBUG)/dependencies/tinyxml/tinystr.o: dependencies/tinyxml/tinystr.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c dependencies/tinyxml/tinystr.cpp -o $(OBJDIR_DEBUG)/dependencies/tinyxml/tinystr.o
 
 $(OBJDIR_DEBUG)/dependencies/tinyxml/tinyxmlparser.o: dependencies/tinyxml/tinyxmlparser.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c dependencies/tinyxml/tinyxmlparser.cpp -o $(OBJDIR_DEBUG)/dependencies/tinyxml/tinyxmlparser.o
@@ -108,6 +111,9 @@ $(OBJDIR_DEBUG)/dependencies/tinyxml/tinyxmlerror.o: dependencies/tinyxml/tinyxm
 
 $(OBJDIR_DEBUG)/dependencies/tinyxml/tinyxml.o: dependencies/tinyxml/tinyxml.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c dependencies/tinyxml/tinyxml.cpp -o $(OBJDIR_DEBUG)/dependencies/tinyxml/tinyxml.o
+
+$(OBJDIR_DEBUG)/dependencies/tinyxml/tinystr.o: dependencies/tinyxml/tinystr.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c dependencies/tinyxml/tinystr.cpp -o $(OBJDIR_DEBUG)/dependencies/tinyxml/tinystr.o
 
 clean_debug: 
 	rm -f $(OBJ_DEBUG) $(OUT_DEBUG)
@@ -145,17 +151,20 @@ $(OBJDIR_RELEASE)/src/Resources/XMLoader.o: src/Resources/XMLoader.cpp
 $(OBJDIR_RELEASE)/src/Memory/MemoryPool.o: src/Memory/MemoryPool.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/Memory/MemoryPool.cpp -o $(OBJDIR_RELEASE)/src/Memory/MemoryPool.o
 
+$(OBJDIR_RELEASE)/src/Graphics/TextureEmitter.o: src/Graphics/TextureEmitter.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/Graphics/TextureEmitter.cpp -o $(OBJDIR_RELEASE)/src/Graphics/TextureEmitter.o
+
 $(OBJDIR_RELEASE)/src/Graphics/Sprite.o: src/Graphics/Sprite.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/Graphics/Sprite.cpp -o $(OBJDIR_RELEASE)/src/Graphics/Sprite.o
 
-$(OBJDIR_RELEASE)/src/Graphics/ParticleController.o: src/Graphics/ParticleController.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/Graphics/ParticleController.cpp -o $(OBJDIR_RELEASE)/src/Graphics/ParticleController.o
+$(OBJDIR_RELEASE)/src/Graphics/IParticleEmitter.o: src/Graphics/IParticleEmitter.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/Graphics/IParticleEmitter.cpp -o $(OBJDIR_RELEASE)/src/Graphics/IParticleEmitter.o
+
+$(OBJDIR_RELEASE)/src/Graphics/CircleEmitter.o: src/Graphics/CircleEmitter.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/Graphics/CircleEmitter.cpp -o $(OBJDIR_RELEASE)/src/Graphics/CircleEmitter.o
 
 $(OBJDIR_RELEASE)/src/Engine.o: src/Engine.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/Engine.cpp -o $(OBJDIR_RELEASE)/src/Engine.o
-
-$(OBJDIR_RELEASE)/dependencies/tinyxml/tinystr.o: dependencies/tinyxml/tinystr.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c dependencies/tinyxml/tinystr.cpp -o $(OBJDIR_RELEASE)/dependencies/tinyxml/tinystr.o
 
 $(OBJDIR_RELEASE)/dependencies/tinyxml/tinyxmlparser.o: dependencies/tinyxml/tinyxmlparser.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c dependencies/tinyxml/tinyxmlparser.cpp -o $(OBJDIR_RELEASE)/dependencies/tinyxml/tinyxmlparser.o
@@ -165,6 +174,9 @@ $(OBJDIR_RELEASE)/dependencies/tinyxml/tinyxmlerror.o: dependencies/tinyxml/tiny
 
 $(OBJDIR_RELEASE)/dependencies/tinyxml/tinyxml.o: dependencies/tinyxml/tinyxml.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c dependencies/tinyxml/tinyxml.cpp -o $(OBJDIR_RELEASE)/dependencies/tinyxml/tinyxml.o
+
+$(OBJDIR_RELEASE)/dependencies/tinyxml/tinystr.o: dependencies/tinyxml/tinystr.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c dependencies/tinyxml/tinystr.cpp -o $(OBJDIR_RELEASE)/dependencies/tinyxml/tinystr.o
 
 clean_release: 
 	rm -f $(OBJ_RELEASE) $(OUT_RELEASE)
@@ -202,17 +214,20 @@ $(OBJDIR_PROFILE)/src/Resources/XMLoader.o: src/Resources/XMLoader.cpp
 $(OBJDIR_PROFILE)/src/Memory/MemoryPool.o: src/Memory/MemoryPool.cpp
 	$(CXX) $(CFLAGS_PROFILE) $(INC_PROFILE) -c src/Memory/MemoryPool.cpp -o $(OBJDIR_PROFILE)/src/Memory/MemoryPool.o
 
+$(OBJDIR_PROFILE)/src/Graphics/TextureEmitter.o: src/Graphics/TextureEmitter.cpp
+	$(CXX) $(CFLAGS_PROFILE) $(INC_PROFILE) -c src/Graphics/TextureEmitter.cpp -o $(OBJDIR_PROFILE)/src/Graphics/TextureEmitter.o
+
 $(OBJDIR_PROFILE)/src/Graphics/Sprite.o: src/Graphics/Sprite.cpp
 	$(CXX) $(CFLAGS_PROFILE) $(INC_PROFILE) -c src/Graphics/Sprite.cpp -o $(OBJDIR_PROFILE)/src/Graphics/Sprite.o
 
-$(OBJDIR_PROFILE)/src/Graphics/ParticleController.o: src/Graphics/ParticleController.cpp
-	$(CXX) $(CFLAGS_PROFILE) $(INC_PROFILE) -c src/Graphics/ParticleController.cpp -o $(OBJDIR_PROFILE)/src/Graphics/ParticleController.o
+$(OBJDIR_PROFILE)/src/Graphics/IParticleEmitter.o: src/Graphics/IParticleEmitter.cpp
+	$(CXX) $(CFLAGS_PROFILE) $(INC_PROFILE) -c src/Graphics/IParticleEmitter.cpp -o $(OBJDIR_PROFILE)/src/Graphics/IParticleEmitter.o
+
+$(OBJDIR_PROFILE)/src/Graphics/CircleEmitter.o: src/Graphics/CircleEmitter.cpp
+	$(CXX) $(CFLAGS_PROFILE) $(INC_PROFILE) -c src/Graphics/CircleEmitter.cpp -o $(OBJDIR_PROFILE)/src/Graphics/CircleEmitter.o
 
 $(OBJDIR_PROFILE)/src/Engine.o: src/Engine.cpp
 	$(CXX) $(CFLAGS_PROFILE) $(INC_PROFILE) -c src/Engine.cpp -o $(OBJDIR_PROFILE)/src/Engine.o
-
-$(OBJDIR_PROFILE)/dependencies/tinyxml/tinystr.o: dependencies/tinyxml/tinystr.cpp
-	$(CXX) $(CFLAGS_PROFILE) $(INC_PROFILE) -c dependencies/tinyxml/tinystr.cpp -o $(OBJDIR_PROFILE)/dependencies/tinyxml/tinystr.o
 
 $(OBJDIR_PROFILE)/dependencies/tinyxml/tinyxmlparser.o: dependencies/tinyxml/tinyxmlparser.cpp
 	$(CXX) $(CFLAGS_PROFILE) $(INC_PROFILE) -c dependencies/tinyxml/tinyxmlparser.cpp -o $(OBJDIR_PROFILE)/dependencies/tinyxml/tinyxmlparser.o
@@ -222,6 +237,9 @@ $(OBJDIR_PROFILE)/dependencies/tinyxml/tinyxmlerror.o: dependencies/tinyxml/tiny
 
 $(OBJDIR_PROFILE)/dependencies/tinyxml/tinyxml.o: dependencies/tinyxml/tinyxml.cpp
 	$(CXX) $(CFLAGS_PROFILE) $(INC_PROFILE) -c dependencies/tinyxml/tinyxml.cpp -o $(OBJDIR_PROFILE)/dependencies/tinyxml/tinyxml.o
+
+$(OBJDIR_PROFILE)/dependencies/tinyxml/tinystr.o: dependencies/tinyxml/tinystr.cpp
+	$(CXX) $(CFLAGS_PROFILE) $(INC_PROFILE) -c dependencies/tinyxml/tinystr.cpp -o $(OBJDIR_PROFILE)/dependencies/tinyxml/tinystr.o
 
 clean_profile: 
 	rm -f $(OBJ_PROFILE) $(OUT_PROFILE)
