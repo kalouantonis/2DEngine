@@ -5,4 +5,4 @@ Dependencies:
 
 -- SFML 2.0  
 -- ZLib  
--- A compiler that supports C++-11
+-- A compiler that supports C++11
