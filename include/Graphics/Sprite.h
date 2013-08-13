@@ -12,7 +12,7 @@ namespace SuperEngine
         COLLISION_DIST
     };
 
-    class Sprite
+    class Sprite: public Drawable
     {
     private:
 
@@ -23,9 +23,7 @@ namespace SuperEngine
         sf::Clock m_lifeTimeTimer;
         //int spriteType;
 
-        sf::Vector2f m_position, m_velocity;
-
-        int m_state, m_direction;
+        int m_state;
 
         sf::Color m_color;
 
@@ -50,7 +48,6 @@ namespace SuperEngine
         float m_faceangle, m_moveangle;
         int m_animstartx, m_animstarty;
 
-        float m_rotation;
         sf::Vector2f m_scale;
         // Frame at which animation will start from
         unsigned int m_startframe;
@@ -60,20 +57,6 @@ namespace SuperEngine
         bool genSprite(const sf::Texture& texture, unsigned int animationCols, unsigned int animationRows);
 
     public:
-        //position on screen
-        sf::Vector2f getPosition() const { return m_position; }
-        void setPosition(const sf::Vector2f& position) { m_position = position; }
-        void setPosition(float x, float y) { m_position.x = x; m_position.y = y; }
-
-        double getX() const { return m_position.x; }
-        double getY() const { return m_position.y; }
-        void setX(float x) { m_position.x = x; }
-        void setY(float y) { m_position.y = y; }
-
-        // movement & velocity
-        sf::Vector2f getVelocity() const { return m_velocity; }
-        void setVelocity(const sf::Vector2f& val) { m_velocity = val; }
-        void setVelocity(float x, float y) { m_velocity.x = x; m_velocity.y = y; }
 
         // Image size
         sf::Vector2f getFrameSize() const { return m_frameSize; }
@@ -88,9 +71,6 @@ namespace SuperEngine
 
         int getState() const { return m_state; }
         void setState(int val) { m_state = val; }
-
-        int getDirection() const { return m_direction; }
-        void setDirection(int val) { m_direction = val; }
 
         int getColumns() const { return m_animationCols; }
         void setColumns(int val) { m_animationCols = val; }
@@ -108,9 +88,6 @@ namespace SuperEngine
 
         int getAnimationDir() const { return m_animdir; }
         void setAnimationDir(int val) { m_animdir = val; }
-
-        float getRotation() const { return m_rotation; }
-        void setRotation(float rotation) { m_rotation = rotation; }
 
         sf::Vector2f getScale() const { return m_scale; }
         void setScale(float x, float y) { m_scale = sf::Vector2f(x, y); }
@@ -151,6 +128,6 @@ namespace SuperEngine
 
         void Move(float elapsedTime);
         void Animate();
-        void Draw();
+        void Draw() final;
     };
 };

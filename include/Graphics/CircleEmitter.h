@@ -24,7 +24,7 @@ namespace SuperEngine
         typedef std::vector<Circle>::iterator m_particleIter;
         std::vector<Circle> m_particles;
 
-        void Add() final;
+        void Add();
 
        // Size of circle primitive
         float m_partSize;

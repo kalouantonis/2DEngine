@@ -67,6 +67,7 @@
 				</Linker>
 			</Target>
 		</Build>
+		<Unit filename="Makefile" />
 		<Unit filename="dependencies/tinyxml/tinystr.cpp" />
 		<Unit filename="dependencies/tinyxml/tinystr.h" />
 		<Unit filename="dependencies/tinyxml/tinyxml.cpp" />
@@ -74,9 +75,10 @@
 		<Unit filename="dependencies/tinyxml/tinyxmlerror.cpp" />
 		<Unit filename="dependencies/tinyxml/tinyxmlparser.cpp" />
 		<Unit filename="include/Engine.h" />
-		<Unit filename="include/Graphics/ParticleController.h" />
+		<Unit filename="include/Graphics/CircleEmitter.h" />
+		<Unit filename="include/Graphics/IParticleEmitter.h" />
 		<Unit filename="include/Graphics/Sprite.h" />
-		<Unit filename="include/Graphics/TileMap.h" />
+		<Unit filename="include/Graphics/TextureEmitter.h" />
 		<Unit filename="include/Memory/MemoryPool.h" />
 		<Unit filename="include/Resources/IResourceLoader.h" />
 		<Unit filename="include/Resources/TextureLoader.h" />
@@ -85,8 +87,10 @@
 		<Unit filename="include/Utils/Vector2.h" />
 		<Unit filename="include/Utils/Vector3.h" />
 		<Unit filename="src/Engine.cpp" />
-		<Unit filename="src/Graphics/ParticleController.cpp" />
+		<Unit filename="src/Graphics/CircleEmitter.cpp" />
+		<Unit filename="src/Graphics/IParticleEmitter.cpp" />
 		<Unit filename="src/Graphics/Sprite.cpp" />
+		<Unit filename="src/Graphics/TextureEmitter.cpp" />
 		<Unit filename="src/Memory/MemoryPool.cpp" />
 		<Unit filename="src/Resources/XMLoader.cpp" />
 		<Unit filename="src/Utils/Logger.cpp" />
