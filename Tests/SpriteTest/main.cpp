@@ -95,9 +95,9 @@ void game_update(float elapsedTime)
         explosion->setPosition(0 - explosion->getFrameSize().x, explosion->getPosition().y);
     }
 
-    sprite->Move(elapsedTime);
-    sprite2->Move(elapsedTime);
-    explosion->Move(elapsedTime);
+    sprite->Update(elapsedTime);
+    sprite2->Update(elapsedTime);
+    explosion->Update(elapsedTime);
 }
 
 void game_render()

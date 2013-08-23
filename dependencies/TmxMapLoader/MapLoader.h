@@ -66,7 +66,7 @@ namespace tmx
 		//overload for drawing layer by index
 		void Draw(sf::RenderTarget& rt, sf::Uint16 index);
 		//legacy draw method which draws each tile as a separate sprite
-		void Draw2(sf::RenderTarget& rt, bool debug = false);
+		void Draw(sf::RenderTarget& rt, bool debug);
 		//projects orthogonal world coords to isometric world coords if available, else return original value
 		//eg: use to convert an isometric world coordinate to a position to be drawn in view space
 		const sf::Vector2f IsometricToOrthogonal(const sf::Vector2f& projectedCoords);

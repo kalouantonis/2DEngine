@@ -215,7 +215,7 @@ void MapLoader::Draw(sf::RenderTarget& rt, sf::Uint16 index)
 }
 
 //legacy draw function, avoid using this if possible
-void MapLoader::Draw2(sf::RenderTarget& rt, bool debug)
+void MapLoader::Draw(sf::RenderTarget& rt, bool debug)
 {
 	if(!m_mapLoaded) return; //no need to log this really
 	//draw only visible tiles

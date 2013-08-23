@@ -141,7 +141,7 @@ namespace SuperEngine
         //g_pEngine->getDevice()->draw(m_sprite);
     }
 
-    void Sprite::Move(float elapsedTime)
+    void Sprite::Update(float elapsedTime)
     {
         // no movement timer -- move at CPU speed
 //        this->setPosition(this->getPosition().x + (this->getVelocity().x * elapsedTime),
@@ -151,6 +151,9 @@ namespace SuperEngine
 
     void Sprite::Animate()
     {
+        // TODO (slacker#9#): Allow automatic animation
+
+
         // update frame based on animation direction
         if(m_useFrameTimer)
         {

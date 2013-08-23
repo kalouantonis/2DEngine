@@ -19,11 +19,15 @@
 					<Add option="-g" />
 					<Add option="-Wno-switch" />
 					<Add option="-Wno-reorder" />
+					<Add option="-Wno-unused-function" />
 					<Add option="-pthread" />
 					<Add option="-D_DEBUG" />
 					<Add directory="include" />
 					<Add directory="dependencies" />
 				</Compiler>
+				<Linker>
+					<Add library="libTmxMapLoader.a" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="Engine" prefix_auto="1" extension_auto="1" />
@@ -33,11 +37,13 @@
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Compiler>
-					<Add option="-O2" />
+					<Add option="-O3" />
 					<Add option="-std=c++11" />
 					<Add option="-Wall" />
 					<Add option="-Wno-switch" />
 					<Add option="-pthread" />
+					<Add directory="include" />
+					<Add directory="dependencies" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -68,6 +74,18 @@
 			</Target>
 		</Build>
 		<Unit filename="Makefile" />
+		<Unit filename="dependencies/TmxMapLoader/Helpers.h" />
+		<Unit filename="dependencies/TmxMapLoader/MapLoader.h" />
+		<Unit filename="dependencies/TmxMapLoader/MapLoaderPrivate.cpp" />
+		<Unit filename="dependencies/TmxMapLoader/MapLoaderPublic.cpp" />
+		<Unit filename="dependencies/TmxMapLoader/MapObject.h" />
+		<Unit filename="dependencies/TmxMapLoader/QuadTreeNode.cpp" />
+		<Unit filename="dependencies/TmxMapLoader/QuadTreeNode.h" />
+		<Unit filename="dependencies/TmxMapLoader/zconf.h" />
+		<Unit filename="dependencies/TmxMapLoader/zlib.h" />
+		<Unit filename="dependencies/pugixml/pugiconfig.hpp" />
+		<Unit filename="dependencies/pugixml/pugixml.cpp" />
+		<Unit filename="dependencies/pugixml/pugixml.hpp" />
 		<Unit filename="dependencies/tinyxml/tinystr.cpp" />
 		<Unit filename="dependencies/tinyxml/tinystr.h" />
 		<Unit filename="dependencies/tinyxml/tinyxml.cpp" />
@@ -76,9 +94,12 @@
 		<Unit filename="dependencies/tinyxml/tinyxmlparser.cpp" />
 		<Unit filename="include/Engine.h" />
 		<Unit filename="include/Graphics/CircleEmitter.h" />
+		<Unit filename="include/Graphics/Drawable.h" />
+		<Unit filename="include/Graphics/DrawableGroup.h" />
 		<Unit filename="include/Graphics/IParticleEmitter.h" />
 		<Unit filename="include/Graphics/Sprite.h" />
 		<Unit filename="include/Graphics/TextureEmitter.h" />
+		<Unit filename="include/Graphics/Tilemap.h" />
 		<Unit filename="include/Memory/MemoryPool.h" />
 		<Unit filename="include/Resources/IResourceLoader.h" />
 		<Unit filename="include/Resources/TextureLoader.h" />
@@ -88,9 +109,12 @@
 		<Unit filename="include/Utils/Vector3.h" />
 		<Unit filename="src/Engine.cpp" />
 		<Unit filename="src/Graphics/CircleEmitter.cpp" />
+		<Unit filename="src/Graphics/Drawable.cpp" />
+		<Unit filename="src/Graphics/DrawableGroup.cpp" />
 		<Unit filename="src/Graphics/IParticleEmitter.cpp" />
 		<Unit filename="src/Graphics/Sprite.cpp" />
 		<Unit filename="src/Graphics/TextureEmitter.cpp" />
+		<Unit filename="src/Graphics/Tilemap.cpp" />
 		<Unit filename="src/Memory/MemoryPool.cpp" />
 		<Unit filename="src/Resources/XMLoader.cpp" />
 		<Unit filename="src/Utils/Logger.cpp" />

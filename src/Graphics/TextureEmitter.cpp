@@ -82,7 +82,7 @@ namespace SuperEngine
         for(auto i = m_particles.begin(); i != m_particles.end(); ++i)
         {
             // Delegate work to sprite class
-            i->Move(elapsedTime);
+            i->Update(elapsedTime);
 
             if(getVecDistance(i->getPosition(), this->getPosition()) > getLength())
             {

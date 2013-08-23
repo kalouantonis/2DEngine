@@ -1,5 +1,4 @@
 #include "Engine.h"
-#include <tr1/memory>
 
 #define GET_ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
 
@@ -126,7 +125,7 @@ namespace SuperEngine
                        const sf::Color& transcolor = sf::Color(255, 0, 255));
         bool setImage(const sf::Texture&, unsigned int animationCols = 1, unsigned int animationRows = 1);
 
-        void Move(float elapsedTime);
+        void Update(float elapsedTime) final;
         void Animate();
         void Draw() final;
     };

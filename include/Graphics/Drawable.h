@@ -37,6 +37,7 @@ namespace SuperEngine
         float getRotation() { return m_rotation; }
 
         virtual void Draw() = 0;
+        virtual void Update(float elapsedTime) = 0;
     };
 };
 
