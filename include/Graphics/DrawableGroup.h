@@ -49,6 +49,9 @@ namespace SuperEngine
         // Destructor
         ~DrawableGroup() {}
     };
+
+    DrawableGroup drawablecollide(Drawable*, DrawableGroup*, bool kill = true,
+                                           bool(*collided)(Drawable*, Drawable*) = 0);
 };
 
 #endif // _DRAWABLEGROUP_H_
